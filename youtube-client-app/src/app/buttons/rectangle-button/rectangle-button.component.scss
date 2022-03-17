@@ -1,0 +1,15 @@
+.rectangle-button {
+    width: 80px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    border: 0;
+    border-radius: 5px;
+}
+
+:host.square-border > .rectangle-button {
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}

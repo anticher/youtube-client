@@ -28,11 +28,33 @@
 
 * {
     font-family: "Roboto";
+    font-size: 12px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 14px;
+    box-sizing: border-box;
+}
+
+input {
+    border-width: 0;
+    border-radius: 0;
 }
 
 // html, body { height: 100%; }
 // body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 .grey-color {
-    color: #4F4F4F
+    color: #4f4f4f;
+}
+
+.light-grey-bg {
+    background-color: #e5e5e5;
+}
+
+.blue-bg {
+    background-color: #2f80ed;
+}
+
+.white-color {
+    color: #ffffff;
 }

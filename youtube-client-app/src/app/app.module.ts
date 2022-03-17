@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
-import { SearchResultsComponent } from './search/search-results/search-results.component';
 import { SearchItemComponent } from './search/search-item/search-item.component';
 import { SearchSortingComponent } from './search/search-sorting/search-sorting.component';
 import { NotFoundComponent } from './not-found/not-found.component';
@@ -13,12 +12,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SquareButtonComponent } from './buttons/square-button/square-button.component';
 import { ProfileSettingsComponent } from './profile/profile-settings/profile-settings.component';
 import { MainComponent } from './main/main.component';
+import { RectangleButtonComponent } from './buttons/rectangle-button/rectangle-button.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    SearchResultsComponent,
     SearchItemComponent,
     SearchSortingComponent,
     NotFoundComponent,
@@ -27,6 +26,7 @@ import { MainComponent } from './main/main.component';
     SquareButtonComponent,
     ProfileSettingsComponent,
     MainComponent,
+    RectangleButtonComponent,
   ],
   imports: [
     BrowserModule,
