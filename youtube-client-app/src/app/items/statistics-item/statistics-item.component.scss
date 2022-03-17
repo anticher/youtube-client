@@ -1,0 +1,39 @@
+:host {
+    display: flex;
+    align-items: center;
+}
+
+.statistics-item-img {
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.viewed {
+    width: 20px;
+    height: 13px;
+    background-image: url("../../../assets/icons/viewed.svg");
+}
+
+.liked {
+    width: 15px;
+    height: 13px;
+    background-image: url("../../../assets/icons/liked.svg");
+}
+
+.disliked {
+    width: 15px;
+    height: 13px;
+    background-image: url("../../../assets/icons/dislike.svg");
+}
+
+.comments {
+    width: 13px;
+    height: 13px;
+    background-image: url("../../../assets/icons/comments.svg");
+}
+
+.statistics-item-text {
+    margin-left: 3px;
+    font-size: 10px;
+    line-height: 12px;
+}

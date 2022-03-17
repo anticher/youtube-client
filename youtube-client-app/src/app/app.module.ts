@@ -14,6 +14,7 @@ import { ProfileSettingsComponent } from './profile/profile-settings/profile-set
 import { MainComponent } from './main/main.component';
 import { RectangleButtonComponent } from './buttons/rectangle-button/rectangle-button.component';
 import { LogoButtonComponent } from './buttons/logo-button/logo-button.component';
+import { StatisticsItemComponent } from './items/statistics-item/statistics-item.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { LogoButtonComponent } from './buttons/logo-button/logo-button.component
     MainComponent,
     RectangleButtonComponent,
     LogoButtonComponent,
+    StatisticsItemComponent,
   ],
   imports: [
     BrowserModule,
