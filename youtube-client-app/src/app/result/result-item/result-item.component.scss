@@ -1,4 +1,4 @@
-:host {
+.result-item {
     padding: 20px 31px 15px 31px;
     width: 263px;
     height: 327px;
@@ -9,18 +9,6 @@
     gap: 21px;
     border-bottom-left-radius: 5px;
     border-bottom-right-radius: 5px;
-}
-
-:host::after {
-    width: 100%;
-    height: 5px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    background-color: blue;
-    border-bottom-left-radius: 5px;
-    border-bottom-right-radius: 5px;
-    content: "";
 }
 
 .result-item-logo {
@@ -44,4 +32,20 @@
 
 .result-item-btn {
     margin-top: auto;
+}
+
+.yellowBorder {
+    border-bottom: 5px solid yellow;
+}
+
+.blueBorder {
+    border-bottom: 5px solid blue;
+}
+
+.greenBorder {
+    border-bottom: 5px solid green;
+}
+
+.redBorder {
+    border-bottom: 5px solid red;
 }

@@ -1,11 +1,16 @@
-<img alt="result-item-logo" src="../../../assets/images/testLogoItem.jpg">
+<div class="result-item" [ngClass]="{
+    yellowBorder: this.borderColor.yellow,
+    blueBorder: this.borderColor.blue,
+    greenBorder: this.borderColor.green,
+    redBorder: this.borderColor.red
+}">
+    <img class="result-item-logo" alt="result-item-logo" [src]="this.mediumImageUrl">
 <div class="result-item-statistics">
-    <app-statistics-item type="viewed" number="245"></app-statistics-item>
-    <app-statistics-item type="liked" number="160"></app-statistics-item>
-    <app-statistics-item type="disliked" number="22"></app-statistics-item>
-    <app-statistics-item type="viewed" number="14"></app-statistics-item>
+    <app-statistics-item type="viewed" [number]="this.statistics.viewCount"></app-statistics-item>
+    <app-statistics-item type="liked" [number]="this.statistics.likeCount"></app-statistics-item>
+    <app-statistics-item type="disliked" [number]="this.statistics.dislikeCount"></app-statistics-item>
+    <app-statistics-item type="comments" [number]="this.statistics.commentCount"></app-statistics-item>
 </div>
-<h3 class="result-item-title">
-    opa
-</h3>
+<h3 class="result-item-title">{{this.channelTitle + " #" + this.categoryId}}</h3>
 <app-rectangle-button class="result-item-btn">more...</app-rectangle-button>
+</div>
