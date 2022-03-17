@@ -13,6 +13,7 @@ import { SquareButtonComponent } from './buttons/square-button/square-button.com
 import { ProfileSettingsComponent } from './profile/profile-settings/profile-settings.component';
 import { MainComponent } from './main/main.component';
 import { RectangleButtonComponent } from './buttons/rectangle-button/rectangle-button.component';
+import { LogoButtonComponent } from './buttons/logo-button/logo-button.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { RectangleButtonComponent } from './buttons/rectangle-button/rectangle-b
     ProfileSettingsComponent,
     MainComponent,
     RectangleButtonComponent,
+    LogoButtonComponent,
   ],
   imports: [
     BrowserModule,
