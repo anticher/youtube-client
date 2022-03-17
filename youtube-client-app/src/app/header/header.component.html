@@ -1,9 +1,9 @@
 <div class="header-center">
     <div class="header-center-top">
         <app-logo-button></app-logo-button>
-        <app-search-item></app-search-item>
+        <app-search-item [toggleSettings]="toggleDisplay.bind(this)"></app-search-item>
     </div>
-    <div class="header-center-bottom">
+    <div [ngClass]="isHidden? 'hidden': 'visible'" class="header-center-bottom">
         <app-search-sorting></app-search-sorting>
     </div>
 </div>

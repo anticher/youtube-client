@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -10,7 +11,7 @@ import { SearchSortingComponent } from './search/search-sorting/search-sorting.c
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ResultItemComponent } from './result/result-item/result-item.component';
 import { ResultComponent } from './result/result.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 import { SquareButtonComponent } from './buttons/square-button/square-button.component';
 import { ProfileSettingsComponent } from './profile/profile-settings/profile-settings.component';
 import { MainComponent } from './main/main.component';
