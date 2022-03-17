@@ -1,0 +1,25 @@
+:host {
+    height: 13px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.search-sorting-header {
+    color: #929292;
+}
+
+.search-sorting-buttons {
+    display: flex;
+    align-items: center;
+    gap: 21px;
+}
+
+.search-sorting-button {
+    text-decoration: underline;
+    background: 0;
+}
+
+.search-sorting-input {
+    width: 150px;
+}

@@ -1,4 +1,4 @@
-$header-center-width: 600px;
+$header-center-width: 570px;
 
 :host {
     width: 100%;
@@ -7,14 +7,22 @@ $header-center-width: 600px;
 
 .header-center {
     margin-left: calc((100% - $header-center-width) / 2);
-    width: 600px;
+    width: $header-center-width;
     display: flex;
+    flex-direction: column;
 }
 
 .header-center-top {
     padding: 15px 0;
     width: 100%;
     height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.header-center-bottom {
+    width: 100%;
+    height: 50px;
     display: flex;
     align-items: center;
 }
