@@ -9,18 +9,19 @@ $header-center-width: 600px;
     margin-left: calc((100% - $header-center-width) / 2);
     width: 600px;
     display: flex;
-    flex-direction: column;
 }
 
 .header-center-top {
+    padding: 15px 0;
     width: 100%;
+    height: 80px;
     display: flex;
     align-items: center;
-    overflow: hidden;
 }
 
 .header-right {
     width: calc((100% - $header-center-width) / 2);
+    height: 80px;
     display: flex;
     justify-content: center;
     align-items: center;
