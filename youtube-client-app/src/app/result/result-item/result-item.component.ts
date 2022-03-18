@@ -28,7 +28,6 @@ export class ResultItemComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.item)
     if (this.item) {
       this.statistics = this.item.statistics
       this.channelTitle = this.item.snippet.channelTitle

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnInit } from '@angular/core';
+import { SearchDataService } from 'src/app/services/search-data.service';
 
 @Component({
   selector: 'app-search-item',
@@ -7,9 +8,15 @@ import { Component, EventEmitter, Input, OnInit } from '@angular/core';
 })
 export class SearchItemComponent implements OnInit {
   @Input() toggleSettings: any = new EventEmitter()
-  constructor() { }
+  value = ''
+  constructor(private searchDataService: SearchDataService) { }
 
   ngOnInit(): void {
+
+  }
+
+  makeSearch() {
+    this.searchDataService.searchData(this.value)
   }
 
 }

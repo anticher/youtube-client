@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, DoCheck, OnChanges, OnInit } from '@angular/core';
 import { searchItem } from '../models/search-item.model';
 import { SearchDataService } from '../services/search-data.service';
 
@@ -7,14 +7,21 @@ import { SearchDataService } from '../services/search-data.service';
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.scss']
 })
-export class ResultComponent implements OnInit {
+export class ResultComponent implements OnInit, DoCheck {
   items: searchItem[] = []
-
+  dataChanged = 0
   constructor(private searchDataService: SearchDataService) { }
 
   ngOnInit(): void {
-    console.log(this.searchDataService.getData().items)
-    this.items = this.searchDataService.getData().items
+    this.dataChanged = this.searchDataService.dataChanged
+    this.items = this.searchDataService.resultData
+  }
+
+  ngDoCheck() {
+    if (this.dataChanged !== this.searchDataService.dataChanged) {
+      this.dataChanged = this.searchDataService.dataChanged
+      this.items = this.searchDataService.resultData
+    }
   }
 
 }

@@ -1,8 +1,11 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {SearchDataService} from './services/search-data.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -11,7 +14,6 @@ import { SearchSortingComponent } from './search/search-sorting/search-sorting.c
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ResultItemComponent } from './result/result-item/result-item.component';
 import { ResultComponent } from './result/result.component';
-
 import { SquareButtonComponent } from './buttons/square-button/square-button.component';
 import { ProfileSettingsComponent } from './profile/profile-settings/profile-settings.component';
 import { MainComponent } from './main/main.component';
@@ -39,8 +41,9 @@ import { StatisticsItemComponent } from './result/statistics-item/statistics-ite
     BrowserModule,
     BrowserAnimationsModule,
     HttpClientModule,
+    FormsModule,
   ],
-  providers: [],
+  providers: [SearchDataService],
   bootstrap: [AppComponent],
 })
 export class AppModule { }
