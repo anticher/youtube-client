@@ -5,7 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import {SearchDataService} from './services/search-data.service';
+import { SearchDataService } from './services/search-data.service';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';

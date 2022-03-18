@@ -8,9 +8,9 @@ describe('SquareButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SquareButtonComponent ]
+      declarations: [SquareButtonComponent],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

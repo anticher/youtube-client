@@ -1,27 +1,28 @@
-import { Component, DoCheck, OnChanges, OnInit } from '@angular/core';
-import { searchItem } from '../models/search-item.model';
+import { Component, DoCheck, OnInit } from '@angular/core';
+import { SearchItem } from '../models/search-item.model';
 import { SearchDataService } from '../services/search-data.service';
 
 @Component({
   selector: 'app-result',
   templateUrl: './result.component.html',
-  styleUrls: ['./result.component.scss']
+  styleUrls: ['./result.component.scss'],
 })
 export class ResultComponent implements OnInit, DoCheck {
-  items: searchItem[] = []
-  dataChanged = 0
+  items: SearchItem[] = [];
+
+  dataChanged = 0;
+
   constructor(private searchDataService: SearchDataService) { }
 
   ngOnInit(): void {
-    this.dataChanged = this.searchDataService.dataChanged
-    this.items = this.searchDataService.resultData
+    this.dataChanged = this.searchDataService.dataChanged;
+    this.items = this.searchDataService.resultData;
   }
 
   ngDoCheck() {
     if (this.dataChanged !== this.searchDataService.dataChanged) {
-      this.dataChanged = this.searchDataService.dataChanged
-      this.items = this.searchDataService.resultData
+      this.dataChanged = this.searchDataService.dataChanged;
+      this.items = this.searchDataService.resultData;
     }
   }
-
 }

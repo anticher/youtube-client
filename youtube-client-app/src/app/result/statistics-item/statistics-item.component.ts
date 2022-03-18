@@ -3,33 +3,36 @@ import { Component, Input, OnInit } from '@angular/core';
 @Component({
   selector: 'app-statistics-item',
   templateUrl: './statistics-item.component.html',
-  styleUrls: ['./statistics-item.component.scss']
+  styleUrls: ['./statistics-item.component.scss'],
 })
 export class StatisticsItemComponent implements OnInit {
-  @Input() type: string = "";
-  @Input() number: string = "";
-  viewed = false
-  liked = false
-  disliked = false
-  comments = false
-  constructor() { }
+  @Input() type: string = '';
+
+  @Input() number: string = '';
+
+  viewed = false;
+
+  liked = false;
+
+  disliked = false;
+
+  comments = false;
 
   ngOnInit(): void {
-    this.number
+    this.number;
     switch (this.type) {
       case 'viewed':
-        this.viewed = true
-        break
+        this.viewed = true;
+        break;
       case 'liked':
-        this.liked = true
-        break
+        this.liked = true;
+        break;
       case 'disliked':
-        this.disliked = true
-        break
+        this.disliked = true;
+        break;
       case 'comments':
-        this.comments = true
-        break
+        this.comments = true;
+        break;
     }
   }
-
 }

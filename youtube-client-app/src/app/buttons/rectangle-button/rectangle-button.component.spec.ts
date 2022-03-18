@@ -8,9 +8,9 @@ describe('RectangleButtonComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ RectangleButtonComponent ]
+      declarations: [RectangleButtonComponent],
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
