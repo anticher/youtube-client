@@ -38,13 +38,11 @@ export class SearchDataService {
     const firstItemDate = +new Date(this.resultData[0].snippet.publishedAt);
     const lastItemDate = +new Date(this.resultData[lastIndex].snippet.publishedAt);
     if (firstItemDate > lastItemDate) {
-      this.resultData.sort((a, b) => {
-        return +new Date(a.snippet.publishedAt) - +new Date(b.snippet.publishedAt)
-      });
+      this.resultData
+        .sort((a, b) => +new Date(a.snippet.publishedAt) - +new Date(b.snippet.publishedAt));
     } else if (firstItemDate < lastItemDate) {
-      this.resultData.sort((a, b) => {
-        return +new Date(b.snippet.publishedAt) - +new Date(a.snippet.publishedAt)
-      });
+      this.resultData
+        .sort((a, b) => +new Date(b.snippet.publishedAt) - +new Date(a.snippet.publishedAt));
     } else {
       return;
     }
@@ -56,14 +54,14 @@ export class SearchDataService {
       return;
     }
     const lastIndex = this.resultData.length - 1;
-    if (this.resultData[0].statistics.viewCount < this.resultData[lastIndex].statistics.viewCount) {
-      this.resultData.sort((a, b) => {
-        return a.statistics.viewCount - b.statistics.viewCount
-      });
-    } else if (this.resultData[0].statistics.viewCount > this.resultData[lastIndex].statistics.viewCount) {
-      this.resultData.sort((a, b) => {
-        return b.statistics.viewCount - a.statistics.viewCount
-      });
+    const firstItemViewCount = this.resultData[0].statistics.viewCount;
+    const lastItemViewCount = this.resultData[lastIndex].statistics.viewCount;
+    if (firstItemViewCount < lastItemViewCount) {
+      this.resultData
+        .sort((a, b) => a.statistics.viewCount - b.statistics.viewCount);
+    } else if (firstItemViewCount > lastItemViewCount) {
+      this.resultData
+        .sort((a, b) => b.statistics.viewCount - a.statistics.viewCount);
     } else {
       return;
     }
@@ -75,7 +73,8 @@ export class SearchDataService {
       this.resultData = this.dataSavedForFilter;
     } else {
       this.filterString = filterString;
-      this.resultData = this.dataSavedForFilter.filter((item) => item.snippet.tags.includes(filterString));
+      this.resultData = this.dataSavedForFilter
+        .filter((item) => item.snippet.tags.includes(filterString));
     }
     this.dataChanged = Date.now();
   }

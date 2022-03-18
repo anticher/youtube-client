@@ -38,15 +38,15 @@ export class ResultItemComponent implements OnInit {
       this.channelTitle = this.item.snippet.channelTitle;
       this.categoryId = this.item.snippet.categoryId;
       this.mediumImageUrl = this.item.snippet.thumbnails.medium.url;
-      this.publishedDaysAgo = this.getDateRelevanceInMinutes(this.item.snippet.publishedAt);
+      this.setPublishedDaysAgoInMinutes(this.item.snippet.publishedAt);
       this.setCorrectBorderColor();
     }
   }
 
-  getDateRelevanceInMinutes(publishedDate: string): number {
+  setPublishedDaysAgoInMinutes(publishedDate: string) {
     const milliseconds = Date.now() - new Date(publishedDate).getTime();
     const millisecondsToDays = milliseconds / (1000 * 60 * 60 * 24);
-    return millisecondsToDays;
+    this.publishedDaysAgo = millisecondsToDays;
   }
 
   setCorrectBorderColor() {

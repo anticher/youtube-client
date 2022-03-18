@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class HeaderComponent {
   isHidden = true;
-  
+
   toggleDisplay() {
     this.isHidden = !this.isHidden;
   }

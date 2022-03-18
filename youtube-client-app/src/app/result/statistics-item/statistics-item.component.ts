@@ -19,7 +19,10 @@ export class StatisticsItemComponent implements OnInit {
   comments = false;
 
   ngOnInit(): void {
-    this.number;
+    this.setStatistics();
+  }
+
+  setStatistics() {
     switch (this.type) {
       case 'viewed':
         this.viewed = true;
@@ -33,6 +36,11 @@ export class StatisticsItemComponent implements OnInit {
       case 'comments':
         this.comments = true;
         break;
+      default:
+        this.viewed = false;
+        this.liked = false;
+        this.disliked = false;
+        this.comments = false;
     }
   }
 }
