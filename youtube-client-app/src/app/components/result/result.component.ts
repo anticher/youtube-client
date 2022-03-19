@@ -1,6 +1,6 @@
 import { Component, DoCheck, OnInit } from '@angular/core';
-import { SearchItem } from '../models/search-item.model';
-import { SearchDataService } from '../services/search-data.service';
+import { SearchItem } from '../../models/search-item.model';
+import { SearchDataService } from '../../services/search-data.service';
 
 @Component({
   selector: 'app-result',

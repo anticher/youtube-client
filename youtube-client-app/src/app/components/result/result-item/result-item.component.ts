@@ -25,12 +25,7 @@ export class ResultItemComponent implements OnInit {
 
   publishedDaysAgo = 0;
 
-  borderColor = {
-    yellow: false,
-    blue: false,
-    red: false,
-    green: false,
-  };
+  borderColor = '';
 
   ngOnInit(): void {
     if (this.item) {
@@ -52,16 +47,16 @@ export class ResultItemComponent implements OnInit {
   setCorrectBorderColor() {
     switch (true) {
       case this.publishedDaysAgo > 180:
-        this.borderColor.red = true;
+        this.borderColor = 'red';
         break;
       case this.publishedDaysAgo < 7:
-        this.borderColor.blue = true;
+        this.borderColor = 'blue';
         break;
       case this.publishedDaysAgo < 30:
-        this.borderColor.green = true;
+        this.borderColor = 'green';
         break;
       default:
-        this.borderColor.yellow = true;
+        this.borderColor = 'yellow';
     }
   }
 }

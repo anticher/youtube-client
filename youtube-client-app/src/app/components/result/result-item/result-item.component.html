@@ -1,9 +1,4 @@
-<div class="result-item" [ngClass]="{
-    yellowBorder: this.borderColor.yellow,
-    blueBorder: this.borderColor.blue,
-    greenBorder: this.borderColor.green,
-    redBorder: this.borderColor.red
-}">
+<div class="result-item" [appResultItemBorderColor]="this.borderColor">
     <img class="result-item-logo" alt="result-item-logo" [src]="this.mediumImageUrl">
 <div class="result-item-statistics">
     <app-statistics-item type="viewed" [number]="this.statistics.viewCount"></app-statistics-item>
