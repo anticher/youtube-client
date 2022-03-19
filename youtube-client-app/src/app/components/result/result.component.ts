@@ -12,6 +12,8 @@ export class ResultComponent implements OnInit, DoCheck {
 
   dataChanged = 0;
 
+  filterString = '';
+
   constructor(private searchDataService: SearchDataService) { }
 
   ngOnInit(): void {
@@ -20,6 +22,9 @@ export class ResultComponent implements OnInit, DoCheck {
   }
 
   ngDoCheck() {
+    if (this.filterString !== this.searchDataService.filterString) {
+      this.filterString = this.searchDataService.filterString;
+    }
     if (this.dataChanged !== this.searchDataService.dataChanged) {
       this.dataChanged = this.searchDataService.dataChanged;
       this.items = this.searchDataService.resultData;

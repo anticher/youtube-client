@@ -19,6 +19,6 @@ export class SearchSortingComponent {
 
   tagsFilter(event: Event) {
     const tag = (event.target as HTMLInputElement).value;
-    this.searchDataService.filterResultByTag(tag);
+    this.searchDataService.changeSearchTag(tag);
   }
 }

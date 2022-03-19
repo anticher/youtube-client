@@ -1,1 +1,1 @@
-<app-result-item *ngFor="let item of items" [item]="item" class="light-grey-bg"></app-result-item>
+<app-result-item *ngFor="let item of items | filterSearchResults:this.filterString" [item]="item" class="light-grey-bg"></app-result-item>

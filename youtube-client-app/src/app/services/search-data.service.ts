@@ -11,8 +11,6 @@ export class SearchDataService {
 
   dataChanged = 0;
 
-  dataSavedForFilter: any[] = [];
-
   filterString = '';
 
   getData(): any {
@@ -23,10 +21,6 @@ export class SearchDataService {
     this.resultData = this.data.items.filter((item) => item.snippet.channelTitle
       .toLowerCase()
       .startsWith(searchString.toLowerCase()));
-    this.dataSavedForFilter = [...this.resultData];
-    if (this.filterString) {
-      this.filterResultByTag(this.filterString);
-    }
     this.dataChanged = Date.now();
   }
 
@@ -68,14 +62,7 @@ export class SearchDataService {
     this.dataChanged = Date.now();
   }
 
-  filterResultByTag(filterString: string) {
-    if (!filterString) {
-      this.resultData = this.dataSavedForFilter;
-    } else {
-      this.filterString = filterString;
-      this.resultData = this.dataSavedForFilter
-        .filter((item) => item.snippet.tags.includes(filterString));
-    }
-    this.dataChanged = Date.now();
+  changeSearchTag(tag: string) {
+    this.filterString = tag;
   }
 }

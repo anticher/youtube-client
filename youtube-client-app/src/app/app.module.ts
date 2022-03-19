@@ -21,6 +21,7 @@ import { RectangleButtonComponent } from './components/buttons/rectangle-button/
 import { LogoButtonComponent } from './components/buttons/logo-button/logo-button.component';
 import { StatisticsItemComponent } from './components/result/statistics-item/statistics-item.component';
 import { ResultItemBorderColorDirective } from './directives/result-item-border-color.directive';
+import { FilterSearchResultsPipe } from './pipes/filter-search-results.pipe';
 
 @NgModule({
   declarations: [
@@ -38,6 +39,7 @@ import { ResultItemBorderColorDirective } from './directives/result-item-border-
     LogoButtonComponent,
     StatisticsItemComponent,
     ResultItemBorderColorDirective,
+    FilterSearchResultsPipe,
   ],
   imports: [
     BrowserModule,
