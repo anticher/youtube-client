@@ -9,6 +9,10 @@
     border-radius: 5px;
 }
 
+.rectangle-button:hover {
+    background-color: #85B9FF;
+}
+
 :host.square-border > .rectangle-button {
     border-top-left-radius: 0;
     border-bottom-left-radius: 0;
