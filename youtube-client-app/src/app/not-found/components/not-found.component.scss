@@ -1,0 +1,26 @@
+:host {
+    flex: 1 0 auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.not-found-wrapper {
+    display: flex;
+    align-items: center;
+}
+
+.not-found-logo {
+    margin-top: 10px;
+    width: 100px;
+    object-fit: cover;
+}
+
+.not-found-text {
+    margin: 0 0 0 27px;
+    width: 230px;
+    font-size: 24px;
+    font-weight: 700;
+    line-height: 28px;
+    color: #828282;
+}
