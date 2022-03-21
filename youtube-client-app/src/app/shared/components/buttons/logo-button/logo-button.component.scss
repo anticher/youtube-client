@@ -5,3 +5,7 @@ button {
     background-position: center;
     background-image: url("../../../../../assets/icons/logoMain.svg");
 }
+
+button:hover {
+    cursor: pointer;
+}
