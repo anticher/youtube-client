@@ -12,6 +12,7 @@ import { StatisticsItemComponent } from './components/statistics-item/statistics
 import { ResultItemBorderColorDirective } from './directives/result-item-border-color.directive';
 import { FilterSearchResultsPipe } from './pipes/filter-search-results.pipe';
 import { SharedModule } from '../shared/shared.module';
+import { DetailsPageComponent } from './components/details-page/details-page.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SharedModule } from '../shared/shared.module';
     StatisticsItemComponent,
     ResultItemBorderColorDirective,
     FilterSearchResultsPipe,
+    DetailsPageComponent,
   ],
   imports: [
     CommonModule,
