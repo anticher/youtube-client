@@ -13,6 +13,7 @@ import { ResultItemBorderColorDirective } from './directives/result-item-border-
 import { FilterSearchResultsPipe } from './pipes/filter-search-results.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { DetailsPageComponent } from './components/details-page/details-page.component';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { DetailsPageComponent } from './components/details-page/details-page.com
     CommonModule,
     SharedModule,
     FormsModule,
+    RouterModule,
   ],
   exports: [
     SearchItemComponent,

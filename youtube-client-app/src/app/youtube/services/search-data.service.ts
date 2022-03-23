@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { SearchItem } from '../models/search-item.model';
 import * as testData from './testResponceData.json';
 
 @Injectable({
@@ -13,8 +14,14 @@ export class SearchDataService {
 
   filterString = '';
 
-  getData(): any {
+  getData(): SearchItem[] {
     return this.resultData;
+  }
+
+  getDataById(id: string): SearchItem {
+    this.searchData('')
+    const index = this.resultData.findIndex((item) => item.id === id)
+    return this.resultData[index]
   }
 
   searchData(searchString: string) {

@@ -4,6 +4,7 @@ import { HeaderComponent } from './components/header/header.component';
 import { YoutubeModule } from '../youtube/youtube.module';
 import { SharedModule } from '../shared/shared.module';
 import { AuthModule } from '../auth/auth.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [HeaderComponent],
@@ -12,6 +13,7 @@ import { AuthModule } from '../auth/auth.module';
     YoutubeModule,
     SharedModule,
     AuthModule,
+    RouterModule,
   ],
   exports: [
     HeaderComponent,

@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { SearchItem } from 'src/app/youtube/models/search-item.model';
+import { ResultService } from '../../services/result.service';
 
 @Component({
   selector: 'app-result-item',
@@ -8,6 +9,8 @@ import { SearchItem } from 'src/app/youtube/models/search-item.model';
 })
 export class ResultItemComponent implements OnInit {
   @Input() item: SearchItem | undefined;
+
+  itemId = ''
 
   statistics = {
     commentCount: '0',
@@ -23,40 +26,20 @@ export class ResultItemComponent implements OnInit {
 
   mediumImageUrl = '';
 
-  publishedDaysAgo = 0;
-
   borderColor = '';
+
+  constructor(
+    private resultService: ResultService,
+  ) { }
 
   ngOnInit(): void {
     if (this.item) {
+      this.itemId = this.item.id
       this.statistics = this.item.statistics;
       this.channelTitle = this.item.snippet.channelTitle;
       this.categoryId = this.item.snippet.categoryId;
       this.mediumImageUrl = this.item.snippet.thumbnails.medium.url;
-      this.setPublishedDaysAgoInMinutes(this.item.snippet.publishedAt);
-      this.setCorrectBorderColor();
-    }
-  }
-
-  setPublishedDaysAgoInMinutes(publishedDate: string) {
-    const milliseconds = Date.now() - new Date(publishedDate).getTime();
-    const millisecondsToDays = milliseconds / (1000 * 60 * 60 * 24);
-    this.publishedDaysAgo = millisecondsToDays;
-  }
-
-  setCorrectBorderColor() {
-    switch (true) {
-      case this.publishedDaysAgo > 180:
-        this.borderColor = 'red';
-        break;
-      case this.publishedDaysAgo < 7:
-        this.borderColor = 'blue';
-        break;
-      case this.publishedDaysAgo < 30:
-        this.borderColor = 'green';
-        break;
-      default:
-        this.borderColor = 'yellow';
+      this.borderColor = this.resultService.setCorrectBorderColor(this.item.snippet.publishedAt)
     }
   }
 }

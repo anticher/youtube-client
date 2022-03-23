@@ -1,19 +1,19 @@
-<app-square-button class="details-page-back-button" bg="../../../assets/icons/leftArrow.svg"></app-square-button>
-<div class="details-page-image"></div>
-<div class="details-page-info">
-    <div class="details-page-header-row">
-        <h3 class="details-page-header">header</h3>
-        <p class="details-page-date">date</p>
-    </div>
-    <h5 class="details-page-subheader">Description:</h5>
-    <p class="details-page-description">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Hic officia alias
-        suscipit, similique autem a maiores odit architecto, repudiandae corrupti adipisci, nobis aperiam rem
-        exercitationem totam nostrum nesciunt recusandae aspernatur?
-    </p>
-    <div class="details-page-statistics">
-        <app-statistics-item type="viewed" number="10"></app-statistics-item>
-        <app-statistics-item type="liked" number="12"></app-statistics-item>
-        <app-statistics-item type="disliked" number="14"></app-statistics-item>
-        <app-statistics-item type="comments" number="16"></app-statistics-item>
+<app-square-button routerLink="" class="details-page-back-button" [ngStyle]="{'background-color': bgColor}"
+    bg="../../../assets/icons/leftArrow.svg"></app-square-button>
+<div class="details-page-main-block" [ngStyle]="{'filter': 'drop-shadow(5px 10px 10px ' + bgColor + ')'}">
+    <div class="details-page-image" [ngStyle]="{'background-image': 'url(' + imageUrl + ')'}"></div>
+    <div class="details-page-info" [appResultItemBorderColor]="bgColor">
+        <div class="details-page-header-row">
+            <h3 class="details-page-header">{{header}}</h3>
+            <p class="details-page-date">{{date | date : "fullDate"}}</p>
+        </div>
+        <h5 class="details-page-subheader">Description:</h5>
+        <p class="details-page-description">{{text}}</p>
+        <div class="details-page-statistics">
+            <app-statistics-item type="viewed" number={{statistics.viewCount}}></app-statistics-item>
+            <app-statistics-item type="liked" number={{statistics.likeCount}}></app-statistics-item>
+            <app-statistics-item type="disliked" number={{statistics.dislikeCount}}></app-statistics-item>
+            <app-statistics-item type="comments" number={{statistics.commentCount}}></app-statistics-item>
+        </div>
     </div>
 </div>

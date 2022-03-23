@@ -10,6 +10,7 @@ const routes = [
   { path: 'test', component: NotFoundComponent },
   { path: 'login', component: LoginPageComponent },
   { path: 'details', component: DetailsPageComponent },
+  { path: 'result/:', component: DetailsPageComponent },
 ];
 
 @NgModule({
