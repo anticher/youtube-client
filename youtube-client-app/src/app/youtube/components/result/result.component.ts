@@ -1,4 +1,4 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
 import { SearchItem } from '../../models/search-item.model';
 import { SearchDataService } from '../../services/search-data.service';
 
@@ -7,7 +7,7 @@ import { SearchDataService } from '../../services/search-data.service';
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.scss'],
 })
-export class ResultComponent implements OnInit, DoCheck {
+export class ResultComponent implements OnInit, DoCheck, OnDestroy {
   items: SearchItem[] = [];
 
   dataChanged = 0;
@@ -18,7 +18,8 @@ export class ResultComponent implements OnInit, DoCheck {
 
   ngOnInit(): void {
     this.dataChanged = this.searchDataService.dataChanged;
-    this.items = this.searchDataService.resultData;
+    this.items = this.searchDataService.getResultData();
+    console.log('init')
   }
 
   ngDoCheck() {
@@ -29,5 +30,9 @@ export class ResultComponent implements OnInit, DoCheck {
       this.dataChanged = this.searchDataService.dataChanged;
       this.items = this.searchDataService.resultData;
     }
+  }
+
+  ngOnDestroy() {
+    this.searchDataService.deleteResultData();
   }
 }

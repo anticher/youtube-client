@@ -1,20 +1,17 @@
 import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ResultService {
-
-  constructor() { }
-
-  setPublishedDaysAgoInMinutes(publishedDate: string): number {
+  static setPublishedDaysAgoInMinutes(publishedDate: string): number {
     const milliseconds = Date.now() - new Date(publishedDate).getTime();
     const millisecondsToDays = milliseconds / (1000 * 60 * 60 * 24);
     return millisecondsToDays;
   }
 
-  setCorrectBorderColor(publishedDate: string) {
-    const days = this.setPublishedDaysAgoInMinutes(publishedDate)
+  static setCorrectBorderColor(publishedDate: string) {
+    const days = this.setPublishedDaysAgoInMinutes(publishedDate);
     switch (true) {
       case days > 180:
         return '#EB5757';

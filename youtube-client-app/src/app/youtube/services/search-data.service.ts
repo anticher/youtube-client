@@ -14,14 +14,18 @@ export class SearchDataService {
 
   filterString = '';
 
-  getData(): SearchItem[] {
+  getResultData(): SearchItem[] {
     return this.resultData;
   }
 
+  deleteResultData() {
+    this.resultData = []
+  }
+
   getDataById(id: string): SearchItem {
-    this.searchData('')
-    const index = this.resultData.findIndex((item) => item.id === id)
-    return this.resultData[index]
+    this.searchData('');
+    const index = this.data.items.findIndex((item) => item.id === id);
+    return this.data.items[index];
   }
 
   searchData(searchString: string) {

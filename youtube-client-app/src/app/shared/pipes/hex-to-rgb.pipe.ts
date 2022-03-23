@@ -1,19 +1,19 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
-  name: 'hexToRgb'
+  name: 'hexToRgb',
 })
 export class HexToRgbPipe implements PipeTransform {
+  result: RegExpExecArray | null = null;
 
   transform(hex: string): string {
-    const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
-    if (result) {
-      const r = parseInt(result[1], 16);
-      const g = parseInt(result[2], 16);
-      const b = parseInt(result[3], 16);
-      return r + "," + g + "," + b;
+    this.result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+    if (this.result) {
+      const r = parseInt(this.result[1], 16);
+      const g = parseInt(this.result[2], 16);
+      const b = parseInt(this.result[3], 16);
+      return `${r},${g},${b}`;
     }
     return hex;
   }
-
 }

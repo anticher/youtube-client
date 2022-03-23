@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 import { MainComponent } from './components/main/main.component';
 import { ResultComponent } from './components/result/result.component';
 import { ResultItemComponent } from './components/result-item/result-item.component';
@@ -13,7 +14,6 @@ import { ResultItemBorderColorDirective } from './directives/result-item-border-
 import { FilterSearchResultsPipe } from './pipes/filter-search-results.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { DetailsPageComponent } from './components/details-page/details-page.component';
-import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [

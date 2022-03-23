@@ -10,7 +10,7 @@ import { ResultService } from '../../services/result.service';
 export class ResultItemComponent implements OnInit {
   @Input() item: SearchItem | undefined;
 
-  itemId = ''
+  itemId = '';
 
   statistics = {
     commentCount: '0',
@@ -28,22 +28,20 @@ export class ResultItemComponent implements OnInit {
 
   borderColor = '';
 
-  constructor(
-    private resultService: ResultService,
-  ) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.setItemIngo()
+    this.setItemIngo();
   }
 
   setItemIngo() {
     if (this.item) {
-      this.itemId = this.item.id
+      this.itemId = this.item.id;
       this.statistics = this.item.statistics;
       this.channelTitle = this.item.snippet.channelTitle;
       this.categoryId = this.item.snippet.categoryId;
       this.mediumImageUrl = this.item.snippet.thumbnails.medium.url;
-      this.borderColor = this.resultService.setCorrectBorderColor(this.item.snippet.publishedAt)
+      this.borderColor = ResultService.setCorrectBorderColor(this.item.snippet.publishedAt);
     }
   }
 }
