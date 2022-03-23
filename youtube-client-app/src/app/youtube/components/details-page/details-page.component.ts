@@ -15,10 +15,11 @@ export class DetailsPageComponent implements OnInit {
   date = '';
   text = '';
   statistics = {
-    commentCount: '',
-    dislikeCount: '',
-    likeCount: '',
-    viewCount: '',
+    commentCount: '0',
+    dislikeCount: '0',
+    favoriteCount: '0',
+    likeCount: '0',
+    viewCount: '0',
   }
 
   constructor(
@@ -28,6 +29,10 @@ export class DetailsPageComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+    this.setItemInfo()
+  }
+
+  setItemInfo() {
     const index = this.router.url.lastIndexOf('/') + 1
     const id = this.router.url.substring(index)
     const item = this.searchDataService.getDataById(id)
@@ -35,14 +40,7 @@ export class DetailsPageComponent implements OnInit {
     this.header = item.snippet.channelTitle;
     this.date = item.snippet.publishedAt;
     this.text = item.snippet.description;
-    this.statistics = {
-      commentCount: item.statistics.commentCount,
-      dislikeCount: item.statistics.dislikeCount,
-      likeCount: item.statistics.likeCount,
-      viewCount: item.statistics.viewCount,
-    }
+    this.statistics = item.statistics;
     this.bgColor = this.resultService.setCorrectBorderColor(item.snippet.publishedAt)
-    console.log(item)
-    console.log(item.snippet.thumbnails)
   }
 }

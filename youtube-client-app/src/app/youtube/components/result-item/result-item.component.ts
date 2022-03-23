@@ -33,6 +33,10 @@ export class ResultItemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.setItemIngo()
+  }
+
+  setItemIngo() {
     if (this.item) {
       this.itemId = this.item.id
       this.statistics = this.item.statistics;

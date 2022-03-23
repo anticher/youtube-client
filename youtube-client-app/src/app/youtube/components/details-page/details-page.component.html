@@ -1,6 +1,6 @@
 <app-square-button routerLink="" class="details-page-back-button" [ngStyle]="{'background-color': bgColor}"
     bg="../../../assets/icons/leftArrow.svg"></app-square-button>
-<div class="details-page-main-block" [ngStyle]="{'filter': 'drop-shadow(5px 10px 10px ' + bgColor + ')'}">
+<div class="details-page-main-block" [ngStyle]="{'filter': 'drop-shadow(5px 10px 10px rgba(' + (bgColor | hexToRgb) + ', 0.25))'}">
     <div class="details-page-image" [ngStyle]="{'background-image': 'url(' + imageUrl + ')'}"></div>
     <div class="details-page-info" [appResultItemBorderColor]="bgColor">
         <div class="details-page-header-row">
