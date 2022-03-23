@@ -19,7 +19,7 @@ export class SearchDataService {
   }
 
   deleteResultData() {
-    this.resultData = []
+    this.resultData = [];
   }
 
   getDataById(id: string): SearchItem {

@@ -28,8 +28,6 @@ export class ResultItemComponent implements OnInit {
 
   borderColor = '';
 
-  constructor() { }
-
   ngOnInit(): void {
     this.setItemIngo();
   }

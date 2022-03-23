@@ -1,4 +1,6 @@
-import { Component, DoCheck, OnDestroy, OnInit } from '@angular/core';
+import {
+  Component, DoCheck, OnDestroy, OnInit,
+} from '@angular/core';
 import { SearchItem } from '../../models/search-item.model';
 import { SearchDataService } from '../../services/search-data.service';
 
@@ -19,7 +21,6 @@ export class ResultComponent implements OnInit, DoCheck, OnDestroy {
   ngOnInit(): void {
     this.dataChanged = this.searchDataService.dataChanged;
     this.items = this.searchDataService.getResultData();
-    console.log('init')
   }
 
   ngDoCheck() {

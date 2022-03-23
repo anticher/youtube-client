@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { YoutubeModule } from './youtube/youtube.module';
 import { NotFoundModule } from './not-found/not-found.module';
+import { ProfileModule } from './profile/profile.module';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { NotFoundModule } from './not-found/not-found.module';
     YoutubeModule,
     NotFoundModule,
     AppRoutingModule,
+    ProfileModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
