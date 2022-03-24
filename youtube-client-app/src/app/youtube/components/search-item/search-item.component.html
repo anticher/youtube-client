@@ -1,3 +1,4 @@
 <input [(ngModel)]="value" type="text">
 <app-rectangle-button (click)="makeSearch()" class="square-border">search</app-rectangle-button>
-<app-square-button (click)="toggleSettings()" class="search-settings-button" bg="../../../assets/icons/searchSettings.svg"></app-square-button>
+<app-square-button *ngIf="!isSearchSettingsButtonHidden" (click)="toggleSettings()" class="search-settings-button" bg="../../../assets/icons/searchSettings.svg"></app-square-button>
+

@@ -11,8 +11,12 @@ export class HeaderComponent {
 
   constructor(private auth: AuthService) {}
 
-  toggleDisplay() {
-    this.isHidden = !this.isHidden;
+  toggleDisplay(hide?: boolean) {
+    if (hide) {
+      this.isHidden = true
+    } else {
+      this.isHidden = !this.isHidden;
+    }
   }
 
   login() {
