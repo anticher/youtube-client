@@ -8,7 +8,7 @@ import * as testData from './testResponceData.json';
 export class SearchDataService {
   data = testData;
 
-  resultData: any[] = [];
+  resultData: SearchItem[] = [];
 
   dataChanged = 0;
 
@@ -63,10 +63,10 @@ export class SearchDataService {
     const lastItemViewCount = this.resultData[lastIndex].statistics.viewCount;
     if (firstItemViewCount < lastItemViewCount) {
       this.resultData
-        .sort((a, b) => a.statistics.viewCount - b.statistics.viewCount);
+        .sort((a, b) => +a.statistics.viewCount - +b.statistics.viewCount);
     } else if (firstItemViewCount > lastItemViewCount) {
       this.resultData
-        .sort((a, b) => b.statistics.viewCount - a.statistics.viewCount);
+        .sort((a, b) => +b.statistics.viewCount - +a.statistics.viewCount);
     } else {
       return;
     }
