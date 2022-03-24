@@ -8,7 +8,7 @@ import { SearchDataService } from 'src/app/youtube/services/search-data.service'
 export class AuthService {
   constructor(
     private router: Router,
-    private searchDataService: SearchDataService
+    private searchDataService: SearchDataService,
   ) {}
 
   login() {
@@ -19,7 +19,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('login');
     this.router.navigate(['login']);
-    this.searchDataService.deleteResultData()
+    this.searchDataService.deleteResultData();
   }
 
   static isAuthCheck(): Promise<boolean> {

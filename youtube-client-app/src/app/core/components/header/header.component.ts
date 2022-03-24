@@ -13,7 +13,7 @@ export class HeaderComponent {
 
   toggleDisplay(hide?: boolean) {
     if (hide) {
-      this.isHidden = true
+      this.isHidden = true;
     } else {
       this.isHidden = !this.isHidden;
     }

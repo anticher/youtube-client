@@ -1,4 +1,6 @@
-import { Component, DoCheck, EventEmitter, Input } from '@angular/core';
+import {
+  Component, DoCheck, EventEmitter, Input,
+} from '@angular/core';
 import { Router } from '@angular/router';
 import { SearchDataService } from 'src/app/youtube/services/search-data.service';
 
@@ -17,7 +19,7 @@ export class SearchItemComponent implements DoCheck {
   constructor(
     private searchDataService: SearchDataService,
     private router: Router,
-    ) { }
+  ) { }
 
   makeSearch() {
     this.searchDataService.searchData(this.value);
@@ -25,10 +27,10 @@ export class SearchItemComponent implements DoCheck {
 
   ngDoCheck(): void {
     if (this.router.url.startsWith('/result/')) {
-      this.isSearchSettingsButtonHidden = true
-      this.toggleSettings(true)
+      this.isSearchSettingsButtonHidden = true;
+      this.toggleSettings(true);
     } else {
-      this.isSearchSettingsButtonHidden = false
+      this.isSearchSettingsButtonHidden = false;
     }
   }
 }
