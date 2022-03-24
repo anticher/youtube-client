@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { SearchDataService } from 'src/app/youtube/services/search-data.service';
 
 @Injectable({
   providedIn: 'root',
@@ -7,6 +8,7 @@ import { Router } from '@angular/router';
 export class AuthService {
   constructor(
     private router: Router,
+    private searchDataService: SearchDataService
   ) {}
 
   login() {
@@ -17,6 +19,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem('login');
     this.router.navigate(['login']);
+    this.searchDataService.deleteResultData()
   }
 
   static isAuthCheck(): Promise<boolean> {

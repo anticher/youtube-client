@@ -14,7 +14,7 @@ const routes = [
     loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),
     canLoad: [LoginGuard],
   },
-  { path: 'result/:', component: DetailsPageComponent, canLoad: [LoginGuard] },
+  { path: 'result/:', component: DetailsPageComponent },
   {
     path: 'not-found',
     component: NotFoundComponent,
