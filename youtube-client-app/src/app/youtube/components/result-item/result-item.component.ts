@@ -29,10 +29,10 @@ export class ResultItemComponent implements OnInit {
   borderColor = '';
 
   ngOnInit(): void {
-    this.setItemIngo();
+    this.setItemInfo();
   }
 
-  setItemIngo() {
+  setItemInfo() {
     if (this.item) {
       this.itemId = this.item.id;
       this.statistics = this.item.statistics;
