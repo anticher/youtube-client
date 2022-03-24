@@ -13,6 +13,7 @@ const routes = [
     component: MainComponent,
     loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),
     canLoad: [LoginGuard],
+    canActivate: [LoginGuard]
   },
   { path: 'result/:', component: DetailsPageComponent },
   {

@@ -1,17 +1,27 @@
 import { Injectable } from '@angular/core';
-import { CanLoad, Router } from '@angular/router';
+import { CanActivate, CanLoad, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../auth/services/auth.service';
+
+type loginGuardFunc = boolean | Observable<boolean> | Promise<boolean>
 
 @Injectable({
   providedIn: 'root',
 })
-export class LoginGuard implements CanLoad {
+export class LoginGuard implements CanLoad, CanActivate {
   constructor(
     private router: Router,
   ) {}
 
-  canLoad(): boolean | Observable<boolean> | Promise<boolean> {
+  canActivate(): loginGuardFunc {
+    return this.guardInnerFunction()
+  }
+
+  canLoad(): loginGuardFunc {
+    return this.guardInnerFunction()
+  }
+
+  guardInnerFunction(): loginGuardFunc {
     return AuthService.isAuthCheck().then((result) => {
       if (result) {
         return true;
