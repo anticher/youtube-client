@@ -21,7 +21,6 @@ export class DetailsPageComponent implements OnInit {
 
   statistics = {
     commentCount: '0',
-    dislikeCount: '0',
     favoriteCount: '0',
     likeCount: '0',
     viewCount: '0',
@@ -39,16 +38,18 @@ export class DetailsPageComponent implements OnInit {
   setItemInfo() {
     const index = this.router.url.lastIndexOf('/') + 1;
     const id = this.router.url.substring(index);
-    const item = this.searchDataService.getDataById(id);
-    if (!item) {
-      this.router.navigate(['not-found']);
-      return;
-    }
-    this.imageUrl = item.snippet.thumbnails.maxres.url;
-    this.header = item.snippet.channelTitle;
-    this.date = item.snippet.publishedAt;
-    this.text = item.snippet.description;
-    this.statistics = item.statistics;
-    this.bgColor = ResultService.setCorrectBorderColor(item.snippet.publishedAt);
+    this.searchDataService.getDataById(id).subscribe((res: any) => {
+      const item = res.items[0]
+      if (!item) {
+        this.router.navigate(['not-found']);
+        return;
+      }
+      this.imageUrl = item.snippet.thumbnails.high.url;
+      this.header = item.snippet.channelTitle;
+      this.date = item.snippet.publishedAt;
+      this.text = item.snippet.description;
+      this.statistics = item.statistics;
+      this.bgColor = ResultService.setCorrectBorderColor(item.snippet.publishedAt);
+    })
   }
 }

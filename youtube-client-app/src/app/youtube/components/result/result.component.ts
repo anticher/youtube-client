@@ -1,7 +1,7 @@
 import {
   Component, DoCheck, OnDestroy, OnInit,
 } from '@angular/core';
-import { SearchItem } from '../../models/search-item.model';
+import { DetailsItem } from '../../models/details-item.model';
 import { SearchDataService } from '../../services/search-data.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { SearchDataService } from '../../services/search-data.service';
   styleUrls: ['./result.component.scss'],
 })
 export class ResultComponent implements OnInit, DoCheck, OnDestroy {
-  items: SearchItem[] = [];
+  items: any[] = [];
 
   dataChanged = 0;
 
@@ -20,7 +20,7 @@ export class ResultComponent implements OnInit, DoCheck, OnDestroy {
 
   ngOnInit(): void {
     this.dataChanged = this.searchDataService.dataChanged;
-    this.items = this.searchDataService.getResultData();
+    this.items = this.searchDataService.itemsWithStats;
   }
 
   ngDoCheck() {
@@ -29,7 +29,7 @@ export class ResultComponent implements OnInit, DoCheck, OnDestroy {
     }
     if (this.dataChanged !== this.searchDataService.dataChanged) {
       this.dataChanged = this.searchDataService.dataChanged;
-      this.items = this.searchDataService.resultData;
+      this.items = this.searchDataService.itemsWithStats;
     }
   }
 

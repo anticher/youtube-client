@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SearchItem } from 'src/app/youtube/models/search-item.model';
+import { DetailsItem } from '../../models/details-item.model';
 import { ResultService } from '../../services/result.service';
 
 @Component({
@@ -8,13 +8,12 @@ import { ResultService } from '../../services/result.service';
   styleUrls: ['./result-item.component.scss'],
 })
 export class ResultItemComponent implements OnInit {
-  @Input() item: SearchItem | undefined;
+  @Input() item: any | undefined;
 
   itemId = '';
 
   statistics = {
     commentCount: '0',
-    dislikeCount: '0',
     favoriteCount: '0',
     likeCount: '0',
     viewCount: '0',

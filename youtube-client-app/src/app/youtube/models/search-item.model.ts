@@ -7,7 +7,10 @@ interface ThumbnailsType {
 export interface SearchItem {
   kind: string,
   etag: string,
-  id: string,
+  id: {
+    kind: string,
+    videoId: string,
+  }
   snippet: {
     publishedAt: string,
     channelId: string,
@@ -17,8 +20,6 @@ export interface SearchItem {
       default: ThumbnailsType,
       medium: ThumbnailsType
       high: ThumbnailsType,
-      standard: ThumbnailsType,
-      maxres: ThumbnailsType
     },
     channelTitle: string,
     tags: string[],
@@ -30,11 +31,7 @@ export interface SearchItem {
     },
     defaultAudioLanguage: string,
   },
-  statistics: {
-    viewCount: string,
-    likeCount: string,
-    dislikeCount: string,
-    favoriteCount: string,
-    commentCount: string
-  }
+  channelTitle: string,
+  liveBroadcastContent: string,
+  publishTime: string,
 }
