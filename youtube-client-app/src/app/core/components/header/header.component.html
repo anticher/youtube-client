@@ -3,12 +3,12 @@
         <app-logo-button routerLink=""></app-logo-button>
         <app-search-item [toggleSettings]="toggleDisplay.bind(this)"></app-search-item>
     </div>
-    <div [ngClass]="isHidden? 'hidden': 'visible'" class="header-center-bottom">
+    <div [ngClass]="isSortingHidden? 'hidden': 'visible'" class="header-center-bottom">
         <app-search-sorting></app-search-sorting>
     </div>
 </div>
 <div class="header-right">
     <app-profile-settings></app-profile-settings>
-    <app-rectangle-button (click)="login()">test login</app-rectangle-button>
-    <app-rectangle-button (click)="logout()">test logout</app-rectangle-button>
+    <app-rectangle-button *ngIf="!isLoginHidden" (click)="login()">test login</app-rectangle-button>
+    <app-rectangle-button *ngIf="isLoginHidden" (click)="logout()">test logout</app-rectangle-button>
 </div>

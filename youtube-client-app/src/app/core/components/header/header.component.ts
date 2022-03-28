@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
@@ -6,16 +6,22 @@ import { AuthService } from 'src/app/auth/services/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent {
-  isHidden = true;
+export class HeaderComponent implements OnInit {
+  isSortingHidden = true;
+
+  isLoginHidden = false;
 
   constructor(private auth: AuthService) {}
 
+  ngOnInit() {
+    this.auth.loginSubject.subscribe(val => this.isLoginHidden = val)
+  }
+
   toggleDisplay(hide?: boolean) {
     if (hide) {
-      this.isHidden = true;
+      this.isSortingHidden = true;
     } else {
-      this.isHidden = !this.isHidden;
+      this.isSortingHidden = !this.isSortingHidden;
     }
   }
 
