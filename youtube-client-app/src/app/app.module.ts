@@ -14,14 +14,16 @@ import { SearchSortingComponent } from './components/search/search-sorting/searc
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ResultItemComponent } from './components/result/result-item/result-item.component';
 import { ResultComponent } from './components/result/result.component';
-import { SquareButtonComponent } from './components/buttons/square-button/square-button.component';
 import { ProfileSettingsComponent } from './components/profile-settings/profile-settings.component';
 import { MainComponent } from './components/main/main.component';
-import { RectangleButtonComponent } from './components/buttons/rectangle-button/rectangle-button.component';
-import { LogoButtonComponent } from './components/buttons/logo-button/logo-button.component';
+import { LogoButtonComponent } from './components/logo-button/logo-button.component';
 import { StatisticsItemComponent } from './components/result/statistics-item/statistics-item.component';
 import { ResultItemBorderColorDirective } from './directives/result-item-border-color.directive';
 import { FilterSearchResultsPipe } from './pipes/filter-search-results.pipe';
+import { SearchButtonComponent } from './components/search-button/search-button.component';
+import { ProfileButtonComponent } from './components/profile-button/profile-button.component';
+import { SettingsButtonComponent } from './components/settings-button/settings-button.component';
+import { MoreButtonComponent } from './components/more-button/more-button.component';
 
 @NgModule({
   declarations: [
@@ -32,14 +34,16 @@ import { FilterSearchResultsPipe } from './pipes/filter-search-results.pipe';
     NotFoundComponent,
     ResultItemComponent,
     ResultComponent,
-    SquareButtonComponent,
     ProfileSettingsComponent,
     MainComponent,
-    RectangleButtonComponent,
     LogoButtonComponent,
     StatisticsItemComponent,
     ResultItemBorderColorDirective,
     FilterSearchResultsPipe,
+    SearchButtonComponent,
+    ProfileButtonComponent,
+    SettingsButtonComponent,
+    MoreButtonComponent,
   ],
   imports: [
     BrowserModule,

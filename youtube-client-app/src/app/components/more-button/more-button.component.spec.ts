@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RectangleButtonComponent } from './rectangle-button.component';
+import { MoreButtonComponent } from './more-button.component';
 
-describe('RectangleButtonComponent', () => {
-  let component: RectangleButtonComponent;
-  let fixture: ComponentFixture<RectangleButtonComponent>;
+describe('MoreButtonComponent', () => {
+  let component: MoreButtonComponent;
+  let fixture: ComponentFixture<MoreButtonComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [RectangleButtonComponent],
+      declarations: [MoreButtonComponent],
     })
       .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(RectangleButtonComponent);
+    fixture = TestBed.createComponent(MoreButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

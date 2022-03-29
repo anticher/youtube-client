@@ -46,3 +46,23 @@ input, button {
     border-width: 0;
     border-radius: 0;
 }
+
+.square-button {
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.rectangle-button {
+    width: 80px;
+    height: 24px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: $white;
+    background-color: $blue;
+    border-radius: inherit;
+}
