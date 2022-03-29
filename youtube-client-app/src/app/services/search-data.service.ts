@@ -1,19 +1,21 @@
 import { Injectable } from '@angular/core';
+import { SearchItem } from '../models/search-item.model';
+import { SearchResponse } from '../models/search-response.model';
 import * as testData from './test-response-data.json';
 
 @Injectable({
   providedIn: 'root',
 })
 export class SearchDataService {
-  private data = testData;
+  private data: SearchResponse = testData;
 
-  private resultData: any[] = [];
+  private resultData: SearchItem[] = [];
 
   private dataChanged: number = 0;
 
   private filterString: string = '';
 
-  public getData(): any[] {
+  public getData(): SearchItem[] {
     return this.resultData;
   }
 
@@ -32,7 +34,7 @@ export class SearchDataService {
     this.dataChanged = Date.now();
   }
 
-  public sortResultByDate() {
+  public sortResultByDate(): void {
     if (this.resultData.length < 2) {
       return;
     }
@@ -46,7 +48,7 @@ export class SearchDataService {
     this.dataChanged = Date.now();
   }
 
-  public sortResultByViews() {
+  public sortResultByViews(): void {
     if (this.resultData.length < 2) {
       return;
     }
@@ -54,7 +56,7 @@ export class SearchDataService {
     const firstItemViewCount = this.resultData[0].statistics.viewCount;
     const lastItemViewCount = this.resultData[lastIndex].statistics.viewCount;
     const order = firstItemViewCount > lastItemViewCount ? -1 : 1;
-    this.resultData.sort((a, b) => order * a.statistics.viewCount - order * b.statistics.viewCount);
+    this.resultData.sort((a, b) => order * +a.statistics.viewCount - order * +b.statistics.viewCount);
     this.dataChanged = Date.now();
   }
 

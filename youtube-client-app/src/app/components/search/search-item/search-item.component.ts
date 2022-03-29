@@ -15,7 +15,7 @@ export class SearchItemComponent {
 
   constructor(private searchDataService: SearchDataService) { }
 
-  public makeSearch() {
+  public makeSearch(): void {
     this.searchDataService.searchData(this.value);
   }
 }

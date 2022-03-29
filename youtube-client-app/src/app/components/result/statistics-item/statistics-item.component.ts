@@ -22,7 +22,7 @@ export class StatisticsItemComponent implements OnInit {
     this.setStatistics();
   }
 
-  private setStatistics() {
+  private setStatistics(): void {
     switch (this.type) {
       case 'viewed':
         this.viewed = true;

@@ -49,7 +49,7 @@ export class ResultItemComponent implements OnInit {
     this.publishedDaysAgo = millisecondsToDays;
   }
 
-  private setCorrectBorderColor() {
+  private setCorrectBorderColor(): void {
     switch (true) {
       case this.publishedDaysAgo > 180:
         this.borderColor = 'red';

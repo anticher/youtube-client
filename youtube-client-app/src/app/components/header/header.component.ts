@@ -8,7 +8,7 @@ import { Component } from '@angular/core';
 export class HeaderComponent {
   public isSortingHidden: boolean = true;
 
-  public toggleDisplay() {
+  public toggleDisplay(): void {
     this.isSortingHidden = !this.isSortingHidden;
   }
 }

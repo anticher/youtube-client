@@ -21,7 +21,7 @@ export class ResultComponent implements OnInit, DoCheck {
     this.items = this.searchDataService.getData();
   }
 
-  public ngDoCheck() {
+  public ngDoCheck(): void {
     if (this.filterString !== this.searchDataService.getFilterString()) {
       this.filterString = this.searchDataService.getFilterString();
     }
