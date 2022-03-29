@@ -27,18 +27,6 @@ $header-center-width: 570px;
         width: 100%;
         display: flex;
         align-items: center;
-        transition: height 0.4s, visibility 0.2s, opacity 0.4s;
-        &_hidden {
-            height: 0;
-            visibility: hidden;
-            opacity: 0;
-        }
-
-        &_visible {
-            height: 50px;
-            visibility: visible;
-            opacity: 1;
-        }
     }
 
     &__right {
