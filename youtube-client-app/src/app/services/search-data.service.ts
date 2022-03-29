@@ -39,15 +39,10 @@ export class SearchDataService {
     const lastIndex = this.resultData.length - 1;
     const firstItemDate = +new Date(this.resultData[0].snippet.publishedAt);
     const lastItemDate = +new Date(this.resultData[lastIndex].snippet.publishedAt);
-    if (firstItemDate > lastItemDate) {
-      this.resultData
-        .sort((a, b) => +new Date(a.snippet.publishedAt) - +new Date(b.snippet.publishedAt));
-    } else if (firstItemDate < lastItemDate) {
-      this.resultData
-        .sort((a, b) => +new Date(b.snippet.publishedAt) - +new Date(a.snippet.publishedAt));
-    } else {
-      return;
-    }
+    const order = firstItemDate > lastItemDate ? 1 : -1;
+    this.resultData.sort(
+      (a, b) => order * +new Date(a.snippet.publishedAt) - order * +new Date(b.snippet.publishedAt),
+    );
     this.dataChanged = Date.now();
   }
 
@@ -58,15 +53,8 @@ export class SearchDataService {
     const lastIndex = this.resultData.length - 1;
     const firstItemViewCount = this.resultData[0].statistics.viewCount;
     const lastItemViewCount = this.resultData[lastIndex].statistics.viewCount;
-    if (firstItemViewCount < lastItemViewCount) {
-      this.resultData
-        .sort((a, b) => a.statistics.viewCount - b.statistics.viewCount);
-    } else if (firstItemViewCount > lastItemViewCount) {
-      this.resultData
-        .sort((a, b) => b.statistics.viewCount - a.statistics.viewCount);
-    } else {
-      return;
-    }
+    const order = firstItemViewCount > lastItemViewCount ? -1 : 1;
+    this.resultData.sort((a, b) => order * a.statistics.viewCount - order * b.statistics.viewCount);
     this.dataChanged = Date.now();
   }
 

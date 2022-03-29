@@ -44,7 +44,8 @@ export class ResultItemComponent implements OnInit {
     const minutesInAnHour = 60;
     const hoursInADay = 24;
     const milliseconds = Date.now() - new Date(publishedDate).getTime();
-    const millisecondsToDays = milliseconds / (millisecondsInASecond * secondsInAminute * minutesInAnHour * hoursInADay);
+    const millisecondsToDays = milliseconds
+    / (millisecondsInASecond * secondsInAminute * minutesInAnHour * hoursInADay);
     this.publishedDaysAgo = millisecondsToDays;
   }
 
