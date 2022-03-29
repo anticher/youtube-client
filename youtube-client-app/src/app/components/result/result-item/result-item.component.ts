@@ -7,7 +7,7 @@ import { SearchItem, Statistics } from 'src/app/models/search-item.model';
   styleUrls: ['./result-item.component.scss'],
 })
 export class ResultItemComponent implements OnInit {
-  @Input() item: SearchItem | undefined;
+  @Input() item!: SearchItem;
 
   public statistics: Statistics = {
     commentCount: '0',
