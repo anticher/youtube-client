@@ -34,6 +34,6 @@ export class ResultComponent implements OnInit, DoCheck, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.searchDataService.deleteResultData();
+    this.searchDataService.deletItemsWithStats();
   }
 }

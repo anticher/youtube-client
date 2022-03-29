@@ -17,14 +17,13 @@ export class AuthService {
     }
     this.loginSubject.subscribe({
       next: (val) => {
-        console.log(val)
         if (val) {
           localStorage.setItem('login', 'test');
           this.router.navigate(['']);
         } else {
           localStorage.removeItem('login');
           this.router.navigate(['login']);
-          this.searchDataService.deleteResultData();
+          this.searchDataService.deletItemsWithStats();
         }
       },
       error: (err) => console.log({"err": err}),

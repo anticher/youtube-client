@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, tap } from 'rxjs';
+import { map, Observable, tap } from 'rxjs';
 import { DetailsItem } from '../models/details-item.model';
 import { DetailsResponse } from '../models/details-response.model';
 import { SearchItem } from '../models/search-item.model';
@@ -10,41 +10,26 @@ import { SearchResponse } from '../models/search-response.model';
   providedIn: 'root',
 })
 export class SearchDataService {
-  key = 'AIzaSyAIvwFegbALuVc8kJbT7a7BrxZgQo-ThEI';
+  key = 'AIzaSyBPdJUu1x58aVSiKN-mMypDuwZDnvhzAxQ';
 
-  searchUrl = 'https://www.googleapis.com/youtube/v3/search?key=AIzaSyAIvwFegbALuVc8kJbT7a7BrxZgQo-ThEI&type=video&part=snippet&maxResults=20&q=europe';
+  searchUrl = `https://www.googleapis.com/youtube/v3/search?key=${this.key}&type=video&part=snippet`;
 
-  detailsUrlStart = 'https://www.googleapis.com/youtube/v3/videos?key=AIzaSyAIvwFegbALuVc8kJbT7a7BrxZgQo-ThEI&id='
+  detailsUrlStart = `https://www.googleapis.com/youtube/v3/videos?key=${this.key}&id=`
 
   detailsUrlEnd = '&part=snippet,statistics'
 
-  data: SearchItem[] = [];
-
-  resultData: SearchItem[] = [];
+  data: DetailsItem[] = [];
 
   dataChanged = 0;
 
   filterString = '';
 
-  itemsIdList: any = []
-
   itemsWithStats: any = []
 
-  constructor(private http: HttpClient) {
-    this.http.get<SearchResponse>(this.searchUrl).subscribe(res => this.data = res.items)
-  }
+  constructor(private http: HttpClient) { }
 
-  fetchData() {
-    
-    console.log(this.data)
-  }
-
-  getResultData(): SearchItem[] {
-    return this.resultData;
-  }
-
-  deleteResultData() {
-    this.resultData = [];
+  deletItemsWithStats() {
+    this.itemsWithStats = [];
   }
 
   getDataById(id: string): any {
@@ -52,63 +37,71 @@ export class SearchDataService {
   }
 
   searchData(searchString: string) {
-    this.itemsIdList = []
+    const itemsCount = 20
+    let counter = itemsCount
     this.itemsWithStats = []
-    this.http.get<SearchResponse>(this.searchUrl).subscribe(
-      (res) => res.items.forEach((item) => this.itemsIdList.push(item.id.videoId)),
-      (err) => console.log({'err': err}),
-      () => this.createSearchedItemsWithStats()
-    )
-  }
-
-  createSearchedItemsWithStats() {
-    // console.log(this.itemsIdList)
-    this.itemsIdList.forEach((id: string) => {
-      this.http.get<DetailsResponse>(this.detailsUrlStart + id + this.detailsUrlEnd).subscribe(
-        (res) => this.itemsWithStats.push(res.items[0]),
-        (err) => console.log({'err': err}),
-        () => this.dataChanged = Date.now()
-      )
+    this.http.get<SearchResponse>(this.searchUrl + `&maxResults=${counter}&q=${searchString}`).pipe(map((response) => {
+      const resultItemsArray: any[] = []
+      while (resultItemsArray.length < itemsCount && response.items.length > 0) {
+        response.items.forEach((item) => {
+          this.http.get<DetailsResponse>(this.detailsUrlStart + item.id.videoId + this.detailsUrlEnd).subscribe(
+            (val) => {
+              const item = val.items[0]
+              if (!this.filterString && !resultItemsArray.includes(item)) {
+                resultItemsArray.push(item)
+              } else if (this.filterString && item.snippet.tags.includes(this.filterString) && !resultItemsArray.includes(item)) {
+                resultItemsArray.push(item)
+              }
+            }
+          )
+        })
+        counter++
+      }
+      console.log(resultItemsArray)
+      return resultItemsArray
+    })).subscribe({
+      next: (res) => this.itemsWithStats = res,
+      error: (err) => console.log({ 'err': err }),
+      complete: () => this.dataChanged = Date.now()
     })
-    
   }
 
   sortResultByDate() {
-    // if (this.resultData.length < 2) {
-    //   return;
-    // }
-    // const lastIndex = this.resultData.length - 1;
-    // const firstItemDate = +new Date(this.resultData[0].snippet.publishedAt);
-    // const lastItemDate = +new Date(this.resultData[lastIndex].snippet.publishedAt);
-    // if (firstItemDate > lastItemDate) {
-    //   this.resultData
-    //     .sort((a, b) => +new Date(a.snippet.publishedAt) - +new Date(b.snippet.publishedAt));
-    // } else if (firstItemDate < lastItemDate) {
-    //   this.resultData
-    //     .sort((a, b) => +new Date(b.snippet.publishedAt) - +new Date(a.snippet.publishedAt));
-    // } else {
-    //   return;
-    // }
-    // this.dataChanged = Date.now();
+    if (this.itemsWithStats.length < 2) {
+      return;
+    }
+    const lastIndex = this.itemsWithStats.length - 1;
+    const firstItemDate = +new Date(this.itemsWithStats[0].snippet.publishedAt);
+    const lastItemDate = +new Date(this.itemsWithStats[lastIndex].snippet.publishedAt);
+    if (firstItemDate > lastItemDate) {
+      this.itemsWithStats
+        .sort((a: DetailsItem, b: DetailsItem) => +new Date(a.snippet.publishedAt) - +new Date(b.snippet.publishedAt));
+    } else if (firstItemDate < lastItemDate) {
+      this.itemsWithStats
+        .sort((a: DetailsItem, b: DetailsItem) => +new Date(b.snippet.publishedAt) - +new Date(a.snippet.publishedAt));
+    } else {
+      return;
+    }
+    this.dataChanged = Date.now();
   }
 
   sortResultByViews() {
-    // if (this.resultData.length < 2) {
-    //   return;
-    // }
-    // const lastIndex = this.resultData.length - 1;
-    // const firstItemViewCount = this.resultData[0].statistics.viewCount;
-    // const lastItemViewCount = this.resultData[lastIndex].statistics.viewCount;
-    // if (firstItemViewCount < lastItemViewCount) {
-    //   this.resultData
-    //     .sort((a, b) => +a.statistics.viewCount - +b.statistics.viewCount);
-    // } else if (firstItemViewCount > lastItemViewCount) {
-    //   this.resultData
-    //     .sort((a, b) => +b.statistics.viewCount - +a.statistics.viewCount);
-    // } else {
-    //   return;
-    // }
-    // this.dataChanged = Date.now();
+    if (this.itemsWithStats.length < 2) {
+      return;
+    }
+    const lastIndex = this.itemsWithStats.length - 1;
+    const firstItemViewCount = this.itemsWithStats[0].statistics.viewCount;
+    const lastItemViewCount = this.itemsWithStats[lastIndex].statistics.viewCount;
+    if (firstItemViewCount < lastItemViewCount) {
+      this.itemsWithStats
+        .sort((a: DetailsItem, b: DetailsItem) => +a.statistics.viewCount - +b.statistics.viewCount);
+    } else if (firstItemViewCount > lastItemViewCount) {
+      this.itemsWithStats
+        .sort((a: DetailsItem, b: DetailsItem) => +b.statistics.viewCount - +a.statistics.viewCount);
+    } else {
+      return;
+    }
+    this.dataChanged = Date.now();
     return
   }
 
