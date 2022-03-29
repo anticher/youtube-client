@@ -1,7 +1,9 @@
-<p class="search-sorting-header">Sorting by:</p>
-<div class="search-sorting-buttons">
-    <button class="search-sorting-button blue-color" (click)="dateSort()">date</button>
-    <button class="search-sorting-button blue-color" (click)="viewsSort()">count of views</button>
-    <p class="search-sorting-subheader blue-color">by word or sentence</p>
+<div class="search-sorting">
+    <p class="search-sorting__header">Sorting by:</p>
+<div class="search-sorting__buttons">
+    <button class="search-sorting__button" (click)="dateSort()">date</button>
+    <button class="search-sorting__button" (click)="viewsSort()">count of views</button>
+    <p class="search-sorting__subheader">by word or sentence</p>
 </div>
-<input class="search-sorting-input" type="text" (input)="tagsFilter($event)">
+<input class="search-sorting__input" type="text" (input)="tagsFilter($event)">
+</div>

@@ -1,3 +1,5 @@
+@import "../../../styles.scss";
+
 :host {
     padding: 10px;
     display: flex;
@@ -5,10 +7,11 @@
     gap: 8px;
 }
 
-p {
+.profile__name {
     width: 102px;
     height: 15px;
     font-size: 12px;
     line-height: 14px;
     text-align: right;
+    color: $grey;
 }

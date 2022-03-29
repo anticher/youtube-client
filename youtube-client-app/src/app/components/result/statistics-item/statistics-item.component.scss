@@ -1,39 +1,40 @@
-:host {
+@import "../../../../styles.scss";
+
+.statistics-item {
     display: flex;
     align-items: center;
-}
+    &__img {
+        background-position: center;
+        background-repeat: no-repeat;
+        &_viewed {
+            width: 20px;
+            height: 13px;
+            background-image: url("../../../../assets/icons/viewed.svg");
+        }
 
-.statistics-item-img {
-    background-position: center;
-    background-repeat: no-repeat;
-}
+        &_liked {
+            width: 15px;
+            height: 13px;
+            background-image: url("../../../../assets/icons/liked.svg");
+        }
 
-.viewed {
-    width: 20px;
-    height: 13px;
-    background-image: url("../../../../assets/icons/viewed.svg");
-}
+        &_disliked {
+            width: 15px;
+            height: 13px;
+            background-image: url("../../../../assets/icons/dislike.svg");
+        }
 
-.liked {
-    width: 15px;
-    height: 13px;
-    background-image: url("../../../../assets/icons/liked.svg");
-}
+        &_comments {
+            width: 13px;
+            height: 13px;
+            background-image: url("../../../../assets/icons/comments.svg");
+        }
+    }
 
-.disliked {
-    width: 15px;
-    height: 13px;
-    background-image: url("../../../../assets/icons/dislike.svg");
-}
-
-.comments {
-    width: 13px;
-    height: 13px;
-    background-image: url("../../../../assets/icons/comments.svg");
-}
-
-.statistics-item-text {
-    margin-left: 3px;
-    font-size: 10px;
-    line-height: 12px;
+    &__text {
+        margin-left: 3px;
+        font-size: 10px;
+        line-height: 12px;
+        color: $black;
+    }
 }

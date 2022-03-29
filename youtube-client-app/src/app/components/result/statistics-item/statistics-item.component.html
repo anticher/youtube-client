@@ -1,2 +1,10 @@
-<div class="statistics-item-img" [ngClass]="{viewed: this.viewed, liked: this.liked, disliked :this.disliked, comments: this.comments}"></div>
-<p class="statistics-item-text black-color">{{number}}</p>
+<div class="statistics-item">
+    <div class="statistics-item__img"
+        [ngClass]="{
+            'statistics-item__img_viewed': this.viewed,
+            'statistics-item__img_liked': this.liked,
+            'statistics-item__img_disliked': this.disliked,
+            'statistics-item__img_comments': this.comments
+        }"></div>
+    <p class="statistics-item__text">{{number}}</p>
+</div>
