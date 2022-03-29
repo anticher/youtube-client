@@ -5,26 +5,34 @@ import * as testData from './testResponceData.json';
   providedIn: 'root',
 })
 export class SearchDataService {
-  data = testData;
+  private data = testData;
 
-  resultData: any[] = [];
+  private resultData: any[] = [];
 
-  dataChanged = 0;
+  private dataChanged: number = 0;
 
-  filterString = '';
+  private filterString: string = '';
 
-  getData(): any {
+  public getData(): any[] {
     return this.resultData;
   }
 
-  searchData(searchString: string) {
+  public getDataChanged(): number {
+    return this.dataChanged;
+  }
+
+  public getFilterString(): string {
+    return this.filterString;
+  }
+
+  public searchData(searchString: string) {
     this.resultData = this.data.items.filter((item) => item.snippet.channelTitle
       .toLowerCase()
       .startsWith(searchString.toLowerCase()));
     this.dataChanged = Date.now();
   }
 
-  sortResultByDate() {
+  public sortResultByDate() {
     if (this.resultData.length < 2) {
       return;
     }
@@ -43,7 +51,7 @@ export class SearchDataService {
     this.dataChanged = Date.now();
   }
 
-  sortResultByViews() {
+  public sortResultByViews() {
     if (this.resultData.length < 2) {
       return;
     }
@@ -62,7 +70,7 @@ export class SearchDataService {
     this.dataChanged = Date.now();
   }
 
-  changeSearchTag(tag: string) {
+  public changeSearchTag(tag: string) {
     this.filterString = tag;
   }
 }

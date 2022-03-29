@@ -9,15 +9,15 @@ import { SearchDataService } from 'src/app/services/search-data.service';
 export class SearchSortingComponent {
   constructor(private searchDataService: SearchDataService) { }
 
-  dateSort() {
+  public dateSort() {
     this.searchDataService.sortResultByDate();
   }
 
-  viewsSort() {
+  public viewsSort() {
     this.searchDataService.sortResultByViews();
   }
 
-  tagsFilter(event: Event) {
+  public tagsFilter(event: Event) {
     const tag = (event.target as HTMLInputElement).value;
     this.searchDataService.changeSearchTag(tag);
   }

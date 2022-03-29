@@ -10,24 +10,24 @@ import { SearchDataService } from '../../services/search-data.service';
 export class ResultComponent implements OnInit, DoCheck {
   items: SearchItem[] = [];
 
-  dataChanged = 0;
+  private dataChanged: number = 0;
 
-  filterString = '';
+  public filterString: string = '';
 
   constructor(private searchDataService: SearchDataService) { }
 
-  ngOnInit(): void {
-    this.dataChanged = this.searchDataService.dataChanged;
-    this.items = this.searchDataService.resultData;
+  public ngOnInit(): void {
+    this.dataChanged = this.searchDataService.getDataChanged();
+    this.items = this.searchDataService.getData();
   }
 
-  ngDoCheck() {
-    if (this.filterString !== this.searchDataService.filterString) {
-      this.filterString = this.searchDataService.filterString;
+  public ngDoCheck() {
+    if (this.filterString !== this.searchDataService.getFilterString()) {
+      this.filterString = this.searchDataService.getFilterString();
     }
-    if (this.dataChanged !== this.searchDataService.dataChanged) {
-      this.dataChanged = this.searchDataService.dataChanged;
-      this.items = this.searchDataService.resultData;
+    if (this.dataChanged !== this.searchDataService.getDataChanged()) {
+      this.dataChanged = this.searchDataService.getDataChanged();
+      this.items = this.searchDataService.getData();
     }
   }
 }

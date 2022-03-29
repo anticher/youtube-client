@@ -10,19 +10,19 @@ export class StatisticsItemComponent implements OnInit {
 
   @Input() number: string = '';
 
-  viewed = false;
+  public viewed:boolean = false;
 
-  liked = false;
+  public liked:boolean = false;
 
-  disliked = false;
+  public disliked:boolean = false;
 
-  comments = false;
+  public comments:boolean = false;
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.setStatistics();
   }
 
-  setStatistics() {
+  private setStatistics() {
     switch (this.type) {
       case 'viewed':
         this.viewed = true;

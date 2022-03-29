@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { SearchItem } from 'src/app/models/search-item.model';
+import { SearchItem, Statistics } from 'src/app/models/search-item.model';
 
 @Component({
   selector: 'app-result-item',
@@ -9,7 +9,7 @@ import { SearchItem } from 'src/app/models/search-item.model';
 export class ResultItemComponent implements OnInit {
   @Input() item: SearchItem | undefined;
 
-  statistics = {
+  public statistics: Statistics = {
     commentCount: '0',
     dislikeCount: '0',
     favoriteCount: '0',
@@ -17,17 +17,17 @@ export class ResultItemComponent implements OnInit {
     viewCount: '0',
   };
 
-  channelTitle = '';
+  public channelTitle:string = '';
 
-  categoryId = '';
+  public categoryId:string = '';
 
-  mediumImageUrl = '';
+  public mediumImageUrl:string = '';
 
-  publishedDaysAgo = 0;
+  private publishedDaysAgo:number = 0;
 
-  borderColor = '';
+  public borderColor:string = '';
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     if (this.item) {
       this.statistics = this.item.statistics;
       this.channelTitle = this.item.snippet.channelTitle;
@@ -38,13 +38,13 @@ export class ResultItemComponent implements OnInit {
     }
   }
 
-  setPublishedDaysAgoInMinutes(publishedDate: string) {
+  private setPublishedDaysAgoInMinutes(publishedDate: string) {
     const milliseconds = Date.now() - new Date(publishedDate).getTime();
     const millisecondsToDays = milliseconds / (1000 * 60 * 60 * 24);
     this.publishedDaysAgo = millisecondsToDays;
   }
 
-  setCorrectBorderColor() {
+  private setCorrectBorderColor() {
     switch (true) {
       case this.publishedDaysAgo > 180:
         this.borderColor = 'red';

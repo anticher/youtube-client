@@ -5,9 +5,9 @@ import { SearchItem } from '../models/search-item.model';
   name: 'filterSearchResults',
 })
 export class FilterSearchResultsPipe implements PipeTransform {
-  resultData: SearchItem[] = [];
+  private resultData: SearchItem[] = [];
 
-  transform(items: SearchItem[], filterString:string): SearchItem[] {
+  public transform(items: SearchItem[], filterString:string): SearchItem[] {
     if (filterString) {
       this.resultData = items.filter((item) => item.snippet.tags.includes(filterString));
       return this.resultData;
