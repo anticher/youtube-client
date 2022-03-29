@@ -8,7 +8,7 @@ import { SearchDataService } from '../../services/search-data.service';
   styleUrls: ['./result.component.scss'],
 })
 export class ResultComponent implements OnInit, DoCheck {
-  items: SearchItem[] = [];
+  public items: SearchItem[] = [];
 
   private dataChanged: number = 0;
 
