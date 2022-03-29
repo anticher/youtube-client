@@ -1,11 +1,11 @@
-<div class="result-item" [appResultItemBorderColor]="this.borderColor">
-    <img class="result-item__logo" alt="result-item__logo" [src]="this.mediumImageUrl">
+<div class="result-item" [appResultItemBorderColor]="borderColor">
+    <img class="result-item__logo" alt="result-item__logo" [src]="mediumImageUrl">
 <div class="result-item__statistics">
-    <app-statistics-item type="viewed" [number]="this.statistics.viewCount"></app-statistics-item>
-    <app-statistics-item type="liked" [number]="this.statistics.likeCount"></app-statistics-item>
-    <app-statistics-item type="disliked" [number]="this.statistics.dislikeCount"></app-statistics-item>
-    <app-statistics-item type="comments" [number]="this.statistics.commentCount"></app-statistics-item>
+    <app-statistics-item type="viewed" [number]="statistics.viewCount"></app-statistics-item>
+    <app-statistics-item type="liked" [number]="statistics.likeCount"></app-statistics-item>
+    <app-statistics-item type="disliked" [number]="statistics.dislikeCount"></app-statistics-item>
+    <app-statistics-item type="comments" [number]="statistics.commentCount"></app-statistics-item>
 </div>
-<h3 class="result-item__title">{{this.channelTitle + " #" + this.categoryId}}</h3>
+<h3 class="result-item__title">{{channelTitle + " #" + categoryId}}</h3>
 <app-rectangle-button class="result-item__btn">more...</app-rectangle-button>
 </div>
