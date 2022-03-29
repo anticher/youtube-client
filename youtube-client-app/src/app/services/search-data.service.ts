@@ -56,7 +56,9 @@ export class SearchDataService {
     const firstItemViewCount = this.resultData[0].statistics.viewCount;
     const lastItemViewCount = this.resultData[lastIndex].statistics.viewCount;
     const order = firstItemViewCount > lastItemViewCount ? -1 : 1;
-    this.resultData.sort((a, b) => order * +a.statistics.viewCount - order * +b.statistics.viewCount);
+    this.resultData.sort(
+      (a, b) => order * +a.statistics.viewCount - order * +b.statistics.viewCount
+    );
     this.dataChanged = Date.now();
   }
 
