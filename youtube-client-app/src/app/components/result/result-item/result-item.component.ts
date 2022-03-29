@@ -39,8 +39,12 @@ export class ResultItemComponent implements OnInit {
   }
 
   private setPublishedDaysAgoInMinutes(publishedDate: string) {
+    const millisecondsInASecond = 1000;
+    const secondsInAminute = 60;
+    const minutesInAnHour = 60;
+    const hoursInADay = 24;
     const milliseconds = Date.now() - new Date(publishedDate).getTime();
-    const millisecondsToDays = milliseconds / (1000 * 60 * 60 * 24);
+    const millisecondsToDays = milliseconds / (millisecondsInASecond * secondsInAminute * minutesInAnHour * hoursInADay);
     this.publishedDaysAgo = millisecondsToDays;
   }
 
