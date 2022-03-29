@@ -2,9 +2,9 @@
     <div class="header__center">
         <div class="header__center-top">
             <app-logo-button></app-logo-button>
-            <app-search-item [toggleSettings]="toggleDisplay.bind(this)"></app-search-item>
+            <app-search-item (toggleDisplay)="toggleDisplay()"></app-search-item>
         </div>
-        <div [ngClass]="isHidden? 'hidden': 'visible'" class="header__center-bottom">
+        <div [ngClass]="isSortingHidden? 'header__center-bottom_hidden': 'header__center-bottom_visible'" class="header__center-bottom">
             <app-search-sorting></app-search-sorting>
         </div>
     </div>

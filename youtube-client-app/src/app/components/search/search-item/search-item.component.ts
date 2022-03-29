@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { SearchDataService } from 'src/app/services/search-data.service';
 
 @Component({
@@ -7,7 +7,7 @@ import { SearchDataService } from 'src/app/services/search-data.service';
   styleUrls: ['./search-item.component.scss'],
 })
 export class SearchItemComponent {
-  @Input() toggleSettings: any = new EventEmitter();
+  @Output() toggleDisplay: EventEmitter<any> = new EventEmitter();
 
   value = '';
 
@@ -16,4 +16,5 @@ export class SearchItemComponent {
   makeSearch() {
     this.searchDataService.searchData(this.value);
   }
+  
 }

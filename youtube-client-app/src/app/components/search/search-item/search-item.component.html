@@ -1,6 +1,6 @@
 <div class="search-item">
     <input class="search-item__input" [(ngModel)]="value" type="text">
     <app-rectangle-button (click)="makeSearch()" class="search-item__search-btn">search</app-rectangle-button>
-    <app-square-button (click)="toggleSettings()" class="search-item__settings-btn"
+    <app-square-button (click)="this.toggleDisplay.emit()" class="search-item__settings-btn"
         bg="../../../assets/icons/searchSettings.svg"></app-square-button>
 </div>
