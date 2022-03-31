@@ -8,31 +8,31 @@
         background-repeat: no-repeat;
         &_viewed {
             width: 20px;
-            height: 13px;
+            height: 14px;
             background-image: url("../../../../assets/icons/viewed.svg");
         }
 
         &_liked {
-            width: 15px;
-            height: 13px;
+            width: 16px;
+            height: 14px;
             background-image: url("../../../../assets/icons/liked.svg");
         }
 
         &_disliked {
-            width: 15px;
-            height: 13px;
+            width: 16px;
+            height: 14px;
             background-image: url("../../../../assets/icons/dislike.svg");
         }
 
         &_comments {
-            width: 13px;
-            height: 13px;
+            width: 14px;
+            height: 14px;
             background-image: url("../../../../assets/icons/comments.svg");
         }
     }
 
     &__text {
-        margin-left: 3px;
+        margin-left: 4px;
         font-size: 10px;
         line-height: 12px;
         color: $black;

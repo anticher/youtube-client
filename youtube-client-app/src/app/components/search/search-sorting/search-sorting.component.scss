@@ -1,10 +1,10 @@
 @import "../../../../styles.scss";
 
 .search-sorting {
-    height: 13px;
+    height: 14px;
     display: flex;
     align-items: center;
-    gap: 11px;
+    gap: 10px;
     &__header {
         color: #929292;
     }
@@ -12,7 +12,7 @@
     &__buttons {
         display: flex;
         align-items: center;
-        gap: 21px;
+        gap: 20px;
     }
     
     &__button {
