@@ -14,6 +14,9 @@ import { ResultItemBorderColorDirective } from './directives/result-item-border-
 import { FilterSearchResultsPipe } from './pipes/filter-search-results.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { DetailsPageComponent } from './components/details-page/details-page.component';
+import { SearchDataService } from './services/search-data.service';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AccessInterceptor } from './interceptors/access.interceptor';
 
 @NgModule({
   declarations: [
@@ -37,6 +40,8 @@ import { DetailsPageComponent } from './components/details-page/details-page.com
     SearchItemComponent,
     SearchSortingComponent,
     MainComponent,
+  ],
+  providers: [
   ],
 })
 export class YoutubeModule { }
