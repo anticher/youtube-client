@@ -18,4 +18,8 @@ export class SearchItemComponent {
   public makeSearch(): void {
     this.searchDataService.searchData(this.value);
   }
+
+  public toggleSettings(): void {
+    this.toggleDisplay.emit();
+  }
 }
