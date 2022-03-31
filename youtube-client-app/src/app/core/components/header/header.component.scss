@@ -1,14 +1,14 @@
 @import "../../../../styles.scss";
 
-$header-center-width: 570px;
+$header-main: 570px;
 
 .header {
     width: 100%;
     display: flex;
     background-color: $light-grey;
     &__main {
-        margin-left: calc((100% - $header-center-width) / 2);
-        width: $header-center-width;
+        margin-left: calc((100% - $header-main) / 2);
+        width: $header-main;
         display: flex;
         flex-direction: column;
         transition: height 0.4s;
@@ -30,7 +30,7 @@ $header-center-width: 570px;
     }
 
     &__profile {
-        width: calc((100% - $header-center-width) / 2);
+        width: calc((100% - $header-main) / 2);
         height: 80px;
         display: flex;
         justify-content: center;
