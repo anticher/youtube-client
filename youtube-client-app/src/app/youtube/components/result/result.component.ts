@@ -10,7 +10,7 @@ import { SearchDataService } from '../../services/search-data.service';
   styleUrls: ['./result.component.scss'],
 })
 export class ResultComponent implements OnInit, DoCheck, OnDestroy {
-  items: any[] = [];
+  items: DetailsItem[] = [];
 
   dataChanged = 0;
 

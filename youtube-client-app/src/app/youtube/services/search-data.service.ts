@@ -37,29 +37,25 @@ export class SearchDataService {
   }
 
   searchData(searchString: string) {
-    const itemsCount = 20
+    const itemsCount = 21
     let counter = itemsCount
     this.itemsWithStats = []
     this.http.get<SearchResponse>(this.searchUrl + `&maxResults=${counter}&q=${searchString}`).pipe(map((response) => {
-      const resultItemsArray: any[] = []
-      while (resultItemsArray.length < itemsCount && response.items.length > 0) {
-        response.items.forEach((item) => {
-          this.http.get<DetailsResponse>(this.detailsUrlStart + item.id.videoId + this.detailsUrlEnd).subscribe(
-            (val) => {
-              const item = val.items[0]
-              if (!this.filterString && !resultItemsArray.includes(item)) {
-                resultItemsArray.push(item)
-              } else if (this.filterString && item.snippet.tags.includes(this.filterString) && !resultItemsArray.includes(item)) {
-                resultItemsArray.push(item)
-              }
-            }
-          )
+      const idArray: string[] = []
+      response.items.forEach((item) => {
+        idArray.push(item.id.videoId)
+      })
+      const itemsWithStats: DetailsItem[] = []
+      idArray.forEach((id) => {
+        this.http.get<DetailsResponse>(this.detailsUrlStart + id + this.detailsUrlEnd).subscribe({
+          next: (res) => itemsWithStats.push(res.items[0]),
+          error: (err) => console.log({ 'err': err }),
+          complete: () => this.dataChanged = Date.now()
         })
-        counter++
-      }
-      console.log(resultItemsArray)
-      return resultItemsArray
-    })).subscribe({
+      })
+      return itemsWithStats
+    })
+    ).subscribe({
       next: (res) => this.itemsWithStats = res,
       error: (err) => console.log({ 'err': err }),
       complete: () => this.dataChanged = Date.now()
@@ -107,5 +103,11 @@ export class SearchDataService {
 
   changeSearchTag(tag: string) {
     this.filterString = tag;
+    console.log(this.itemsWithStats)
+    // if (this.itemsWithStats.length > 0) {
+    //   this.itemsWithStats.sort((a: DetailsItem, b: DetailsItem) => {
+    //     a.snippet.tags.includes(tag) > b.snippet.tags.includes(tag)
+    //   })
+    // }
   }
 }

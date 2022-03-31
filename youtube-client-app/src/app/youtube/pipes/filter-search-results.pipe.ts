@@ -1,15 +1,25 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { SearchItem } from '../models/search-item.model';
+import { DetailsItem } from '../models/details-item.model';
 
 @Pipe({
   name: 'filterSearchResults',
 })
 export class FilterSearchResultsPipe implements PipeTransform {
-  resultData: SearchItem[] = [];
+  resultData: DetailsItem[] = [];
 
-  transform(items: SearchItem[], filterString:string): SearchItem[] {
+  transform(items: DetailsItem[], filterString: string): DetailsItem[] {
     if (filterString) {
-      this.resultData = items.filter((item) => item.snippet.tags.includes(filterString));
+      console.log(items[0].snippet.tags)
+      console.log(this.resultData)
+
+      this.resultData = items.filter((item) => {
+        if (item.snippet.tags) {
+          if (item.snippet.tags.includes(filterString)) {
+            return true
+          }
+        }
+        return false
+      })
       return this.resultData;
     }
     return items;
