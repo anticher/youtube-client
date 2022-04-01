@@ -5,6 +5,8 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
+import { AppRoutingModule } from './app-routing.module';
+
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { YoutubeModule } from './youtube/youtube.module';
@@ -24,6 +26,7 @@ import { NotFoundModule } from './not-found/not-found.module';
     YoutubeModule,
     SharedModule,
     NotFoundModule,
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
