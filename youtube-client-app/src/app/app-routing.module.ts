@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { MainComponent } from './core/components/main/main.component';
 import { NotFoundComponent } from './not-found/components/not-found/not-found.component';
+import { ResultComponent } from './youtube/components/result/result.component';
 
 const routes = [
 //   { path: 'login', component: LoginPageComponent },
   {
     path: '',
-    component: MainComponent,
+    component: ResultComponent,
     // loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),
     // canLoad: [LoginGuard],
     // canActivate: [LoginGuard],
