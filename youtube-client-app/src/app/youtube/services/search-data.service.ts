@@ -25,6 +25,7 @@ export class SearchDataService {
 
   public deleteResultData(): void {
     this.resultData = [];
+    this.dataChanged = Date.now();
   }
 
   public getFilterString(): string {
