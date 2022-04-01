@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 
 @Component({
   selector: 'app-statistics-item',
   templateUrl: './statistics-item.component.html',
   styleUrls: ['./statistics-item.component.scss'],
 })
-export class StatisticsItemComponent implements OnInit {
+export class StatisticsItemComponent implements OnChanges {
   @Input() type: string = '';
 
   @Input() number: string = '';
@@ -18,7 +18,7 @@ export class StatisticsItemComponent implements OnInit {
 
   public comments:boolean = false;
 
-  public ngOnInit(): void {
+  ngOnChanges(): void {
     this.setStatistics();
   }
 
