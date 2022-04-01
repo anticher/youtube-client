@@ -1,3 +1,6 @@
+
+@import "../../../../styles.scss";
+
 :host {
     margin: 44px auto 0;
     height: 460px;
@@ -13,7 +16,7 @@
         border-radius: 6px 0px 0px 6px;
         background-position: center;
         background-repeat: no-repeat;
-        background-size: cover;
+        background-size: contain;
         background-image: url("../../../../assets/icons/leftArrow.svg");
     }
     
@@ -24,11 +27,11 @@
     }
     
     &__image {
-        width: 729px;
+        width: 730px;
         background-position: center;
         background-repeat: no-repeat;
         background-size: cover;
-        background-color: black;
+        background-color: $black;
     }
     
     &__info {
@@ -36,7 +39,7 @@
         width: 436px;
         display: flex;
         flex-direction: column;
-        background: #e5e5e5;
+        background: $light-grey;
         border-radius: 0px 0px 5px 0px;
     }
     
@@ -49,7 +52,7 @@
         font-weight: 700;
         font-size: 24px;
         line-height: 28px;
-        color: #000000;
+        color: $black;
     }
     
     &__date {
@@ -57,21 +60,21 @@
         font-size: 10px;
         line-height: 12px;
         text-align: right;
-        color: #828282;
+        color: $grey;
     }
     
     &__subheader {
         margin-top: 60px;
         font-size: 14px;
         line-height: 16px;
-        color: #000000;
+        color: $black;
     }
     
     &__description {
         margin-top: 4px;
         font-size: 12px;
         line-height: 14px;
-        color: #828282;
+        color: $grey;
         overflow-y: scroll;
     }
     
