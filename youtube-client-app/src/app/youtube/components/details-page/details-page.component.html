@@ -1,0 +1,20 @@
+<div class="details">
+    <button routerLink="" class="details__back-button" [ngStyle]="{'background-color': publishedAt | setColorByDate}"></button>
+    <div class="details__main-block" [ngStyle]="{'filter': 'drop-shadow(6px 10px 10px rgba(' + (publishedAt | setColorByDate | hexToRgb) + ', 0.25))'}">
+        <div class="details__image" [ngStyle]="{'background-image': 'url(' + imageUrl + ')'}"></div>
+        <div class="details__info" [appResultItemBorderColor]="publishedAt | setColorByDate">
+            <div class="details__header-row">
+                <h3 class="details__header">{{header}}</h3>
+                <p class="details__date">{{publishedAt | date : "fullDate"}}</p>
+            </div>
+            <h5 class="details__subheader">Description:</h5>
+            <p class="details__description">{{text}}</p>
+            <div class="details__statistics">
+                <app-statistics-item type="viewed" number={{statistics.viewCount}}></app-statistics-item>
+                <app-statistics-item type="liked" number={{statistics.likeCount}}></app-statistics-item>
+                <app-statistics-item type="disliked" number={{statistics.dislikeCount}}></app-statistics-item>
+                <app-statistics-item type="comments" number={{statistics.commentCount}}></app-statistics-item>
+            </div>
+        </div>
+    </div>
+</div>

@@ -34,6 +34,12 @@ export class SearchDataService {
     this.dataChanged = Date.now();
   }
 
+  public getDataById(id: string): SearchItem {
+    this.searchData('');
+    const index = this.data.items.findIndex((item) => item.id === id);
+    return this.data.items[index];
+  }
+
   public sortResultByDate(): void {
     if (this.resultData.length < 2) {
       return;

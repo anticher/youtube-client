@@ -7,5 +7,5 @@
     <app-statistics-item type="comments" [number]="statistics.commentCount"></app-statistics-item>
 </div>
 <h3 class="result-item__title">{{channelTitle + " #" + categoryId}}</h3>
-<app-more-button class="result-item__button"></app-more-button>
+<app-more-button class="result-item__button" routerLink="result/{{itemId}}"></app-more-button>
 </div>

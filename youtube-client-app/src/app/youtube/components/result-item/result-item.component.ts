@@ -9,6 +9,8 @@ import { SearchItem, Statistics } from 'src/app/youtube/models/search-item.model
 export class ResultItemComponent implements OnInit {
   @Input() item!: SearchItem;
 
+  public itemId: string = '';
+
   public statistics: Statistics = {
     commentCount: '0',
     dislikeCount: '0',
@@ -27,11 +29,12 @@ export class ResultItemComponent implements OnInit {
 
   public ngOnInit(): void {
     if (this.item) {
+      this.itemId = this.item.id;
       this.statistics = this.item.statistics;
       this.channelTitle = this.item.snippet.channelTitle;
       this.categoryId = this.item.snippet.categoryId;
       this.mediumImageUrl = this.item.snippet.thumbnails.medium.url;
-      this.publishedDaysAgo = this.item.snippet.publishedAt
+      this.publishedDaysAgo = this.item.snippet.publishedAt;
     }
   }
 }
