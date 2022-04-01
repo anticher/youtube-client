@@ -14,6 +14,12 @@ export class SetColorByDatePipe implements PipeTransform {
 
   private hoursInADay = 24;
 
+  private halfAYear = 180;
+
+  private week = 7;
+
+  private month = 30;
+
   public transform(publishedDate: string): string {
     if (publishedDate) {
       const days = this.getPublishedDaysAgo(publishedDate);
@@ -36,11 +42,11 @@ export class SetColorByDatePipe implements PipeTransform {
 
   private getBorderColorByDays(days: number): string {
     switch (true) {
-      case days > 180:
+      case days > this.halfAYear:
         return '#EB5757';
-      case days < 7:
+      case days < this.week:
         return '#27AE60';
-      case days < 30:
+      case days < this.month:
         return '#2F80ED';
       default:
         return '#F2C94C';
