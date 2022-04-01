@@ -14,6 +14,7 @@ import { SettingsButtonComponent } from './components/settings-button/settings-b
 import { StatisticsItemComponent } from './components/statistics-item/statistics-item.component';
 import { FilterSearchResultsPipe } from './pipes/filter-search-results.pipe';
 import { SharedModule } from '../shared/shared.module';
+import { ResultItemBorderColorDirective } from './directives/result-item-border-color.directive';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { SharedModule } from '../shared/shared.module';
     MoreButtonComponent,
     ProfileSettingsComponent,
     FilterSearchResultsPipe,
+    ResultItemBorderColorDirective,
   ],
   imports: [
     CommonModule,
