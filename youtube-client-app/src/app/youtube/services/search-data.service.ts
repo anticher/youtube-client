@@ -23,6 +23,10 @@ export class SearchDataService {
     return this.dataChanged;
   }
 
+  public deleteResultData(): void {
+    this.resultData = [];
+  }
+
   public getFilterString(): string {
     return this.filterString;
   }
