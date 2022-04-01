@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { SearchDataService } from 'src/app/youtube/services/search-data.service';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   constructor(
