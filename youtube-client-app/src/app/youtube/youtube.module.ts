@@ -15,6 +15,7 @@ import { StatisticsItemComponent } from './components/statistics-item/statistics
 import { FilterSearchResultsPipe } from './pipes/filter-search-results.pipe';
 import { SharedModule } from '../shared/shared.module';
 import { ResultItemBorderColorDirective } from './directives/result-item-border-color.directive';
+import { SetColorByDatePipe } from './pipes/set-color-by-date.pipe';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ResultItemBorderColorDirective } from './directives/result-item-border-
     ProfileSettingsComponent,
     FilterSearchResultsPipe,
     ResultItemBorderColorDirective,
+    SetColorByDatePipe,
   ],
   imports: [
     CommonModule,

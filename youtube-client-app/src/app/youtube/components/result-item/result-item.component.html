@@ -1,4 +1,4 @@
-<div class="result-item" [appResultItemBorderColor]="borderColor">
+<div class="result-item" [appResultItemBorderColor]="publishedDaysAgo | setColorByDate">
     <img class="result-item__logo" alt="result-item__logo" [src]="mediumImageUrl">
 <div class="result-item__statistics">
     <app-statistics-item type="viewed" [number]="statistics.viewCount"></app-statistics-item>
