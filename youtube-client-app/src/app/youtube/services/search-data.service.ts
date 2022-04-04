@@ -45,6 +45,13 @@ export class SearchDataService {
   }
 
   searchData(searchString: string) {
+    if (searchString.length < 3) {
+      console.log(searchString.length)
+      this.itemsWithStats = []
+      this.dataChanged = Date.now()
+      return
+    }
+    console.log('startSearching')
     const itemsCount = 21
     let counter = itemsCount
     this.itemsWithStats = []

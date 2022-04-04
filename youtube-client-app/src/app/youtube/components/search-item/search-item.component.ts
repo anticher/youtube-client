@@ -1,7 +1,8 @@
 import {
-  Component, DoCheck, EventEmitter, Input,
+  Component, DoCheck, EventEmitter, Input, OnInit,
 } from '@angular/core';
 import { Router } from '@angular/router';
+import { BehaviorSubject, debounceTime, map } from 'rxjs';
 import { SearchDataService } from 'src/app/youtube/services/search-data.service';
 
 @Component({
@@ -9,20 +10,25 @@ import { SearchDataService } from 'src/app/youtube/services/search-data.service'
   templateUrl: './search-item.component.html',
   styleUrls: ['./search-item.component.scss'],
 })
-export class SearchItemComponent implements DoCheck {
+export class SearchItemComponent implements OnInit, DoCheck {
   @Input() toggleSettings: any = new EventEmitter();
 
   value = '';
 
   isSearchSettingsButtonHidden = false;
 
+  searchSubject = new BehaviorSubject<string>('')
+
   constructor(
     private searchDataService: SearchDataService,
     private router: Router,
   ) { }
 
-  makeSearch() {
-    this.searchDataService.searchData(this.value);
+  ngOnInit(): void {
+    console.log('ngOnInit')
+    this.searchSubject.pipe(debounceTime(1000)).subscribe((val) => {
+      this.searchDataService.searchData(val);
+    })
   }
 
   ngDoCheck(): void {
@@ -33,4 +39,10 @@ export class SearchItemComponent implements DoCheck {
       this.isSearchSettingsButtonHidden = false;
     }
   }
+
+  inputChange(event: Event) {
+    const seachString = (event.target as HTMLInputElement).value;
+    this.searchSubject.next(seachString)
+  }
+
 }
