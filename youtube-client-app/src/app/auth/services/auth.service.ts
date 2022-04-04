@@ -23,7 +23,6 @@ export class AuthService {
         } else {
           localStorage.removeItem('login');
           this.router.navigate(['login']);
-          this.searchDataService.deletItemsWithStats();
         }
       },
       error: (err) => console.log({"err": err}),

@@ -9,7 +9,7 @@ import { SearchDataService } from '../../services/search-data.service';
   templateUrl: './result.component.html',
   styleUrls: ['./result.component.scss'],
 })
-export class ResultComponent implements OnInit, DoCheck, OnDestroy {
+export class ResultComponent implements OnInit {
   items: DetailsItem[] = [];
 
   dataChanged = 0;
@@ -19,21 +19,6 @@ export class ResultComponent implements OnInit, DoCheck, OnDestroy {
   constructor(private searchDataService: SearchDataService) { }
 
   ngOnInit(): void {
-    this.dataChanged = this.searchDataService.dataChanged;
-    this.items = this.searchDataService.itemsWithStats;
-  }
-
-  ngDoCheck() {
-    if (this.filterString !== this.searchDataService.filterString) {
-      this.filterString = this.searchDataService.filterString;
-    }
-    if (this.dataChanged !== this.searchDataService.dataChanged) {
-      this.dataChanged = this.searchDataService.dataChanged;
-      this.items = this.searchDataService.itemsWithStats;
-    }
-  }
-
-  ngOnDestroy() {
-    this.searchDataService.deletItemsWithStats();
+    this.searchDataService.searchDataSubject.subscribe((val) => this.items = val)
   }
 }
