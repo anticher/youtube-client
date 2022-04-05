@@ -10,6 +10,15 @@
     <input formControlName="password" type="password" name="password" class="login-form__input">
     <div class="login-form__validation" *ngIf="form.get('password')?.invalid">
         <span *ngIf="form.get('password')?.errors!['required']">Please enter a password</span>
+        <div *ngIf="form.get('password')?.errors!['passwordValidator'] && form.get('password')?.touched">
+            Your password isn't strong enough:
+                <ul>
+                    <li>at least 8 characters(max 16)</li>
+                    <li>a mixture of both uppercase and lowercase letters</li>
+                    <li>a mixture of letters and numbers</li>
+                    <li>inclusion of at least one special character, e.g., ! @ # ? ]</li>
+                </ul> 
+            </div>
     </div>
     <button type="submit" class="login-form__button" [disabled]="form.invalid">Login</button>
 </form>

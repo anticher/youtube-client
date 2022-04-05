@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
+import { PasswordValidator } from '../../validators/password.validator';
 
 @Component({
   selector: 'app-login-form',
@@ -15,6 +16,7 @@ export class LoginFormComponent {
     ]),
     password: new FormControl('', [
       Validators.required,
+      PasswordValidator.isCorrect
     ]),
   })
   
