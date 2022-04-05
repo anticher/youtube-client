@@ -1,5 +1,11 @@
 @import "~normalize.css";
 
+$light-grey: #e5e5e5;
+$blue: #2f80ed;
+$white: #ffffff;
+$grey: #4f4f4f;
+$black: #000000;
+
 /* Roboto regular */
 
 @font-face {
@@ -40,16 +46,6 @@ input, button {
     border-width: 0;
     border-radius: 0;
 }
-
-// html, body { height: 100%; }
-// body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
-
-// body {
-//     width: 100vw;
-//     height: 100vh;
-//     display: flex;
-//     flex-direction: column;
-// }
 
 .grey-color {
     color: #4f4f4f;

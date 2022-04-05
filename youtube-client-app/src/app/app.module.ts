@@ -13,6 +13,7 @@ import { ProfileModule } from './profile/profile.module';
 import { SearchDataService } from './youtube/services/search-data.service';
 import { AccessInterceptor } from './youtube/interceptors/access.interceptor';
 import { SnippetInterceptor } from './youtube/interceptors/snippet.interceptor';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { SnippetInterceptor } from './youtube/interceptors/snippet.interceptor';
     NotFoundModule,
     AppRoutingModule,
     ProfileModule,
+    AdminModule
   ],
   providers: [
     SearchDataService,

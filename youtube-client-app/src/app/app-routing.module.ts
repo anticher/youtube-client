@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { AdminPageComponent } from './admin/components/admin-page/admin-page.component';
 import { LoginPageComponent } from './auth/components/login-page/login-page.component';
 import { LoginGuard } from './core/guards/login.guard';
 import { NotFoundComponent } from './not-found/components/not-found.component';
@@ -9,8 +10,16 @@ import { MainComponent } from './youtube/components/main/main.component';
 const routes = [
   { path: 'login', component: LoginPageComponent },
   {
+    path: 'admin',
+    component: AdminPageComponent,
+    loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),
+    canLoad: [LoginGuard],
+    canActivate: [LoginGuard],
+  },
+  {
     path: '',
     component: MainComponent,
+    pathMatch: 'full',
     loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),
     canLoad: [LoginGuard],
     canActivate: [LoginGuard],

@@ -1,0 +1,35 @@
+<form class="new-card-form" [formGroup]="form">
+    <h4 class="new-card-form__header">Create new card</h4>
+    <label for="title" class="new-card-form__label">Title</label>
+    <pre>{{form.get('title')?.errors | json}}</pre>
+    <input formControlName="title" type="text" name="title" class="new-card-form__input">
+    <div class="new-card-form__validation" *ngIf="form.get('title')?.invalid">
+        <span *ngIf="form.get('title')?.errors!['required']">Please enter a title</span>
+        <span *ngIf="form.get('title')?.errors!['minlength'] && form.get('title')?.touched">The title is too short</span>
+        <span *ngIf="form.get('title')?.errors!['maxlength'] && form.get('title')?.touched">The title is too long</span>
+    </div>
+    <label for="description" class="new-card-form__label">Description</label>
+    <input formControlName="description" type="text" name="description" class="new-card-form__input">
+    <div class="new-card-form__validation" *ngIf="form.get('description')?.invalid">
+        <span *ngIf="form.get('description')?.errors!['maxlength'] && form.get('title')?.touched">The description is too long</span>
+    </div>
+    <label for="img" class="new-card-form__label">Img</label>
+    <input formControlName="img" type="url" name="img" class="new-card-form__input">
+    <div class="new-card-form__validation" *ngIf="form.get('img')?.invalid">
+        <span *ngIf="form.get('img')?.errors!['required']">Please enter a link to the image</span>
+        <span *ngIf="form.get('img')?.errors!['urlValidator'] && form.get('img')?.touched">The image link is invalid</span>
+    </div>
+    <label for="video" class="new-card-form__label">Link video</label>
+    <input formControlName="video" type="url" name="video" class="new-card-form__input">
+    <div class="new-card-form__validation" *ngIf="form.get('video')?.invalid">
+        <span *ngIf="form.get('video')?.errors!['required']">Please enter a link to the video</span>
+        <span *ngIf="form.get('video')?.errors!['urlValidator'] && form.get('video')?.touched">The video link is invalid</span>
+    </div>
+    <label for="date" class="new-card-form__label">Link video</label>
+    <input formControlName="date" type="date" name="date" class="new-card-form__input">
+    <div class="new-card-form__validation" *ngIf="form.get('date')?.invalid">
+        <span *ngIf="form.get('date')?.errors!['required']">Please enter a creation date</span>
+        <span *ngIf="form.get('date')?.errors!['dateValidator']">The date is invalid</span>
+    </div>
+    <button type="submit" class="new-card-form__button">Create card</button>
+</form>
