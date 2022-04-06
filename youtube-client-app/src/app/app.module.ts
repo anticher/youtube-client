@@ -14,6 +14,8 @@ import { SearchDataService } from './youtube/services/search-data.service';
 import { AccessInterceptor } from './youtube/interceptors/access.interceptor';
 import { SnippetInterceptor } from './youtube/interceptors/snippet.interceptor';
 import { AdminModule } from './admin/admin.module';
+import { StoreModule } from '@ngrx/store';
+import { customCardsReducer } from './redux/reducers/custom-cards.reducer';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,8 @@ import { AdminModule } from './admin/admin.module';
     NotFoundModule,
     AppRoutingModule,
     ProfileModule,
-    AdminModule
+    AdminModule,
+    StoreModule.forRoot({ customCards: customCardsReducer })
   ],
   providers: [
     SearchDataService,

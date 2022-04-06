@@ -1,4 +1,4 @@
-<form class="new-card-form" [formGroup]="form">
+<form class="new-card-form" [formGroup]="form" (ngSubmit)="submit()">
     <h4 class="new-card-form__header">Create new card</h4>
     <label for="title" class="new-card-form__label">Title</label>
     <pre>{{form.get('title')?.errors | json}}</pre>
@@ -31,5 +31,6 @@
         <span *ngIf="form.get('date')?.errors!['required']">Please enter a creation date</span>
         <span *ngIf="form.get('date')?.errors!['dateValidator']">The date is invalid</span>
     </div>
-    <button type="submit" class="new-card-form__button">Create card</button>
+    <button type="submit" class="new-card-form__button" [disabled]="form.invalid" >Create card</button>
+    <button type="button" class="new-card-form__button" (click)="add()">test redux</button>
 </form>
