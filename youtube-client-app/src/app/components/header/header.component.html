@@ -1,0 +1,14 @@
+<div class="header">
+    <div class="header__center">
+        <div class="header__center-top">
+            <app-logo-button></app-logo-button>
+            <app-search-item (toggleDisplay)="toggleDisplay()"></app-search-item>
+        </div>
+        <div *ngIf="isSortingVisible" class="header__center-bottom">
+            <app-search-sorting></app-search-sorting>
+        </div>
+    </div>
+    <div class="header__right">
+        <app-profile-settings></app-profile-settings>
+    </div>
+</div>

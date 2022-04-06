@@ -1,0 +1,17 @@
+@import "../../../styles.scss";
+
+:host {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.profile__name {
+    width: 102px;
+    height: 16px;
+    font-size: 12px;
+    line-height: 14px;
+    text-align: right;
+    color: $grey;
+}

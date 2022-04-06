@@ -1,0 +1,40 @@
+@import "../../../../styles.scss";
+
+.statistics-item {
+    display: flex;
+    align-items: center;
+    &__img {
+        background-position: center;
+        background-repeat: no-repeat;
+        &_viewed {
+            width: 20px;
+            height: 13px;
+            background-image: url("../../../../assets/icons/viewed.svg");
+        }
+
+        &_liked {
+            width: 15px;
+            height: 13px;
+            background-image: url("../../../../assets/icons/liked.svg");
+        }
+
+        &_disliked {
+            width: 15px;
+            height: 13px;
+            background-image: url("../../../../assets/icons/dislike.svg");
+        }
+
+        &_comments {
+            width: 13px;
+            height: 13px;
+            background-image: url("../../../../assets/icons/comments.svg");
+        }
+    }
+
+    &__text {
+        margin-left: 3px;
+        font-size: 10px;
+        line-height: 12px;
+        color: $black;
+    }
+}

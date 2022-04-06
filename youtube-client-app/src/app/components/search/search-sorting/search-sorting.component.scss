@@ -1,0 +1,31 @@
+@import "../../../../styles.scss";
+
+.search-sorting {
+    height: 13px;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    &__header {
+        color: #929292;
+    }
+    
+    &__buttons {
+        display: flex;
+        align-items: center;
+        gap: 21px;
+    }
+    
+    &__button {
+        text-decoration: underline;
+        color: $blue;
+        background: transparent;
+    }
+
+    &__subheader {
+        color: $blue;
+    }
+    
+    &__input {
+        width: 150px;
+    }
+}

@@ -1,0 +1,12 @@
+.search-item {
+    margin-left: 10px;
+    display: flex;
+    &__input {
+        width: 396px;
+        height: 24px;
+    }
+    
+    &__settings-button {
+        margin-left: 10px;
+    }
+}
