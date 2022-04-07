@@ -1,5 +1,5 @@
 import {
-  Component, Input, OnChanges,
+  Component, Input, OnInit,
 } from '@angular/core';
 import { SearchItem, Statistics } from 'src/app/youtube/models/search-item.model';
 
@@ -8,13 +8,12 @@ import { SearchItem, Statistics } from 'src/app/youtube/models/search-item.model
   templateUrl: './result-item.component.html',
   styleUrls: ['./result-item.component.scss'],
 })
-export class ResultItemComponent implements OnChanges {
-  @Input() item!: SearchItem;
-  // @Input() set item(item: SearchItem) {
-  //   this._item = item;
-  // }
+export class ResultItemComponent implements OnInit {
+  @Input() set item(item: SearchItem) {
+    this.detailsItem = item;
+  }
 
-  // private _item!: SearchItem;
+  private detailsItem!: SearchItem;
 
   public itemId: string = '';
 
@@ -34,16 +33,16 @@ export class ResultItemComponent implements OnChanges {
 
   public publishedDaysAgo: string = '';
 
-  public ngOnChanges(): void {
+  public ngOnInit(): void {
     this.setItemInfo();
   }
 
   private setItemInfo(): void {
-    this.itemId = this.item.id;
-    this.statistics = this.item.statistics;
-    this.channelTitle = this.item.snippet.channelTitle;
-    this.categoryId = this.item.snippet.categoryId;
-    this.mediumImageUrl = this.item.snippet.thumbnails.medium.url;
-    this.publishedDaysAgo = this.item.snippet.publishedAt;
+    this.itemId = this.detailsItem.id;
+    this.statistics = this.detailsItem.statistics;
+    this.channelTitle = this.detailsItem.snippet.channelTitle;
+    this.categoryId = this.detailsItem.snippet.categoryId;
+    this.mediumImageUrl = this.detailsItem.snippet.thumbnails.medium.url;
+    this.publishedDaysAgo = this.detailsItem.snippet.publishedAt;
   }
 }
