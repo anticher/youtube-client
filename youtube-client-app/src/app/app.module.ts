@@ -11,7 +11,6 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { YoutubeModule } from './youtube/youtube.module';
 import { SharedModule } from './shared/shared.module';
-import { NotFoundModule } from './not-found/not-found.module';
 import { AuthModule } from './auth/auth.module';
 
 @NgModule({
@@ -26,7 +25,6 @@ import { AuthModule } from './auth/auth.module';
     CoreModule,
     YoutubeModule,
     SharedModule,
-    NotFoundModule,
     AppRoutingModule,
     AuthModule,
   ],
