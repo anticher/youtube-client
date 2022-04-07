@@ -1,4 +1,18 @@
 import { Pipe, PipeTransform } from '@angular/core';
+  
+  const millisecondsInASecond = 1000;
+
+  const secondsInAminute = 60;
+
+  const minutesInAnHour = 60;
+
+  const hoursInADay = 24;
+
+  const halfAYear = 180;
+
+  const week = 7;
+
+  const month = 30;
 
 @Pipe({
   name: 'setColorByDate',
@@ -6,50 +20,41 @@ import { Pipe, PipeTransform } from '@angular/core';
 export class SetColorByDatePipe implements PipeTransform {
   private color: string = '';
 
-  private millisecondsInASecond = 1000;
-
-  private secondsInAminute = 60;
-
-  private minutesInAnHour = 60;
-
-  private hoursInADay = 24;
-
-  private halfAYear = 180;
-
-  private week = 7;
-
-  private month = 30;
+  private days: number = 0;
 
   public transform(publishedDate: string): string {
     if (publishedDate) {
-      const days = this.getPublishedDaysAgo(publishedDate);
-      return this.getBorderColorByDays(days);
+      this.getPublishedDaysAgo(publishedDate);
+      this.getBorderColorByDays(this.days);
     }
     return this.color;
   }
 
-  private getPublishedDaysAgo(publishedDate: string) {
+  private getPublishedDaysAgo(publishedDate: string): void {
     const milliseconds = Date.now() - new Date(publishedDate).getTime();
     const millisecondsToDays = milliseconds
     / (
-      this.millisecondsInASecond
-      * this.secondsInAminute
-      * this.minutesInAnHour
-      * this.hoursInADay
+      millisecondsInASecond
+      * secondsInAminute
+      * minutesInAnHour
+      * hoursInADay
     );
-    return millisecondsToDays;
+    this.days = millisecondsToDays;
   }
 
-  private getBorderColorByDays(days: number): string {
+  private getBorderColorByDays(days: number): void {
     switch (true) {
-      case days > this.halfAYear:
-        return '#EB5757';
-      case days < this.week:
-        return '#27AE60';
-      case days < this.month:
-        return '#2F80ED';
+      case days > halfAYear:
+        this.color = '#EB5757';
+        break;
+      case days < week:
+        this.color = '#27AE60';
+        break;
+      case days < month:
+        this.color = '#2F80ED';
+        break;
       default:
-        return '#F2C94C';
+        this.color = '#F2C94C';
     }
   }
 }
