@@ -6,6 +6,7 @@ import { SearchDataService } from 'src/app/youtube/services/search-data.service'
   providedIn: 'root',
 })
 export class AuthService {
+
   constructor(
     private router: Router,
     private searchDataService: SearchDataService,
@@ -22,16 +23,24 @@ export class AuthService {
     this.searchDataService.deleteResultData();
   }
 
-  static isAuthCheck(): Promise<boolean> {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const isAuth = localStorage.getItem('login');
-        if (isAuth === 'test') {
-          resolve(true);
-        } else {
-          resolve(false);
-        }
-      }, 0);
-    });
+  // static isAuthCheck(): Promise<boolean> {
+  //   return new Promise((resolve) => {
+  //     setTimeout(() => {
+  //       const isAuth = localStorage.getItem('login');
+  //       if (isAuth === 'test') {
+  //         resolve(true);
+  //       } else {
+  //         resolve(false);
+  //       }
+  //     }, 0);
+  //   });
+  // }
+
+  static isAuthCheck(): boolean {
+    const isAuth = localStorage.getItem('login');
+    if (isAuth === 'test') {
+      return true
+    }
+    return false
   }
 }
