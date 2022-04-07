@@ -17,9 +17,13 @@ export class SearchDataService {
 
   // searchUrl = `https://www.googleapis.com/youtube/v3/search?type=video&part=snippet`;
 
-  searchUrl = `https://www.googleapis.com/youtube/v3/search?type=video`;
+  // searchUrl = `https://www.googleapis.com/youtube/v3/search?type=video`;
 
-  detailsUrlStart = `https://www.googleapis.com/youtube/v3/videos?id=`
+  // detailsUrlStart = `https://www.googleapis.com/youtube/v3/videos?id=`
+
+  searchUrl = `search?type=video`;
+
+  detailsUrlStart = `videos?id=`
 
   // detailsUrlEnd = '&part=snippet,statistics'
 

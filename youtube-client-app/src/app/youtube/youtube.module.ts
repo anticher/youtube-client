@@ -2,6 +2,10 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+
+import { SharedModule } from '../shared/shared.module';
+import { YoutubeRoutingModule } from './youtube-router.module';
+
 import { LogoButtonComponent } from './components/logo-button/logo-button.component';
 import { MoreButtonComponent } from './components/more-button/more-button.component';
 import { ProfileButtonComponent } from './components/profile-button/profile-button.component';
@@ -13,13 +17,17 @@ import { SearchItemComponent } from './components/search-item/search-item.compon
 import { SearchSortingComponent } from './components/search-sorting/search-sorting.component';
 import { SettingsButtonComponent } from './components/settings-button/settings-button.component';
 import { StatisticsItemComponent } from './components/statistics-item/statistics-item.component';
+import { DetailsPageComponent } from './components/details-page/details-page.component';
+
 import { FilterSearchResultsPipe } from './pipes/filter-search-results.pipe';
-import { SharedModule } from '../shared/shared.module';
 import { ResultItemBorderColorDirective } from './directives/result-item-border-color.directive';
 import { SetColorByDatePipe } from './pipes/set-color-by-date.pipe';
-import { DetailsPageComponent } from './components/details-page/details-page.component';
 import { HexToRgbPipe } from './pipes/hex-to-rgb.pipe';
-import { YoutubeRoutingModule } from './youtube-router.module';
+
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { AccessInterceptor } from './interceptors/access.interceptor';
+import { SnippetInterceptor } from './interceptors/snippet.interceptor';
+import { BaseInterceptor } from './interceptors/base.interceptor';
 
 @NgModule({
   declarations: [
@@ -60,5 +68,10 @@ import { YoutubeRoutingModule } from './youtube-router.module';
     ResultComponent,
     DetailsPageComponent,
   ],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AccessInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: SnippetInterceptor, multi: true },
+  ]
 })
 export class YoutubeModule { }
