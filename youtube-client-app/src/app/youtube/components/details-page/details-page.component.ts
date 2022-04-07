@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Statistics } from '../../models/search-item.model';
+import { Statistics } from '../../models/statistics.model';
 import { SearchDataService } from '../../services/search-data.service';
 
 @Component({
@@ -19,7 +19,6 @@ export class DetailsPageComponent implements OnInit {
 
   public statistics: Statistics = {
     commentCount: '0',
-    dislikeCount: '0',
     favoriteCount: '0',
     likeCount: '0',
     viewCount: '0',
@@ -37,15 +36,18 @@ export class DetailsPageComponent implements OnInit {
 
   private setItemInfo(): void {
     const id = this.activateRoute.snapshot.params[''];
-    const item = this.searchDataService.getDataById(id);
-    if (!item) {
-      this.router.navigate(['not-found']);
-      return;
-    }
-    this.publishedAt = item.snippet.publishedAt;
-    this.imageUrl = item.snippet.thumbnails.maxres.url;
-    this.header = item.snippet.channelTitle;
-    this.text = item.snippet.description;
-    this.statistics = item.statistics;
+    console.log(id)
+    const item = this.searchDataService.getDataById(id).subscribe((res: any) => {
+      const item = res.items[0]
+      if (!item) {
+        this.router.navigate(['not-found']);
+      } else {
+        this.publishedAt = item.snippet.publishedAt;
+        this.imageUrl = item.snippet.thumbnails.high.url;
+        this.header = item.snippet.channelTitle;
+        this.text = item.snippet.localized.description;
+        this.statistics = item.statistics;
+      }
+    })
   }
 }

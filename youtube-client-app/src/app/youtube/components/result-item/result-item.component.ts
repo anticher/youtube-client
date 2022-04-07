@@ -1,7 +1,8 @@
 import {
   Component, Input, OnInit,
 } from '@angular/core';
-import { SearchItem, Statistics } from 'src/app/youtube/models/search-item.model';
+import { DetailsItem } from '../../models/details-item.model';
+import { Statistics } from '../../models/statistics.model';
 
 @Component({
   selector: 'app-result-item',
@@ -9,17 +10,16 @@ import { SearchItem, Statistics } from 'src/app/youtube/models/search-item.model
   styleUrls: ['./result-item.component.scss'],
 })
 export class ResultItemComponent implements OnInit {
-  @Input() set item(item: SearchItem) {
+  @Input() set item(item: DetailsItem) {
     this.detailsItem = item;
   }
 
-  private detailsItem!: SearchItem;
+  private detailsItem!: DetailsItem;
 
   public itemId: string = '';
 
   public statistics: Statistics = {
     commentCount: '0',
-    dislikeCount: '0',
     favoriteCount: '0',
     likeCount: '0',
     viewCount: '0',
@@ -42,7 +42,7 @@ export class ResultItemComponent implements OnInit {
     this.statistics = this.detailsItem.statistics;
     this.channelTitle = this.detailsItem.snippet.channelTitle;
     this.categoryId = this.detailsItem.snippet.categoryId;
-    this.mediumImageUrl = this.detailsItem.snippet.thumbnails.medium.url;
+    this.mediumImageUrl = this.detailsItem.snippet.thumbnails.high.url;
     this.publishedDaysAgo = this.detailsItem.snippet.publishedAt;
   }
 }

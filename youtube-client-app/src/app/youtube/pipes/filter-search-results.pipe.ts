@@ -1,4 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
+import { DetailsItem } from '../models/details-item.model';
 import { SearchItem } from '../models/search-item.model';
 
 @Pipe({
@@ -7,11 +8,11 @@ import { SearchItem } from '../models/search-item.model';
 export class FilterSearchResultsPipe implements PipeTransform {
   private resultData: SearchItem[] = [];
 
-  public transform(items: SearchItem[], filterString:string): SearchItem[] {
-    if (filterString) {
-      this.resultData = items.filter((item) => item.snippet.tags.includes(filterString));
-      return this.resultData;
-    }
+  public transform(items: DetailsItem[], filterString:string): DetailsItem[] {
+    // if (filterString) {
+    //   this.resultData = items.filter((item) => item.snippet.tags.includes(filterString));
+    //   return this.resultData;
+    // }
     return items;
   }
 }

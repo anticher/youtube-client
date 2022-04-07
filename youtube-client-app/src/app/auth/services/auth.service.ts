@@ -12,8 +12,7 @@ export class AuthService {
   constructor(
     private router: Router,
     private searchDataService: SearchDataService,
-  )
-  {
+  ) {
     if (localStorage.getItem('login')) {
       this.loginSubject.next(true)
     }
@@ -25,10 +24,10 @@ export class AuthService {
         } else {
           localStorage.removeItem('login');
           this.router.navigate(['login']);
-          this.searchDataService.deleteResultData();
+          this.searchDataService.clearSearchDataSubject()
         }
       },
-      error: (err) => console.log({"err": err})
+      error: (err) => console.log({ "err": err })
     })
   }
 
@@ -37,7 +36,7 @@ export class AuthService {
   }
 
   public logout(): void {
-    this.loginSubject.next(false)    
+    this.loginSubject.next(false)
   }
 
   static isAuthCheck(): boolean {
