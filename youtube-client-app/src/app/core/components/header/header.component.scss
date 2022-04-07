@@ -36,15 +36,17 @@ $header-main: 570px;
         justify-content: center;
         align-items: center;
     }
-    
+
     &__button {
-    margin: 0 4px;
-    width: 80px;
-    height: 24px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    color: $white;
-    background-color: $blue;
+        margin: 0 4px;
+        width: 80px;
+        height: 24px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: $white;
+        background-color: $blue;
+        border-radius: 6px;
+        filter: drop-shadow(2px 0px 4px $blue);
     }
 }
