@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Statistics } from '../../models/search-item.model';
 import { SearchDataService } from '../../services/search-data.service';
 
@@ -28,6 +28,7 @@ export class DetailsPageComponent implements OnInit {
   constructor(
     private router: Router,
     private searchDataService: SearchDataService,
+    private activateRoute: ActivatedRoute,
   ) { }
 
   public ngOnInit(): void {
@@ -35,8 +36,7 @@ export class DetailsPageComponent implements OnInit {
   }
 
   private setItemInfo(): void {
-    const index = this.router.url.lastIndexOf('/') + 1;
-    const id = this.router.url.substring(index);
+    const id = this.activateRoute.snapshot.params[''];
     const item = this.searchDataService.getDataById(id);
     if (!item) {
       this.router.navigate(['not-found']);
