@@ -6,7 +6,6 @@ import { SearchDataService } from 'src/app/youtube/services/search-data.service'
   providedIn: 'root',
 })
 export class AuthService {
-
   constructor(
     private router: Router,
     private searchDataService: SearchDataService,
@@ -39,8 +38,8 @@ export class AuthService {
   static isAuthCheck(): boolean {
     const isAuth = localStorage.getItem('login');
     if (isAuth === 'test') {
-      return true
+      return true;
     }
-    return false
+    return false;
   }
 }

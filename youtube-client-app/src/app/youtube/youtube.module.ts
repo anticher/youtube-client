@@ -46,7 +46,7 @@ import { YoutubeRoutingModule } from './youtube-router.module';
     FormsModule,
     SharedModule,
     RouterModule,
-    YoutubeRoutingModule
+    YoutubeRoutingModule,
   ],
   exports: [
     LogoButtonComponent,

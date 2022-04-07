@@ -3,11 +3,11 @@ import { Routes, RouterModule } from '@angular/router';
 import { ResultComponent } from './components/result/result.component';
 
 const routes: Routes = [
-  { path: '', component: ResultComponent }
+  { path: '', component: ResultComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
 export class YoutubeRoutingModule { }

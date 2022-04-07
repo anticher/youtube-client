@@ -1,18 +1,18 @@
 import { Pipe, PipeTransform } from '@angular/core';
-  
-  const millisecondsInASecond = 1000;
 
-  const secondsInAminute = 60;
+const millisecondsInASecond = 1000;
 
-  const minutesInAnHour = 60;
+const secondsInAminute = 60;
 
-  const hoursInADay = 24;
+const minutesInAnHour = 60;
 
-  const halfAYear = 180;
+const hoursInADay = 24;
 
-  const week = 7;
+const halfAYear = 180;
 
-  const month = 30;
+const week = 7;
+
+const month = 30;
 
 @Pipe({
   name: 'setColorByDate',
