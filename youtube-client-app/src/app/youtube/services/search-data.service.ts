@@ -9,21 +9,21 @@ import { SearchResponse } from '../models/search-response.model';
   providedIn: 'root',
 })
 export class SearchDataService {
-  key = 'AIzaSyBPdJUu1x58aVSiKN-mMypDuwZDnvhzAxQ';
+  // key = 'AIzaSyBPdJUu1x58aVSiKN-mMypDuwZDnvhzAxQ';
 
-  searchUrl = `https://www.googleapis.com/youtube/v3/search?key=${this.key}&type=video&part=snippet`;
+  // searchUrl = `https://www.googleapis.com/youtube/v3/search?key=${this.key}&type=video&part=snippet`;
 
-  detailsUrlStart = `https://www.googleapis.com/youtube/v3/videos?key=${this.key}&id=`
+  // detailsUrlStart = `https://www.googleapis.com/youtube/v3/videos?key=${this.key}&id=`
 
   // searchUrl = `https://www.googleapis.com/youtube/v3/search?type=video&part=snippet`;
 
-  // searchUrl = `https://www.googleapis.com/youtube/v3/search?type=video`;
+  searchUrl = `https://www.googleapis.com/youtube/v3/search?type=video`;
 
-  // detailsUrlStart = `https://www.googleapis.com/youtube/v3/videos?id=`
+  detailsUrlStart = `https://www.googleapis.com/youtube/v3/videos?id=`
 
-  detailsUrlEnd = '&part=snippet,statistics'
+  // detailsUrlEnd = '&part=snippet,statistics'
 
-  // detailsUrlEnd = '&part=statistics'
+  detailsUrlEnd = '&part=statistics'
 
   data: DetailsItem[] = [];
 
@@ -48,7 +48,7 @@ export class SearchDataService {
       this.searchDataSubject.next([])
       return
     }
-    console.log('startSearching')
+    // console.log('startSearching')
     const itemsCount = 21
     let counter = itemsCount
     this.http.get<SearchResponse>(this.searchUrl + `&maxResults=${counter}&q=${searchString}`).pipe(map((response) => {
