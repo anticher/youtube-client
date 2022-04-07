@@ -19,6 +19,7 @@ import { ResultItemBorderColorDirective } from './directives/result-item-border-
 import { SetColorByDatePipe } from './pipes/set-color-by-date.pipe';
 import { DetailsPageComponent } from './components/details-page/details-page.component';
 import { HexToRgbPipe } from './pipes/hex-to-rgb.pipe';
+import { YoutubeRoutingModule } from './youtube-router.module';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { HexToRgbPipe } from './pipes/hex-to-rgb.pipe';
     FormsModule,
     SharedModule,
     RouterModule,
+    YoutubeRoutingModule
   ],
   exports: [
     LogoButtonComponent,
