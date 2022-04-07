@@ -36,8 +36,8 @@ export class DetailsPageComponent implements OnInit {
 
   private setItemInfo(): void {
     const id = this.activateRoute.snapshot.params[''];
-    const item = this.searchDataService.getDataById(id).subscribe((res: any) => {
-      const item = res.items[0]
+    this.searchDataService.getDataById(id).subscribe((res: any) => {
+      const item = res.items[0];
       if (!item) {
         this.router.navigate(['not-found']);
       } else {
@@ -47,6 +47,6 @@ export class DetailsPageComponent implements OnInit {
         this.text = item.snippet.localized.description;
         this.statistics = item.statistics;
       }
-    })
+    });
   }
 }

@@ -5,8 +5,8 @@ import { SnippetInterceptor } from './snippet.interceptor';
 describe('SnippetInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
-      SnippetInterceptor
-      ]
+      SnippetInterceptor,
+    ],
   }));
 
   it('should be created', () => {

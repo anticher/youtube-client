@@ -5,8 +5,8 @@ import { AccessInterceptor } from './access.interceptor';
 describe('AccessInterceptor', () => {
   beforeEach(() => TestBed.configureTestingModule({
     providers: [
-      AccessInterceptor
-      ]
+      AccessInterceptor,
+    ],
   }));
 
   it('should be created', () => {

@@ -1,16 +1,16 @@
 import {
-  Directive, ElementRef, Input, OnInit, Renderer2,
+  Directive, ElementRef, Input, OnChanges, Renderer2,
 } from '@angular/core';
 
 @Directive({
   selector: '[appResultItemBorderColor]',
 })
-export class ResultItemBorderColorDirective implements OnInit {
+export class ResultItemBorderColorDirective implements OnChanges {
   @Input('appResultItemBorderColor') color: string = '';
 
-  constructor(private elementRef: ElementRef, private renderer: Renderer2) {}
+  constructor(private elementRef: ElementRef, private renderer: Renderer2) { }
 
-  public ngOnInit(): void {
+  public ngOnChanges(): void {
     this.renderer.setStyle(this.elementRef.nativeElement, 'border-bottom', `5px solid ${this.color}`);
   }
 }

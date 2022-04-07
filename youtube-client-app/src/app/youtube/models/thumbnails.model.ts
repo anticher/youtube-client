@@ -1,11 +1,11 @@
 interface Thumbnail {
-    url: string,
-    width: number,
-    height: number
+  url: string,
+  width: number,
+  height: number
 }
 
 export interface Thumbnails {
-    default: Thumbnail,
-    medium: Thumbnail
-    high: Thumbnail,
+  default: Thumbnail,
+  medium: Thumbnail
+  high: Thumbnail,
 }

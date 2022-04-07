@@ -3,22 +3,16 @@ import {
   HttpRequest,
   HttpHandler,
   HttpEvent,
-  HttpInterceptor
+  HttpInterceptor,
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable()
 export class BaseInterceptor implements HttpInterceptor {
-
-  constructor() {}
+  private baseUrl: string = 'https://www.googleapis.com/youtube/v3/';
 
   public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    // return next.handle(request.clone({
-    //   params: request.params
-    //     .set('part', 'snippet')
-    // }));
-    const apiReq = request.clone({ url: `https://www.googleapis.com/youtube/v3/${request.url}` });
+    const apiReq = request.clone({ url: this.baseUrl + request.url });
     return next.handle(apiReq);
   }
 }
-

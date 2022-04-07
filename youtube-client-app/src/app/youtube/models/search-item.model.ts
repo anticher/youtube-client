@@ -1,4 +1,4 @@
-import { Snippet } from "./snippet.model"
+import { Snippet } from './snippet.model';
 
 export interface SearchItem {
   kind: string,

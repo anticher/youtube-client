@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SharedModule } from '../shared/shared.module';
 import { YoutubeRoutingModule } from './youtube-router.module';
 
@@ -24,7 +25,6 @@ import { ResultItemBorderColorDirective } from './directives/result-item-border-
 import { SetColorByDatePipe } from './pipes/set-color-by-date.pipe';
 import { HexToRgbPipe } from './pipes/hex-to-rgb.pipe';
 
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AccessInterceptor } from './interceptors/access.interceptor';
 import { SnippetInterceptor } from './interceptors/snippet.interceptor';
 import { BaseInterceptor } from './interceptors/base.interceptor';
@@ -72,6 +72,6 @@ import { BaseInterceptor } from './interceptors/base.interceptor';
     { provide: HTTP_INTERCEPTORS, useClass: BaseInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: AccessInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: SnippetInterceptor, multi: true },
-  ]
+  ],
 })
 export class YoutubeModule { }

@@ -14,7 +14,9 @@ export class HeaderComponent implements OnInit {
   constructor(private auth: AuthService) {}
 
   ngOnInit() {
-    this.auth.loginSubject.subscribe((value) => this.isLoginHidden = value)
+    this.auth.loginSubject.subscribe((value) => {
+      this.isLoginHidden = value;
+    });
   }
 
   public toggleDisplay(): void {
