@@ -87,6 +87,9 @@ export class SearchDataService {
     items.sort(
       (a, b) => order * +a.statistics.viewCount - order * +b.statistics.viewCount,
     );
+    items.sort(
+      (a, b) => order * +b.statistics.viewCount - order * +a.statistics.viewCount,
+    );
     this.searchDataSubject.next(items);
   }
 
