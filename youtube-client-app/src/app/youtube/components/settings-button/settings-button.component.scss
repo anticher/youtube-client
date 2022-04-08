@@ -3,10 +3,10 @@
 .settings-button {
     width: 24px;
     height: 24px;
-    border-radius: 6px;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
     background-image: url("../../../../assets/icons/searchSettings.svg");
+    border-radius: 6px;
     filter: drop-shadow(2px 0px 4px $blue);
 }

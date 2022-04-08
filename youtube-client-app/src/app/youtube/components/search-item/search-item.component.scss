@@ -2,8 +2,11 @@
     margin-left: 10px;
     display: flex;
     &__input {
+        padding: 4px;
         width: 396px;
-        height: 24px;
+        height: 26px;
+        font-size: 18px;
+        line-height: 22px;
     }
     
     &__settings-button {

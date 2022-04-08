@@ -1,25 +1,26 @@
 @import "../../../../styles/styles.scss";
 
-:host {
+.login-form {
     padding: 24px 20px;
     width: 350px;
-    height: 250px;
-    background: $light-grey;
-}
-
-.login-form {
+    min-height: 250px;
     display: flex;
     flex-direction: column;
+    justify-content: space-between;
+    background: $light-grey;
     &__header {
         font-weight: 700;
-        font-size: 18px;
+        font-size: 24px;
         line-height: 22px;
         color: $black;
+    }
+
+    &__item {
+        margin-top: 10px;
     }
     
     &__label {
         padding-left: 6px;
-        margin-top: 4px;
         font-size: 10px;
         line-height: 12px;
         color: $grey;
@@ -31,15 +32,17 @@
     
     &__input {
         margin-top: 4px;
+        padding: 4px;
         width: 100%;
         height: 38px;
-        font-size: 10px;
-        line-height: 12px;
+        font-size: 18px;
+        line-height: 22px;
         background: $white;
     }
     
     &__button {
-        margin-top: 22px;
+        margin-top: auto;
+        margin-bottom: 0;
         width: 80px;
         height: 24px;
         display: flex;
@@ -48,5 +51,7 @@
         align-items: center;
         color: $white;
         background-color: $blue;
+        border-radius: 6px;
+        filter: drop-shadow(2px 0px 4px $blue);
     }
 }
