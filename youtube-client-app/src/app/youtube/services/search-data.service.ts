@@ -5,37 +5,21 @@ import { DetailsItem } from '../models/details-item.model';
 import { DetailsResponse } from '../models/details-response.model';
 import { SearchResponse } from '../models/search-response.model';
 
+const itemsCount = 21;
+
 @Injectable({
   providedIn: 'root',
 })
 export class SearchDataService {
-  // key = 'AIzaSyBPdJUu1x58aVSiKN-mMypDuwZDnvhzAxQ';
+  private searchUrl: string = 'search?type=video';
 
-  // searchUrl = `https://www.googleapis.com/youtube/v3/search?key=${this.key}&type=video&part=snippet`;
+  private detailsUrlStart: string = 'videos?id=';
 
-  // detailsUrlStart = `https://www.googleapis.com/youtube/v3/videos?key=${this.key}&id=`
+  private detailsUrlEnd: string = '&part=statistics';
 
-  // searchUrl = `https://www.googleapis.com/youtube/v3/search?type=video&part=snippet`;
+  public searchDataSubject = new BehaviorSubject<DetailsItem[]>([]);
 
-  // searchUrl = `https://www.googleapis.com/youtube/v3/search?type=video`;
-
-  // detailsUrlStart = `https://www.googleapis.com/youtube/v3/videos?id=`
-
-  searchUrl: string = 'search?type=video';
-
-  detailsUrlStart: string = 'videos?id=';
-
-  // detailsUrlEnd = '&part=snippet,statistics'
-
-  detailsUrlEnd: string = '&part=statistics';
-
-  data: DetailsItem[] = [];
-
-  items: DetailsItem[] = [];
-
-  searchDataSubject = new BehaviorSubject<DetailsItem[]>([]);
-
-  filterStringSubject = new BehaviorSubject<string>('');
+  public filterStringSubject = new BehaviorSubject<string>('');
 
   constructor(private http: HttpClient) { }
 
@@ -48,8 +32,6 @@ export class SearchDataService {
       this.searchDataSubject.next([]);
       return;
     }
-    // console.log('startSearching')
-    const itemsCount = 21;
     const counter = itemsCount;
     this.http.get<SearchResponse>(`${this.searchUrl}&maxResults=${counter}&q=${searchString}`).pipe(map((response) => {
       const idArray: string[] = [];
@@ -57,11 +39,11 @@ export class SearchDataService {
         idArray.push(item.id.videoId);
       });
       const itemsWithStats: DetailsItem[] = [];
-      idArray.forEach((id) => {
-        this.http.get<DetailsResponse>(this.detailsUrlStart + id + this.detailsUrlEnd).subscribe({
-          next: (res) => { itemsWithStats.push(res.items[0]); },
-          error: (err) => console.log({ err }),
-        });
+      this.http.get<DetailsResponse>(this.detailsUrlStart + idArray.join(',') + this.detailsUrlEnd).subscribe({
+        next: (res) => {
+          res.items.forEach((item) => itemsWithStats.push(item))
+        },
+        error: (err) => console.log({ err }),
       });
       return itemsWithStats;
     })).subscribe({
