@@ -21,8 +21,8 @@ export class SearchItemComponent implements OnInit {
 
   constructor(
     private searchDataService: SearchDataService,
-    private authService: AuthService
-    ) { }
+    private authService: AuthService,
+  ) { }
 
   ngOnInit(): void {
     console.log('ngOnInit');
@@ -31,10 +31,10 @@ export class SearchItemComponent implements OnInit {
     });
     this.authService.loginSubject.subscribe((value) => {
       if (!value) {
-        this.value = ''
-        this.disabled = true
+        this.value = '';
+        this.disabled = true;
       } else {
-        this.disabled = false
+        this.disabled = false;
       }
     });
   }

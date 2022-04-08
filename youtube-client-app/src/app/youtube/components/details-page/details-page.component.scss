@@ -3,7 +3,7 @@
 
 :host {
     margin: 44px auto 0;
-    height: 460px;
+    height: 50vh;
 }
 
 .details {
@@ -27,7 +27,7 @@
     }
     
     &__image {
-        width: 730px;
+        width: 44vw;
         background-position: center;
         background-repeat: no-repeat;
         background-size: 100%;
@@ -36,7 +36,7 @@
     
     &__info {
         padding: 36px 36px 26px;
-        width: 436px;
+        width: 38vw;
         display: flex;
         flex-direction: column;
         background: $light-grey;

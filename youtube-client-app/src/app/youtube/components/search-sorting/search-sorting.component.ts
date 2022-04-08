@@ -7,18 +7,19 @@ import { SearchDataService } from 'src/app/youtube/services/search-data.service'
   templateUrl: './search-sorting.component.html',
   styleUrls: ['./search-sorting.component.scss'],
 })
-export class SearchSortingComponent implements OnInit{
-  public value: string = ''
+export class SearchSortingComponent implements OnInit {
+  public value: string = '';
 
   constructor(
     private searchDataService: SearchDataService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+  ) { }
 
   public ngOnInit(): void {
     this.authService.loginSubject.subscribe((value) => {
       if (!value) {
-        this.value = ''
-        this.searchDataService.changeSearchTag('')
+        this.value = '';
+        this.searchDataService.changeSearchTag('');
       }
     });
   }

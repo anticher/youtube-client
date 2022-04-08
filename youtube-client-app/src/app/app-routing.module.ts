@@ -9,13 +9,13 @@ const routes = [
     path: 'login',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
+  { path: 'result/:id', component: DetailsPageComponent },
   {
     path: '',
     loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),
     canLoad: [LoginGuard],
     canActivate: [LoginGuard],
   },
-  { path: 'result/:', component: DetailsPageComponent },
   {
     path: 'not-found',
     component: NotFoundComponent,

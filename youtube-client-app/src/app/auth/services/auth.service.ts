@@ -20,7 +20,6 @@ export class AuthService {
       next: (val) => {
         if (val) {
           localStorage.setItem('login', 'test');
-          this.router.navigate(['']);
         } else {
           localStorage.removeItem('login');
           this.router.navigate(['login']);
@@ -33,6 +32,7 @@ export class AuthService {
 
   public login(): void {
     this.loginSubject.next(true);
+    this.router.navigate(['']);
   }
 
   public logout(): void {

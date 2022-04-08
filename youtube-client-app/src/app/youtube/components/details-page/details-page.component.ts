@@ -35,7 +35,7 @@ export class DetailsPageComponent implements OnInit {
   }
 
   private setItemInfo(): void {
-    const id = this.activateRoute.snapshot.params[''];
+    const { id } = this.activateRoute.snapshot.params;
     this.searchDataService.getDataById(id).subscribe((res: any) => {
       const item = res.items[0];
       if (!item) {
