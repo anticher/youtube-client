@@ -9,14 +9,12 @@ import { YoutubeRoutingModule } from './youtube-router.module';
 
 import { LogoButtonComponent } from './components/logo-button/logo-button.component';
 import { MoreButtonComponent } from './components/more-button/more-button.component';
-import { ProfileButtonComponent } from './components/profile-button/profile-button.component';
 import { ProfileSettingsComponent } from './components/profile-settings/profile-settings.component';
 import { ResultItemComponent } from './components/result-item/result-item.component';
 import { ResultComponent } from './components/result/result.component';
 import { SearchButtonComponent } from './components/search-button/search-button.component';
 import { SearchItemComponent } from './components/search-item/search-item.component';
 import { SearchSortingComponent } from './components/search-sorting/search-sorting.component';
-import { SettingsButtonComponent } from './components/settings-button/settings-button.component';
 import { StatisticsItemComponent } from './components/statistics-item/statistics-item.component';
 import { DetailsPageComponent } from './components/details-page/details-page.component';
 
@@ -38,9 +36,7 @@ import { BaseInterceptor } from './interceptors/base.interceptor';
     StatisticsItemComponent,
     LogoButtonComponent,
     SearchButtonComponent,
-    ProfileButtonComponent,
     SearchButtonComponent,
-    SettingsButtonComponent,
     MoreButtonComponent,
     ProfileSettingsComponent,
     FilterSearchResultsPipe,
@@ -61,10 +57,8 @@ import { BaseInterceptor } from './interceptors/base.interceptor';
     SearchItemComponent,
     SearchButtonComponent,
     SearchButtonComponent,
-    SettingsButtonComponent,
     SearchSortingComponent,
     ProfileSettingsComponent,
-    ProfileButtonComponent,
     ResultComponent,
     DetailsPageComponent,
   ],

@@ -1,17 +1,27 @@
 @import "../../../../styles/styles.scss";
 
-:host {
+.profile-settings {
     padding: 10px;
     display: flex;
     align-items: center;
     gap: 8px;
-}
-
-.profile__name {
-    width: 102px;
-    height: 16px;
-    font-size: 12px;
-    line-height: 14px;
-    text-align: right;
-    color: $grey;
+    &__name {
+        width: 102px;
+        height: 16px;
+        font-size: 12px;
+        line-height: 14px;
+        text-align: right;
+        color: $grey;
+    }
+    
+    &__button {
+        width: 24px;
+        height: 24px;
+        border-radius: 6px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url("../../../../assets/icons/profileSettings.svg");
+        filter: drop-shadow(2px 0px 4px $blue);
+    }
 }

@@ -4,13 +4,13 @@
             <app-logo-button></app-logo-button>
             <app-search-item (toggleDisplay)="toggleDisplay()"></app-search-item>
         </div>
-        <div *ngIf="isSortingVisible" class="header__sort">
-            <app-search-sorting></app-search-sorting>
+        <div class="header__profile">
+            <app-profile-settings></app-profile-settings>
+            <button *ngIf="!isLoginHidden" class="header__button" (click)="login()">login</button>
+            <button *ngIf="isLoginHidden" class="header__button" (click)="logout()">logout</button>
         </div>
     </div>
-    <div class="header__profile">
-        <app-profile-settings></app-profile-settings>
-        <button *ngIf="!isLoginHidden" class="header__button" (click)="login()">login</button>
-        <button *ngIf="isLoginHidden" class="header__button" (click)="logout()">logout</button>
+    <div *ngIf="isSortingVisible" class="header__sort">
+        <app-search-sorting></app-search-sorting>
     </div>
 </div>

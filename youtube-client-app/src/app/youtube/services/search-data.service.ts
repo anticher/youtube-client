@@ -41,7 +41,7 @@ export class SearchDataService {
       const itemsWithStats: DetailsItem[] = [];
       this.http.get<DetailsResponse>(this.detailsUrlStart + idArray.join(',') + this.detailsUrlEnd).subscribe({
         next: (res) => {
-          res.items.forEach((item) => itemsWithStats.push(item))
+          res.items.forEach((item) => itemsWithStats.push(item));
         },
         error: (err) => console.log({ err }),
       });

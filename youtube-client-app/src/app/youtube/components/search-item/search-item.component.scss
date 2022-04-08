@@ -1,3 +1,5 @@
+@import "../../../../styles/styles.scss";
+
 .search-item {
     margin-left: 10px;
     display: flex;
@@ -8,8 +10,16 @@
         font-size: 18px;
         line-height: 22px;
     }
-    
+
     &__settings-button {
         margin-left: 10px;
+        width: 24px;
+        height: 24px;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        background-image: url("../../../../assets/icons/searchSettings.svg");
+        border-radius: 6px;
+        filter: drop-shadow(2px 0px 4px $blue);
     }
 }
