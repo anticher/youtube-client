@@ -2,6 +2,7 @@ import {
   Component, EventEmitter, OnInit, Output,
 } from '@angular/core';
 import { BehaviorSubject, debounceTime } from 'rxjs';
+import { AuthService } from 'src/app/auth/services/auth.service';
 import { SearchDataService } from 'src/app/youtube/services/search-data.service';
 
 @Component({
@@ -16,12 +17,25 @@ export class SearchItemComponent implements OnInit {
 
   public value: string = '';
 
-  constructor(private searchDataService: SearchDataService) { }
+  public disabled: boolean = false;
+
+  constructor(
+    private searchDataService: SearchDataService,
+    private authService: AuthService
+    ) { }
 
   ngOnInit(): void {
     console.log('ngOnInit');
     this.searchSubject.pipe(debounceTime(1000)).subscribe((value) => {
       this.searchDataService.searchData(value);
+    });
+    this.authService.loginSubject.subscribe((value) => {
+      if (!value) {
+        this.value = ''
+        this.disabled = true
+      } else {
+        this.disabled = false
+      }
     });
   }
 

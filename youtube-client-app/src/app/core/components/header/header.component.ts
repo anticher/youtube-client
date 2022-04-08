@@ -11,11 +11,14 @@ export class HeaderComponent implements OnInit {
 
   public isLoginHidden: boolean = false;
 
-  constructor(private auth: AuthService) {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.auth.loginSubject.subscribe((value) => {
+    this.authService.loginSubject.subscribe((value) => {
       this.isLoginHidden = value;
+      if (!value) {
+        this.isSortingVisible = value;
+      }
     });
   }
 
@@ -24,10 +27,10 @@ export class HeaderComponent implements OnInit {
   }
 
   public login(): void {
-    this.auth.login();
+    this.authService.login();
   }
 
   public logout(): void {
-    this.auth.logout();
+    this.authService.logout();
   }
 }
