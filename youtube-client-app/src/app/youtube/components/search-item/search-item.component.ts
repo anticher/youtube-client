@@ -25,7 +25,6 @@ export class SearchItemComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log('ngOnInit');
     this.searchSubject.pipe(debounceTime(1000)).subscribe((value) => {
       this.searchDataService.searchData(value);
     });
