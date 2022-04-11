@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, map, Observable, tap } from 'rxjs';
+import { Store } from '@ngxs/store';
+import { BehaviorSubject, map, Observable, Subscription, tap } from 'rxjs';
+import { AddApiItem, AddApiItems, ClearApiItems } from 'src/app/redux/items-state';
 import { DetailsItem } from '../models/details-item.model';
 import { DetailsResponse } from '../models/details-response.model';
 import { SearchItem } from '../models/search-item.model';
@@ -36,9 +38,14 @@ export class SearchDataService {
 
   // itemsWithStats: any = []
 
+  storeSubscription: Subscription
+
   searchDataSubject = new BehaviorSubject<DetailsItem[]>([])
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private store: Store) {
+    this.storeSubscription = this.store.select(state => state.items.apiItems).subscribe((val) => this.items = val)
+
+  }
 
   // deletItemsWithStats() {
   //   this.itemsWithStats = [];
@@ -49,6 +56,7 @@ export class SearchDataService {
   }
 
   searchData(searchString: string) {
+    this.store.dispatch(new ClearApiItems())
     if (searchString.length < 3) {
       console.log(searchString.length)
       // this.itemsWithStats = []
@@ -68,7 +76,10 @@ export class SearchDataService {
       const itemsWithStats: DetailsItem[] = []
       idArray.forEach((id) => {
         this.http.get<DetailsResponse>(this.detailsUrlStart + id + this.detailsUrlEnd).subscribe({
-          next: (res) => itemsWithStats.push(res.items[0]),
+          next: (res) => { 
+            itemsWithStats.push(res.items[0])
+            this.store.dispatch(new AddApiItem(res.items[0]))
+          },
           error: (err) => console.log({ 'err': err }),
           // complete: () => this.dataChanged = Date.now()
         })
@@ -108,25 +119,26 @@ export class SearchDataService {
 
   sortResultByViews() {
     console.log('click')
-    this.searchDataSubject.subscribe((val) => this.items = val)
+    // const storeSubscription = this.store.select(state => state.items.apiItems).subscribe((val) => this.items = val)
     if (this.items.length < 2) {
       return;
     }
-    const lastIndex = this.items.length - 1;
-    const firstItemViewCount = this.items[0].statistics.viewCount;
-    const lastItemViewCount = this.items[lastIndex].statistics.viewCount;
+    const items = [...this.items]
+    const lastIndex = items.length - 1;
+    const firstItemViewCount = items[0].statistics.viewCount;
+    const lastItemViewCount = items[lastIndex].statistics.viewCount;
     // console.log(firstItemViewCount)
     // console.log(lastItemViewCount)
     // this.items.forEach(element => console.log(element.statistics.viewCount))
     if (firstItemViewCount > lastItemViewCount) {
-      this.items
+      items
         .sort((a: DetailsItem, b: DetailsItem) => {
 
            return (+a.statistics.viewCount - +b.statistics.viewCount)
           });
         console.log('first')
     } else if (firstItemViewCount < lastItemViewCount) {
-      this.items
+      items
         .sort((a: DetailsItem, b: DetailsItem) => {
 
           return (+b.statistics.viewCount - +a.statistics.viewCount)
@@ -136,7 +148,9 @@ export class SearchDataService {
       return;
     }
     // console.log('clack')
-    this.searchDataSubject.next(this.items)
+    this.store.dispatch(new ClearApiItems())
+    this.store.dispatch(new AddApiItems(items))
+    // this.searchDataSubject.next(this.items)
     return
   }
 

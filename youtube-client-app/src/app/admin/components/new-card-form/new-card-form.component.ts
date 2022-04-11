@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngxs/store';
+import { AddCustomItem } from 'src/app/redux/items-state';
 import { DateValidator } from '../../validators/date.validator';
 import { UrlValidator } from '../../validators/url.validator';
 
@@ -32,9 +34,15 @@ export class NewCardFormComponent implements OnInit {
     ]),
   })
   
-  constructor() { }
+  constructor(private store: Store) { }
 
   ngOnInit(): void {
   }
 
+  submit() {
+    console.log(this.form.value)
+    // this.store.select(state => state).subscribe(val => console.log(val))
+    // this.store.dispatch(new AddCard(this.form.value)).subscribe(() => this.form.reset());
+    this.store.dispatch(new AddCustomItem(this.form.value))
+ }
 }

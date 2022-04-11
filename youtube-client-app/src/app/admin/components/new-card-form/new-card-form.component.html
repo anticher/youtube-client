@@ -1,4 +1,4 @@
-<form class="new-card-form" [formGroup]="form">
+<form class="new-card-form" [formGroup]="form" (ngSubmit)="submit()">
     <h4 class="new-card-form__header">Create new card</h4>
     <label for="title" class="new-card-form__label">Title</label>
     <pre>{{form.get('title')?.errors | json}}</pre>
