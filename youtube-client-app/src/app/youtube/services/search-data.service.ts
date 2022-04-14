@@ -1,9 +1,8 @@
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, map, Observable } from 'rxjs';
+import { HttpService } from 'src/app/services/http.service';
 import { DetailsItem } from '../models/details-item.model';
 import { DetailsResponse } from '../models/details-response.model';
-import { SearchResponse } from '../models/search-response.model';
 
 const itemsCount = 21;
 
@@ -21,25 +20,27 @@ export class SearchDataService {
 
   public filterStringSubject = new BehaviorSubject<string>('');
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private httpService: HttpService
+    ) { }
 
   public clearSearchDataSubject(): void {
     this.searchDataSubject.next([]);
   }
-
+  
   public searchData(searchString: string): void {
     if (searchString.length < 3) {
       this.searchDataSubject.next([]);
       return;
     }
     const counter = itemsCount;
-    this.http.get<SearchResponse>(`${this.searchUrl}&maxResults=${counter}&q=${searchString}`).pipe(map((response) => {
+    this.httpService.getYoutubeIds(`${this.searchUrl}&maxResults=${counter}&q=${searchString}`).pipe(map((response) => {
       const idArray: string[] = [];
       response.items.forEach((item) => {
         idArray.push(item.id.videoId);
       });
       const itemsWithStats: DetailsItem[] = [];
-      this.http.get<DetailsResponse>(this.detailsUrlStart + idArray.join(',') + this.detailsUrlEnd).subscribe({
+      this.httpService.getYoutubeItems(this.detailsUrlStart + idArray.join(',') + this.detailsUrlEnd).subscribe({
         next: (res) => {
           res.items.forEach((item) => itemsWithStats.push(item));
         },
@@ -55,7 +56,7 @@ export class SearchDataService {
 
   public getDataById(id: string): Observable<DetailsResponse> {
     const url = this.detailsUrlStart + id + this.detailsUrlEnd;
-    return this.http.get<DetailsResponse>(url);
+    return this.httpService.getYoutubeItems(url);
   }
 
   public sortResultByDate(): void {
