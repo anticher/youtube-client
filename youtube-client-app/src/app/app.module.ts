@@ -11,6 +11,7 @@ import { CoreModule } from './core/core.module';
 import { YoutubeModule } from './youtube/youtube.module';
 import { SharedModule } from './shared/shared.module';
 import { AuthModule } from './auth/auth.module';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { AuthModule } from './auth/auth.module';
     SharedModule,
     AppRoutingModule,
     AuthModule,
+    AdminModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
