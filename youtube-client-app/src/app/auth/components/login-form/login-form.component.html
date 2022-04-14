@@ -1,12 +1,24 @@
-<form class="login-form">
-    <h3 class="login-form__header">Login</h3>
-    <div class="login-form__item" >
-        <label for="login" class="login-form__label">login</label>
-        <input type="text" name="login" class="login-form__input">
+<form [formGroup]="form" class="login-form" (ngSubmit)="submit()">
+    <h4 class="login-form__header">Login</h4>
+    <label for="login" class="login-form__label">login</label>
+    <input formControlName="login" type="text" name="login" class="login-form__input">
+    <div class="login-form__validation" *ngIf="form.get('login')?.invalid">
+        <span *ngIf="form.get('login')?.errors!['required']">Please enter a login email</span>
+        <span *ngIf="form.get('login')?.errors!['email'] && form.get('login')?.touched">The login email is invalid</span>
     </div>
-    <div class="login-form__item">
-        <label for="password" class="login-form__label">password</label>
-        <input type="password" name="password" class="login-form__input">
+    <label for="password" class="login-form__label">password</label>
+    <input formControlName="password" type="password" name="password" class="login-form__input">
+    <div class="login-form__validation" *ngIf="form.get('password')?.invalid">
+        <span *ngIf="form.get('password')?.errors!['required']">Please enter a password</span>
+        <div *ngIf="form.get('password')?.errors!['passwordValidator'] && form.get('password')?.touched">
+            Your password isn't strong enough:
+                <ul>
+                    <li>at least 8 characters(max 16)</li>
+                    <li>a mixture of both uppercase and lowercase letters</li>
+                    <li>a mixture of letters and numbers</li>
+                    <li>inclusion of at least one special character, e.g., ! @ # ? ]</li>
+                </ul> 
+            </div>
     </div>
-    <button class="login-form__button" (click)="login()">Login</button>
+    <button type="submit" class="login-form__button" [disabled]="form.invalid">Login</button>
 </form>
