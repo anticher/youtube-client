@@ -1,7 +1,7 @@
 import {
-  Component, EventEmitter, OnInit, Output,
+  Component, EventEmitter, OnDestroy, OnInit, Output,
 } from '@angular/core';
-import { BehaviorSubject, debounceTime } from 'rxjs';
+import { BehaviorSubject, debounceTime, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { SearchDataService } from 'src/app/youtube/services/search-data.service';
 
@@ -10,7 +10,7 @@ import { SearchDataService } from 'src/app/youtube/services/search-data.service'
   templateUrl: './search-item.component.html',
   styleUrls: ['./search-item.component.scss'],
 })
-export class SearchItemComponent implements OnInit {
+export class SearchItemComponent implements OnInit, OnDestroy {
   @Output() toggleDisplay: EventEmitter<any> = new EventEmitter();
 
   searchSubject = new BehaviorSubject<string>('');
@@ -18,6 +18,8 @@ export class SearchItemComponent implements OnInit {
   public value: string = '';
 
   public disabled: boolean = false;
+
+  private isUserAuthsubscription!: Subscription; 
 
   constructor(
     private searchDataService: SearchDataService,
@@ -28,7 +30,7 @@ export class SearchItemComponent implements OnInit {
     this.searchSubject.pipe(debounceTime(1000)).subscribe((value) => {
       this.searchDataService.searchData(value);
     });
-    this.authService.isUserAuth$.subscribe((value) => {
+    this.isUserAuthsubscription = this.authService.isUserAuth$.subscribe((value) => {
       if (!value) {
         this.value = '';
         this.disabled = true;
@@ -49,5 +51,9 @@ export class SearchItemComponent implements OnInit {
   public inputChange(event: Event): void {
     const seachString = (event.target as HTMLInputElement).value;
     this.searchSubject.next(seachString);
+  }
+
+  public ngOnDestroy(): void {
+    this.isUserAuthsubscription.unsubscribe()
   }
 }

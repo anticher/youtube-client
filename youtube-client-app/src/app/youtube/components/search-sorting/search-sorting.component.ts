@@ -16,12 +16,10 @@ export class SearchSortingComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    this.authService.isUserAuth$.subscribe((value) => {
-      if (!value) {
-        this.value = '';
-        this.searchDataService.changeSearchTag('');
-      }
-    });
+    if (!this.authService.isUserAuth$.value) {
+      this.value = '';
+      this.searchDataService.changeSearchTag('');
+    }
   }
 
   public dateSort(): void {

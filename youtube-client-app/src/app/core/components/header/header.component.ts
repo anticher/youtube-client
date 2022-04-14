@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 
 @Component({
@@ -6,20 +7,22 @@ import { AuthService } from 'src/app/auth/services/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
+export class HeaderComponent implements OnInit, OnDestroy {
   public isSortingVisible: boolean = false;
 
   public isLoginHidden: boolean = false;
 
+  private isUserAuthsubscription!: Subscription; 
+
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.authService.isUserAuth$.subscribe((value) => {
+    this.isUserAuthsubscription = this.authService.isUserAuth$.subscribe((value) => {
       this.isLoginHidden = value;
       if (!value) {
         this.isSortingVisible = value;
       }
-    });
+    })
   }
 
   public toggleDisplay(): void {
@@ -33,4 +36,9 @@ export class HeaderComponent implements OnInit {
   public logout(): void {
     this.authService.logout();
   }
+
+  ngOnDestroy(): void {
+    this.isUserAuthsubscription.unsubscribe()
+  }
+
 }
