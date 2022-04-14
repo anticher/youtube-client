@@ -28,7 +28,7 @@ export class SearchItemComponent implements OnInit {
     this.searchSubject.pipe(debounceTime(1000)).subscribe((value) => {
       this.searchDataService.searchData(value);
     });
-    this.authService.loginSubject.subscribe((value) => {
+    this.authService.isUserAuth$.subscribe((value) => {
       if (!value) {
         this.value = '';
         this.disabled = true;

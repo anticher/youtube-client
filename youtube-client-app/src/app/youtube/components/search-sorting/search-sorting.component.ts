@@ -16,7 +16,7 @@ export class SearchSortingComponent implements OnInit {
   ) { }
 
   public ngOnInit(): void {
-    this.authService.loginSubject.subscribe((value) => {
+    this.authService.isUserAuth$.subscribe((value) => {
       if (!value) {
         this.value = '';
         this.searchDataService.changeSearchTag('');

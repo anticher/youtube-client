@@ -1,49 +1,34 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { SearchDataService } from 'src/app/youtube/services/search-data.service';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
-  loginSubject = new BehaviorSubject<boolean>(false);
+  public isUserAuth$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(
     private router: Router,
     private searchDataService: SearchDataService,
   ) {
     if (localStorage.getItem('login')) {
-      this.loginSubject.next(true);
+      this.isUserAuth$.next(true);
     }
-    this.loginSubject.subscribe({
-      next: (val) => {
-        if (val) {
-          localStorage.setItem('login', 'test');
-        } else {
-          localStorage.removeItem('login');
-          this.router.navigate(['login']);
-          this.searchDataService.clearSearchDataSubject();
-        }
-      },
-      error: (err) => console.log({ err }),
-    });
   }
 
   public login(): void {
-    this.loginSubject.next(true);
+    this.isUserAuth$.next(true);
+    localStorage.setItem('login', 'test');
     this.router.navigate(['']);
   }
 
   public logout(): void {
-    this.loginSubject.next(false);
+    this.isUserAuth$.next(false);
+    localStorage.removeItem('login');
+    this.router.navigate(['login']);
+    this.searchDataService.clearSearchDataSubject();
   }
-
-  static isAuthCheck(): boolean {
-    const isAuth = localStorage.getItem('login');
-    if (isAuth === 'test') {
-      return true;
-    }
-    return false;
-  }
+  
 }

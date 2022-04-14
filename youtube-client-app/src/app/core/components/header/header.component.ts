@@ -14,7 +14,7 @@ export class HeaderComponent implements OnInit {
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.authService.loginSubject.subscribe((value) => {
+    this.authService.isUserAuth$.subscribe((value) => {
       this.isLoginHidden = value;
       if (!value) {
         this.isSortingVisible = value;
