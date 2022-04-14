@@ -1,4 +1,4 @@
 <div class="search-item">
-    <input (input)="inputChange($event)" class="search-item__input" [(ngModel)]="value" type="text" [disabled]="disabled">
+    <input (input)="inputChange($event)" class="search-item__input" [value]="value" type="text" [disabled]="disabled">
     <button (click)="toggleSettings()" class="search-item__settings-button" [disabled]="disabled"></button>
 </div>

@@ -1,7 +1,7 @@
 import {
   Component, EventEmitter, OnDestroy, OnInit, Output,
 } from '@angular/core';
-import { BehaviorSubject, debounceTime, Subscription } from 'rxjs';
+import { debounceTime, Subject, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { SearchDataService } from 'src/app/youtube/services/search-data.service';
 
@@ -13,13 +13,15 @@ import { SearchDataService } from 'src/app/youtube/services/search-data.service'
 export class SearchItemComponent implements OnInit, OnDestroy {
   @Output() toggleDisplay: EventEmitter<any> = new EventEmitter();
 
-  searchSubject = new BehaviorSubject<string>('');
+  private search$: Subject<string> = new Subject<string>();
 
   public value: string = '';
 
   public disabled: boolean = false;
 
-  private isUserAuthsubscription!: Subscription; 
+  private isUserAuthsubscription!: Subscription;
+
+  private searchSubjectsubscription!: Subscription;
 
   constructor(
     private searchDataService: SearchDataService,
@@ -27,12 +29,13 @@ export class SearchItemComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.searchSubject.pipe(debounceTime(1000)).subscribe((value) => {
+    this.searchSubjectsubscription = this.search$.pipe(debounceTime(1000)).subscribe((value) => {
       this.searchDataService.searchData(value);
     });
     this.isUserAuthsubscription = this.authService.isUserAuth$.subscribe((value) => {
       if (!value) {
         this.value = '';
+        console.log(this.value)
         this.disabled = true;
       } else {
         this.disabled = false;
@@ -50,10 +53,11 @@ export class SearchItemComponent implements OnInit, OnDestroy {
 
   public inputChange(event: Event): void {
     const seachString = (event.target as HTMLInputElement).value;
-    this.searchSubject.next(seachString);
+    this.search$.next(seachString);
   }
 
   public ngOnDestroy(): void {
     this.isUserAuthsubscription.unsubscribe()
+    this.searchSubjectsubscription.unsubscribe()
   }
 }
