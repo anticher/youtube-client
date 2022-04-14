@@ -1,14 +1,19 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-statistics-item',
   templateUrl: './statistics-item.component.html',
   styleUrls: ['./statistics-item.component.scss'],
 })
-export class StatisticsItemComponent implements OnChanges {
-  @Input() type: string = '';
+export class StatisticsItemComponent {
+  @Input() set type(type: string) {
+    this.itemType = type;
+    this.setStatistics();
+  }
 
   @Input() number: string = '';
+
+  private itemType: string = '';
 
   public viewed:boolean = false;
 
@@ -18,12 +23,8 @@ export class StatisticsItemComponent implements OnChanges {
 
   public comments:boolean = false;
 
-  ngOnChanges(): void {
-    this.setStatistics();
-  }
-
   private setStatistics(): void {
-    switch (this.type) {
+    switch (this.itemType) {
       case 'viewed':
         this.viewed = true;
         break;

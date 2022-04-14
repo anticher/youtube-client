@@ -9,9 +9,10 @@ import { Statistics } from '../../models/statistics.model';
   templateUrl: './result-item.component.html',
   styleUrls: ['./result-item.component.scss'],
 })
-export class ResultItemComponent implements OnInit {
+export class ResultItemComponent {
   @Input() set item(item: DetailsItem) {
     this.detailsItem = item;
+    this.setItemInfo();
   }
 
   private detailsItem!: DetailsItem;
@@ -32,10 +33,6 @@ export class ResultItemComponent implements OnInit {
   public mediumImageUrl: string = '';
 
   public publishedDaysAgo: string = '';
-
-  public ngOnInit(): void {
-    this.setItemInfo();
-  }
 
   private setItemInfo(): void {
     this.itemId = this.detailsItem.id;
