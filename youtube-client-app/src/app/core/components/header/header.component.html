@@ -6,6 +6,7 @@
         </div>
         <div class="header__profile">
             <app-profile-settings></app-profile-settings>
+            <button class="header__button" routerLink="admin">admin</button>
             <button *ngIf="!isLoginHidden" class="header__button" (click)="login()">login</button>
             <button *ngIf="isLoginHidden" class="header__button" (click)="logout()">logout</button>
         </div>

@@ -22,7 +22,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
     private authService: AuthService,
     private searchDataService: SearchDataService,
     private router: Router,
-    ) {}
+  ) {}
 
   public ngOnInit(): void {
     this.isUserAuthsubscription = this.authService.isUserAuth$.subscribe((value) => {
@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public routeToMain(): void {
-    this.searchDataService.clearSearchDataSubject()
+    this.searchDataService.clearSearchDataSubject();
     this.router.navigate(['']);
   }
 }
