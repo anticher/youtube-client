@@ -13,11 +13,11 @@ import { SearchDataService } from 'src/app/youtube/services/search-data.service'
 export class SearchItemComponent implements OnInit, OnDestroy {
   @Output() toggleDisplay: EventEmitter<any> = new EventEmitter();
 
-  private search$: Subject<string> = new Subject<string>();
+  private searchString$: Subject<string> = new Subject<string>();
 
-  public value: string = '';
+  public searchInputValue: string = '';
 
-  public disabled: boolean = false;
+  public isSearchInputAndButtonDisabled: boolean = false;
 
   private isUserAuthsubscription!: Subscription;
 
@@ -29,22 +29,21 @@ export class SearchItemComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.searchSubjectsubscription = this.search$.pipe(debounceTime(1000)).subscribe((value) => {
+    this.searchSubjectsubscription = this.searchString$.pipe(debounceTime(1000)).subscribe((value) => {
       this.searchDataService.searchData(value);
     });
     this.isUserAuthsubscription = this.authService.isUserAuth$.subscribe((value) => {
       if (!value) {
-        this.value = '';
-        console.log(this.value)
-        this.disabled = true;
+        this.searchInputValue = '';
+        this.isSearchInputAndButtonDisabled = true;
       } else {
-        this.disabled = false;
+        this.isSearchInputAndButtonDisabled = false;
       }
     });
   }
 
   public makeSearch(): void {
-    this.searchDataService.searchData(this.value);
+    this.searchDataService.searchData(this.searchInputValue);
   }
 
   public toggleSettings(): void {
@@ -53,7 +52,7 @@ export class SearchItemComponent implements OnInit, OnDestroy {
 
   public inputChange(event: Event): void {
     const seachString = (event.target as HTMLInputElement).value;
-    this.search$.next(seachString);
+    this.searchString$.next(seachString);
   }
 
   public ngOnDestroy(): void {
