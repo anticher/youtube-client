@@ -29,9 +29,10 @@ export class SearchItemComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.searchSubjectsubscription = this.searchString$.pipe(debounceTime(1000)).subscribe((value) => {
-      this.searchDataService.searchData(value);
-    });
+    this.searchSubjectsubscription = this.searchString$
+      .pipe(debounceTime(1000)).subscribe((value) => {
+        this.searchDataService.searchData(value);
+      });
     this.isUserAuthsubscription = this.authService.isUserAuth$.subscribe((value) => {
       if (!value) {
         this.searchInputValue = '';
@@ -56,7 +57,7 @@ export class SearchItemComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.isUserAuthsubscription.unsubscribe()
-    this.searchSubjectsubscription.unsubscribe()
+    this.isUserAuthsubscription.unsubscribe();
+    this.searchSubjectsubscription.unsubscribe();
   }
 }

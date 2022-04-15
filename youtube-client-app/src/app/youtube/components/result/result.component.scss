@@ -1,13 +1,13 @@
 :host {
     padding: 30px 0;
     margin: 0 auto;
-    width: 90vw;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6vw;
+    width: 1138px;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 30px;
 }
 
 .result__item {
-    width: 26vw;
-    height: 34vw;
+    width: 262px;
+    height: 326px;
 }

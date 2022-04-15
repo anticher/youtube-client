@@ -1,5 +1,5 @@
 import {
-  Component, Input, OnInit,
+  Component, Input,
 } from '@angular/core';
 import { DetailsItem } from '../../models/details-item.model';
 import { Statistics } from '../../models/statistics.model';
@@ -39,7 +39,7 @@ export class ResultItemComponent {
     this.statistics = this.detailsItem.statistics;
     this.channelTitle = this.detailsItem.snippet.channelTitle;
     this.categoryId = this.detailsItem.snippet.categoryId;
-    this.mediumImageUrl = this.detailsItem.snippet.thumbnails.high.url;
+    this.mediumImageUrl = this.detailsItem.snippet.thumbnails.medium.url;
     this.publishedDaysAgo = this.detailsItem.snippet.publishedAt;
   }
 }

@@ -1,9 +1,9 @@
-
 @import "../../../../styles/styles.scss";
 
 :host {
     margin: 44px auto 0;
-    height: 66vh;
+    width: 1164px;
+    height: 460px;
 }
 
 .details {
@@ -19,66 +19,69 @@
         background-size: contain;
         background-image: url("../../../../assets/icons/leftArrow.svg");
     }
-    
+
     &__main-block {
         display: flex;
         box-shadow: 6px 6px 20px rgba(51, 51, 51, 0.25);
         border-radius: 0px 0px 6px 0px;
     }
-    
+
     &__image {
-        width: 44vw;
+        width: 728px;
         background-position: center;
         background-repeat: no-repeat;
         background-size: 100%;
         background-color: $black;
     }
-    
+
     &__info {
         padding: 36px 36px 26px;
-        width: 38vw;
+        width: 404px;
         display: flex;
         flex-direction: column;
         background: $light-grey;
         border-radius: 0px 0px 5px 0px;
     }
-    
+
     &__header-row {
         display: flex;
         justify-content: space-between;
     }
-    
+
     &__header {
         font-weight: 700;
         font-size: 24px;
         line-height: 28px;
         color: $black;
     }
-    
+
     &__date {
         font-size: 10px;
         line-height: 12px;
         text-align: right;
         color: $grey;
     }
-    
+
     &__subheader {
         margin-top: 20px;
         font-size: 14px;
         line-height: 16px;
         color: $black;
     }
-    
+
     &__description {
         padding-right: 20px;
         margin-top: 20px;
+        display: -webkit-box;
+        -webkit-line-clamp: 18;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
         font-size: 12px;
         line-height: 14px;
         color: $grey;
-        overflow-x: hidden;
-        overflow-y: scroll;
     }
-    
+
     &__statistics {
         padding-top: 30px;
         flex: 1 0 auto;

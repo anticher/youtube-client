@@ -15,7 +15,7 @@ export class ResultComponent implements OnInit, OnDestroy {
 
   private searchDataSubscription!: Subscription;
 
-  private filteringStringSubscription!: Subscription
+  private filteringStringSubscription!: Subscription;
 
   constructor(private searchDataService: SearchDataService) { }
 
@@ -33,7 +33,7 @@ export class ResultComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.searchDataSubscription.unsubscribe()
-    this.filteringStringSubscription.unsubscribe()
+    this.searchDataSubscription.unsubscribe();
+    this.filteringStringSubscription.unsubscribe();
   }
 }

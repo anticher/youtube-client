@@ -30,5 +30,4 @@ export class AuthService {
     this.router.navigate(['login']);
     this.searchDataService.clearSearchDataSubject();
   }
-  
 }
