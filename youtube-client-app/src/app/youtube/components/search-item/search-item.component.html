@@ -2,7 +2,7 @@
     <input
     (input)="inputChange($event)"
     class="search-item__input"
-    [value]="searchInputValue"
+    [(ngModel)]="searchInputValue"
     type="text"
     [disabled]="isSearchInputAndButtonDisabled"
     >

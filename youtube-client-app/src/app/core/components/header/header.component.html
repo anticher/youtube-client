@@ -1,7 +1,7 @@
 <div class="header">
     <div class="header__main">
         <div class="header__search">
-            <app-logo-button></app-logo-button>
+            <app-logo-button (click)="routeToMain()"></app-logo-button>
             <app-search-item (toggleDisplay)="toggleDisplay()"></app-search-item>
         </div>
         <div class="header__profile">

@@ -19,9 +19,11 @@ export class SearchItemComponent implements OnInit, OnDestroy {
 
   public isSearchInputAndButtonDisabled: boolean = false;
 
-  private isUserAuthsubscription!: Subscription;
+  private isUserAuthSubscription!: Subscription;
 
-  private searchSubjectsubscription!: Subscription;
+  private searchSubjectSubscription!: Subscription;
+
+  private SearchInputValueSubscription!: Subscription;
 
   constructor(
     private searchDataService: SearchDataService,
@@ -29,16 +31,21 @@ export class SearchItemComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.searchSubjectsubscription = this.searchString$
+    this.searchSubjectSubscription = this.searchString$
       .pipe(debounceTime(1000)).subscribe((value) => {
         this.searchDataService.searchData(value);
       });
-    this.isUserAuthsubscription = this.authService.isUserAuth$.subscribe((value) => {
+    this.isUserAuthSubscription = this.authService.isUserAuth$.subscribe((value) => {
       if (!value) {
         this.searchInputValue = '';
         this.isSearchInputAndButtonDisabled = true;
       } else {
         this.isSearchInputAndButtonDisabled = false;
+      }
+    });
+    this.SearchInputValueSubscription = this.searchDataService.searchData$.subscribe((value) => {
+      if (value.length === 0) {
+        this.searchInputValue = '';
       }
     });
   }
@@ -57,7 +64,8 @@ export class SearchItemComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.isUserAuthsubscription.unsubscribe();
-    this.searchSubjectsubscription.unsubscribe();
+    this.isUserAuthSubscription.unsubscribe();
+    this.searchSubjectSubscription.unsubscribe();
+    this.SearchInputValueSubscription.unsubscribe();
   }
 }

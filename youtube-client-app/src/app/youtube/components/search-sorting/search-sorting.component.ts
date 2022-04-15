@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { SearchDataService } from 'src/app/youtube/services/search-data.service';
 
@@ -7,8 +8,10 @@ import { SearchDataService } from 'src/app/youtube/services/search-data.service'
   templateUrl: './search-sorting.component.html',
   styleUrls: ['./search-sorting.component.scss'],
 })
-export class SearchSortingComponent implements OnInit {
-  public value: string = '';
+export class SearchSortingComponent implements OnInit, OnDestroy {
+  public sortingByTagValue: string = '';
+
+  private SearchInputValueSubscription!: Subscription;
 
   constructor(
     private searchDataService: SearchDataService,
@@ -17,9 +20,15 @@ export class SearchSortingComponent implements OnInit {
 
   public ngOnInit(): void {
     if (!this.authService.isUserAuth$.value) {
-      this.value = '';
+      this.sortingByTagValue = '';
       this.searchDataService.changeSearchTag('');
     }
+    this.SearchInputValueSubscription = this.searchDataService.searchData$.subscribe((value) => {
+      if (value.length === 0) {
+        this.sortingByTagValue = '';
+        this.searchDataService.changeSearchTag('');
+      }
+    });
   }
 
   public dateSort(): void {
@@ -33,5 +42,9 @@ export class SearchSortingComponent implements OnInit {
   public tagsFilter(event: Event): void {
     const tag = (event.target as HTMLInputElement).value;
     this.searchDataService.changeSearchTag(tag);
+  }
+
+  public ngOnDestroy(): void {
+    this.SearchInputValueSubscription.unsubscribe();
   }
 }

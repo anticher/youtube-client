@@ -1,8 +1,10 @@
 import {
   Component, OnDestroy, OnInit,
 } from '@angular/core';
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
+import { SearchDataService } from 'src/app/youtube/services/search-data.service';
 
 @Component({
   selector: 'app-header',
@@ -16,9 +18,13 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   private isUserAuthsubscription!: Subscription;
 
-  constructor(private authService: AuthService) {}
+  constructor(
+    private authService: AuthService,
+    private searchDataService: SearchDataService,
+    private router: Router,
+    ) {}
 
-  ngOnInit() {
+  public ngOnInit(): void {
     this.isUserAuthsubscription = this.authService.isUserAuth$.subscribe((value) => {
       this.isLoginHidden = value;
       if (!value) {
@@ -39,7 +45,12 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.authService.logout();
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.isUserAuthsubscription.unsubscribe();
+  }
+
+  public routeToMain(): void {
+    this.searchDataService.clearSearchDataSubject()
+    this.router.navigate(['']);
   }
 }
