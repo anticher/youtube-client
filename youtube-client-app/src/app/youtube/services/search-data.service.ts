@@ -16,21 +16,21 @@ export class SearchDataService {
 
   private detailsUrlEnd: string = '&part=statistics';
 
-  public searchDataSubject = new BehaviorSubject<DetailsItem[]>([]);
+  public searchData$: BehaviorSubject<DetailsItem[]> = new BehaviorSubject<DetailsItem[]>([]);
 
-  public filterStringSubject = new BehaviorSubject<string>('');
+  public filterString$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   constructor(
     private httpService: HttpService
     ) { }
 
   public clearSearchDataSubject(): void {
-    this.searchDataSubject.next([]);
+    this.searchData$.next([]);
   }
 
   public searchData(searchString: string): void {
     if (searchString.length < 3) {
-      this.searchDataSubject.next([]);
+      this.searchData$.next([]);
       return;
     }
     const counter = itemsCount;
@@ -44,7 +44,7 @@ export class SearchDataService {
       return this.httpService.getYoutubeItems(this.detailsUrlStart + idArray.join(',') + this.detailsUrlEnd);
     })
     ).subscribe({
-      next: (result) => { this.searchDataSubject.next(result.items); },
+      next: (result) => { this.searchData$.next(result.items); },
       error: (err) => console.log({ err })
     });
   }
@@ -56,7 +56,7 @@ export class SearchDataService {
 
   public sortResultByDate(): void {
     let items: DetailsItem[] = [];
-    this.searchDataSubject.subscribe((value) => { items = value; });
+    this.searchData$.subscribe((value) => { items = value; });
     if (items.length < 2) {
       return;
     }
@@ -67,12 +67,12 @@ export class SearchDataService {
     items.sort(
       (a, b) => order * +new Date(a.snippet.publishedAt) - order * +new Date(b.snippet.publishedAt),
     );
-    this.searchDataSubject.next(items);
+    this.searchData$.next(items);
   }
 
   public sortResultByViews(): void {
     let items: DetailsItem[] = [];
-    this.searchDataSubject.subscribe((value) => { items = value; });
+    this.searchData$.subscribe((value) => { items = value; });
     if (items.length < 2) {
       return;
     }
@@ -86,10 +86,10 @@ export class SearchDataService {
     items.sort(
       (a, b) => order * +b.statistics.viewCount - order * +a.statistics.viewCount,
     );
-    this.searchDataSubject.next(items);
+    this.searchData$.next(items);
   }
 
   public changeSearchTag(tag: string): void {
-    this.filterStringSubject.next(tag);
+    this.filterString$.next(tag);
   }
 }
