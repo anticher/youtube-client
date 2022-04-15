@@ -12,9 +12,13 @@ export class AuthService {
   constructor(
     private router: Router,
     private searchDataService: SearchDataService,
-  ) {
+  ) {}
+
+  public checkIsAuth(): void {
     if (localStorage.getItem('login')) {
       this.isUserAuth$.next(true);
+    } else {
+      this.router.navigate(['login']);
     }
   }
 

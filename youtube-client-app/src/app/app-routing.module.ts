@@ -15,7 +15,11 @@ const routes = [
     canLoad: [LoginGuard],
     canActivate: [LoginGuard],
   },
-  { path: 'result/:id', component: DetailsPageComponent },
+  {
+    path: 'result/:id',
+    component: DetailsPageComponent,
+    canActivate: [LoginGuard],
+  },
   {
     path: '',
     loadChildren: () => import('./youtube/youtube.module').then((m) => m.YoutubeModule),

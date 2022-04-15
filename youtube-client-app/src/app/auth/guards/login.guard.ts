@@ -5,6 +5,8 @@ import { CanActivate, CanLoad, Router } from '@angular/router';
   providedIn: 'root',
 })
 export class LoginGuard implements CanLoad, CanActivate {
+  private isAuth: boolean = false;
+
   constructor(
     private router: Router,
   ) { }
@@ -18,11 +20,11 @@ export class LoginGuard implements CanLoad, CanActivate {
   }
 
   private isAuthCheck(): boolean {
-    const isAuth = localStorage.getItem('login');
-    if (isAuth === 'test') {
-      return true;
+    if (localStorage.getItem('login') === 'test') {
+      this.isAuth = true;
+      return this.isAuth;
     }
-    this.router.navigate(['login']);
-    return false;
+    this.isAuth = false;
+    return this.isAuth;
   }
 }
