@@ -9,6 +9,9 @@
         height: 26px;
         font-size: 18px;
         line-height: 22px;
+        &:focus {
+            outline: none;
+        }
         &:disabled {
             background-color: $white;
         }

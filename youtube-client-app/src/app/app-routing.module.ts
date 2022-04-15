@@ -9,6 +9,12 @@ const routes = [
     path: 'login',
     loadChildren: () => import('./auth/auth.module').then((m) => m.AuthModule),
   },
+  {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then((m) => m.AdminModule),
+    canLoad: [LoginGuard],
+    canActivate: [LoginGuard],
+  },
   { path: 'result/:id', component: DetailsPageComponent },
   {
     path: '',

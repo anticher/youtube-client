@@ -12,19 +12,18 @@ export class LoginFormComponent {
   public form: FormGroup = new FormGroup({
     login: new FormControl('', [
       Validators.required,
-      Validators.email
+      Validators.email,
     ]),
     password: new FormControl('', [
       Validators.required,
-      PasswordValidator.isCorrect
+      PasswordValidator.isCorrect,
     ]),
-  })
-  
+  });
+
   constructor(private auth: AuthService) {}
 
-  public submit(): void {
-    console.log('submit click')
-    console.log(this.form.value)
+  public formSubmit(): void {
+    console.log({ 'login form submitted': this.form.value });
     this.auth.login();
   }
 }

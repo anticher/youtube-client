@@ -1,18 +1,24 @@
-<form [formGroup]="form" class="login-form" (ngSubmit)="submit()">
+<form [formGroup]="form" class="login-form" (ngSubmit)="formSubmit()">
     <h4 class="login-form__header">Login</h4>
     <label for="login" class="login-form__label">login</label>
     <input formControlName="login" type="text" name="login" class="login-form__input">
-    <div class="login-form__validation" *ngIf="form.get('login')?.invalid">
-        <span *ngIf="form.get('login')?.errors!['required']">Please enter a login email</span>
-        <span *ngIf="form.get('login')?.errors!['email'] && form.get('login')?.touched">The login email is invalid</span>
+    <div class="login-form__validation" *ngIf="form.get('login')?.invalid && form.get('login')?.touched">
+        <span *ngIf="form.get('login')?.errors!['required']">
+            Please enter a login email
+        </span>
+        <span *ngIf="form.get('login')?.errors!['email']">
+            The login email is invalid
+        </span>
     </div>
     <label for="password" class="login-form__label">password</label>
     <input formControlName="password" type="password" name="password" class="login-form__input">
-    <div class="login-form__validation" *ngIf="form.get('password')?.invalid">
-        <span *ngIf="form.get('password')?.errors!['required']">Please enter a password</span>
-        <div *ngIf="form.get('password')?.errors!['passwordValidator'] && form.get('password')?.touched">
+    <div class="login-form__validation" *ngIf="form.get('password')?.invalid && form.get('password')?.touched">
+        <span *ngIf="form.get('password')?.errors!['required']">
+            Please enter a password
+        </span>
+        <div *ngIf="form.get('password')?.errors!['passwordValidator']">
             Your password isn't strong enough:
-                <ul>
+                <ul class="login-form__validation-error-list">
                     <li>at least 8 characters(max 16)</li>
                     <li>a mixture of both uppercase and lowercase letters</li>
                     <li>a mixture of letters and numbers</li>
