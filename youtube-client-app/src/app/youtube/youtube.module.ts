@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { SharedModule } from '../shared/shared.module';
 import { YoutubeRoutingModule } from './youtube-router.module';
 
 import { LogoButtonComponent } from './components/logo-button/logo-button.component';
@@ -48,7 +47,6 @@ import { BaseInterceptor } from './interceptors/base.interceptor';
   imports: [
     CommonModule,
     FormsModule,
-    SharedModule,
     RouterModule,
     YoutubeRoutingModule,
   ],
