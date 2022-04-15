@@ -79,12 +79,9 @@ export class SearchDataService {
       return;
     }
     const lastIndex = items.length - 1;
-    const firstItemViewCount = items[0].statistics.viewCount;
-    const lastItemViewCount = items[lastIndex].statistics.viewCount;
+    const firstItemViewCount = +items[0].statistics.viewCount;
+    const lastItemViewCount = +items[lastIndex].statistics.viewCount;
     const order = firstItemViewCount > lastItemViewCount ? -1 : 1;
-    items.sort(
-      (a, b) => order * +a.statistics.viewCount - order * +b.statistics.viewCount,
-    );
     items.sort(
       (a, b) => order * +b.statistics.viewCount - order * +a.statistics.viewCount,
     );

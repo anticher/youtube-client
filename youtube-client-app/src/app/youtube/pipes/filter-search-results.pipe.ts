@@ -3,6 +3,7 @@ import { DetailsItem } from '../models/details-item.model';
 
 @Pipe({
   name: 'filterSearchResults',
+  pure: false,
 })
 export class FilterSearchResultsPipe implements PipeTransform {
   private resultData: DetailsItem[] = [];

@@ -26,6 +26,11 @@
     }
     
     &__input {
+        padding: 2px;
         width: 150px;
+        height: 14px;
+        &:focus {
+            outline: none;
+        }
     }
 }
