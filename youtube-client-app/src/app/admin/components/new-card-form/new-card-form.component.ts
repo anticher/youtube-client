@@ -1,5 +1,5 @@
-import { Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Component, OnChanges, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
 import { Subscription } from 'rxjs';
 import { AddCustomItem } from 'src/app/redux/youtube-items-state';
@@ -18,6 +18,7 @@ const maxDescriptionLength: number = 255;
   styleUrls: ['./new-card-form.component.scss'],
 })
 export class NewCardFormComponent implements OnInit, OnDestroy{
+
   public form: FormGroup = new FormGroup({
     title: new FormControl('', [
       Validators.required,
@@ -52,8 +53,8 @@ export class NewCardFormComponent implements OnInit, OnDestroy{
   }
 
   public cardSubmit(): void {
-    console.log('op')
     this.store.dispatch(new AddCustomItem(this.form.value))
+    this.form.reset();
   }
 
   public ngOnDestroy(): void {
