@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngxs/store';
+import { Subscription } from 'rxjs';
 import { AddCustomItem } from 'src/app/redux/youtube-items-state';
 import { DateValidator } from '../../validators/date.validator';
 import { UrlValidator } from '../../validators/url.validator';
@@ -16,7 +17,7 @@ const maxDescriptionLength: number = 255;
   templateUrl: './new-card-form.component.html',
   styleUrls: ['./new-card-form.component.scss'],
 })
-export class NewCardFormComponent {
+export class NewCardFormComponent implements OnInit, OnDestroy{
   public form: FormGroup = new FormGroup({
     title: new FormControl('', [
       Validators.required,
@@ -40,9 +41,23 @@ export class NewCardFormComponent {
     ]),
   });
 
-  constructor(private store: Store) { }
+  private storeSubscription!: Subscription;
+
+  constructor(private store: Store) {
+    
+  }
+
+  public ngOnInit(): void {
+    this.storeSubscription = this.store.select(state => state.items.customItems).subscribe((val) => console.log({'custom cards': val}))
+  }
 
   public cardSubmit(): void {
+    console.log('op')
     this.store.dispatch(new AddCustomItem(this.form.value))
   }
+
+  public ngOnDestroy(): void {
+    this.storeSubscription.unsubscribe()
+  }
+
 }

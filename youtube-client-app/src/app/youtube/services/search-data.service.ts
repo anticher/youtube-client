@@ -1,7 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Store } from '@ngxs/store';
 import {
-  BehaviorSubject, mergeMap, Observable,
+  BehaviorSubject, mergeMap, Observable, Subscription,
 } from 'rxjs';
+import { AddApiItems, ClearApiItems } from 'src/app/redux/youtube-items-state';
 import { HttpService } from 'src/app/services/http.service';
 import { DetailsItem } from '../models/details-item.model';
 import { DetailsResponse } from '../models/details-response.model';
@@ -22,15 +24,21 @@ export class SearchDataService {
 
   public filterString$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
+  private storeSubscription: Subscription;
+
   constructor(
     private httpService: HttpService,
-  ) { }
+    private store: Store,
+  ) {
+    this.storeSubscription = this.store.select(state => state.items.apiItems).subscribe((val) => this.searchData$.next(val))
+  }
 
   public clearSearchDataSubject(): void {
     this.searchData$.next([]);
   }
 
   public searchData(searchString: string): void {
+    this.store.dispatch(new ClearApiItems())
     if (searchString.length < 3) {
       this.searchData$.next([]);
       return;
@@ -46,7 +54,8 @@ export class SearchDataService {
           return this.httpService.getYoutubeItems(this.detailsUrlStart + idArray.join(',') + this.detailsUrlEnd);
         }),
       ).subscribe({
-        next: (result) => { this.searchData$.next(result.items); },
+        // next: (result) => { this.searchData$.next(result.items); },
+        next: (result) => { this.store.dispatch(new AddApiItems(result.items)); },
         error: (err) => console.log({ err }),
       });
   }
@@ -57,8 +66,7 @@ export class SearchDataService {
   }
 
   public sortResultByDate(): void {
-    let items: DetailsItem[] = [];
-    this.searchData$.subscribe((value) => { items = value; });
+    const items: DetailsItem[] = [...this.searchData$.value];
     if (items.length < 2) {
       return;
     }
@@ -73,8 +81,7 @@ export class SearchDataService {
   }
 
   public sortResultByViews(): void {
-    let items: DetailsItem[] = [];
-    this.searchData$.subscribe((value) => { items = value; });
+    const items: DetailsItem[] = [...this.searchData$.value];
     if (items.length < 2) {
       return;
     }
