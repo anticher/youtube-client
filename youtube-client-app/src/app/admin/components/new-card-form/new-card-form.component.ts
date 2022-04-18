@@ -1,5 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Store } from '@ngxs/store';
+import { AddCustomItem } from 'src/app/redux/youtube-items-state';
 import { DateValidator } from '../../validators/date.validator';
 import { UrlValidator } from '../../validators/url.validator';
 
@@ -38,7 +40,9 @@ export class NewCardFormComponent {
     ]),
   });
 
+  constructor(private store: Store) { }
+
   public cardSubmit(): void {
-    console.log({ 'card form submitted': this.form.value });
+    this.store.dispatch(new AddCustomItem(this.form.value))
   }
 }
