@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngxs/store';
 import {
-  BehaviorSubject, mergeMap, Observable, Subscription,
+  BehaviorSubject, mergeMap, Observable, Subject, Subscription,
 } from 'rxjs';
 import { AddApiItems, ClearApiItems } from 'src/app/redux/youtube-items-state';
 import { HttpService } from 'src/app/services/http.service';
@@ -23,6 +23,8 @@ export class SearchDataService {
   public searchData$: BehaviorSubject<DetailsItem[]> = new BehaviorSubject<DetailsItem[]>([]);
 
   public filterString$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+
+  public searchString$: Subject<string> = new Subject<string>(); 
 
   private storeSubscription: Subscription;
 

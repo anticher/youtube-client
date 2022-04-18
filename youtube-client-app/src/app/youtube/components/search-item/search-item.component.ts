@@ -1,7 +1,7 @@
 import {
   Component, EventEmitter, OnDestroy, OnInit, Output,
 } from '@angular/core';
-import { debounceTime, Subject, Subscription } from 'rxjs';
+import { debounceTime, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { SearchDataService } from 'src/app/youtube/services/search-data.service';
 
@@ -12,8 +12,6 @@ import { SearchDataService } from 'src/app/youtube/services/search-data.service'
 })
 export class SearchItemComponent implements OnInit, OnDestroy {
   @Output() toggleDisplay: EventEmitter<any> = new EventEmitter();
-
-  private searchString$: Subject<string> = new Subject<string>();
 
   public searchInputValue: string = '';
 
@@ -31,7 +29,7 @@ export class SearchItemComponent implements OnInit, OnDestroy {
   ) { }
 
   ngOnInit(): void {
-    this.searchSubjectSubscription = this.searchString$
+    this.searchSubjectSubscription = this.searchDataService.searchString$
       .pipe(debounceTime(1000)).subscribe((value) => {
         this.searchDataService.searchData(value);
       });
@@ -43,15 +41,11 @@ export class SearchItemComponent implements OnInit, OnDestroy {
         this.isSearchInputAndButtonDisabled = false;
       }
     });
-    this.SearchInputValueSubscription = this.searchDataService.searchData$.subscribe((value) => {
-      if (value.length === 0) {
+    this.SearchInputValueSubscription = this.searchDataService.searchString$.subscribe((value) => {
+      if (!value) {
         this.searchInputValue = '';
       }
     });
-  }
-
-  public makeSearch(): void {
-    this.searchDataService.searchData(this.searchInputValue);
   }
 
   public toggleSettings(): void {
@@ -60,7 +54,7 @@ export class SearchItemComponent implements OnInit, OnDestroy {
 
   public inputChange(event: Event): void {
     const seachString = (event.target as HTMLInputElement).value;
-    this.searchString$.next(seachString);
+    this.searchDataService.searchString$.next(seachString);
   }
 
   public ngOnDestroy(): void {

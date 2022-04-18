@@ -50,7 +50,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   }
 
   public routeToMain(): void {
-    this.searchDataService.clearSearchDataSubject();
+    this.searchDataService.searchString$.next('');
     this.router.navigate(['']);
   }
 }
