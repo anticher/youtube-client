@@ -20,16 +20,10 @@ export class ResultComponent implements OnInit, OnDestroy {
   constructor(private searchDataService: SearchDataService) { }
 
   public ngOnInit(): void {
-    this.searchDataSubscription = this.searchDataService.searchData$.subscribe({
-      next: (val) => { this.items = val; },
-      error: (err) => console.log({ err }),
-      complete: () => { this.items = []; },
-    });
-    this.filteringStringSubscription = this.searchDataService.filterString$.subscribe({
-      next: (val) => { this.filterString = val; },
-      error: (err) => console.log({ err }),
-      complete: () => { this.filterString = ''; },
-    });
+    this.searchDataSubscription = this.searchDataService.searchData$
+      .subscribe((val) => { this.items = val; });
+    this.filteringStringSubscription = this.searchDataService.filterString$
+      .subscribe((val) => { this.filterString = val; });
   }
 
   public ngOnDestroy(): void {

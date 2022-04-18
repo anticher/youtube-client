@@ -20,13 +20,15 @@ export interface CardsStateModel {
 })
 @Injectable()
 export class CardsState {
+  private state!: CardsStateModel;
+
   @Action(AddCustomItem)
   addCustomItem(ctx: StateContext<CardsStateModel>, action: AddCustomItem) {
-    const state = ctx.getState();
+    this.state = ctx.getState();
     ctx.setState({
-      ...state,
+      ...this.state,
       customItems: [
-        ...state.customItems,
+        ...this.state.customItems,
         action.item,
       ],
     });
@@ -34,11 +36,11 @@ export class CardsState {
 
   @Action(AddApiItems)
   addApiItems(ctx: StateContext<CardsStateModel>, action: AddApiItems) {
-    const state = ctx.getState();
+    this.state = ctx.getState();
     ctx.setState({
-      ...state,
+      ...this.state,
       apiItems: [
-        ...state.apiItems,
+        ...this.state.apiItems,
         ...action.item,
       ],
     });
@@ -46,9 +48,9 @@ export class CardsState {
 
   @Action(ClearApiItems)
   clearApiItems(ctx: StateContext<CardsStateModel>) {
-    const state = ctx.getState();
+    this.state = ctx.getState();
     ctx.setState({
-      ...state,
+      ...this.state,
       apiItems: [],
     });
   }

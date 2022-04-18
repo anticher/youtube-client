@@ -57,11 +57,7 @@ export class SearchDataService {
           });
           return this.httpService.getYoutubeItems(this.detailsUrlStart + idArray.join(',') + this.detailsUrlEnd);
         }),
-      ).subscribe({
-        // next: (result) => { this.searchData$.next(result.items); },
-        next: (result) => { this.store.dispatch(new AddApiItems(result.items)); },
-        error: (err) => console.log({ err }),
-      });
+      ).subscribe((result) => this.store.dispatch(new AddApiItems(result.items)));
   }
 
   public getDataById(id: string): Observable<DetailsResponse> {
