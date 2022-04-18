@@ -3,7 +3,8 @@ import { Store } from '@ngxs/store';
 import {
   BehaviorSubject, mergeMap, Observable, Subject, Subscription,
 } from 'rxjs';
-import { AddApiItems, ClearApiItems } from 'src/app/redux/youtube-items-state';
+import { AddApiItems } from 'src/app/redux/actions/add-api-items.action';
+import { ClearApiItems } from 'src/app/redux/actions/clear-api-items.action';
 import { HttpService } from 'src/app/services/http.service';
 import { DetailsItem } from '../models/details-item.model';
 import { DetailsResponse } from '../models/details-response.model';
@@ -24,7 +25,7 @@ export class SearchDataService {
 
   public filterString$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
-  public searchString$: Subject<string> = new Subject<string>(); 
+  public searchString$: Subject<string> = new Subject<string>();
 
   private storeSubscription: Subscription;
 
@@ -32,7 +33,8 @@ export class SearchDataService {
     private httpService: HttpService,
     private store: Store,
   ) {
-    this.storeSubscription = this.store.select(state => state.items.apiItems).subscribe((val) => this.searchData$.next(val))
+    this.storeSubscription = this.store.select((state) => state.items.apiItems)
+      .subscribe((val) => this.searchData$.next(val));
   }
 
   public clearSearchDataSubject(): void {
@@ -40,7 +42,7 @@ export class SearchDataService {
   }
 
   public searchData(searchString: string): void {
-    this.store.dispatch(new ClearApiItems())
+    this.store.dispatch(new ClearApiItems());
     if (searchString.length < 3) {
       this.searchData$.next([]);
       return;

@@ -23,7 +23,6 @@ export class LoginFormComponent {
   constructor(private auth: AuthService) {}
 
   public formSubmit(): void {
-    console.log({ 'login form submitted': this.form.value });
     this.auth.login();
   }
 }

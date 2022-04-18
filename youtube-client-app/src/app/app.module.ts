@@ -4,15 +4,15 @@ import { FormsModule } from '@angular/forms';
 
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AppRoutingModule } from './app-routing.module';
 import { NgxsModule } from '@ngxs/store';
 import { environment } from 'src/environments/environment';
+import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { YoutubeModule } from './youtube/youtube.module';
 import { AuthModule } from './auth/auth.module';
-import { CardsState } from './redux/youtube-items-state';
+import { CardsState } from './redux/states/youtube-items.state';
 
 @NgModule({
   declarations: [
@@ -20,7 +20,7 @@ import { CardsState } from './redux/youtube-items-state';
   ],
   imports: [
     NgxsModule.forRoot([CardsState], {
-      developmentMode: !environment.production
+      developmentMode: !environment.production,
     }),
     BrowserModule,
     BrowserAnimationsModule,
