@@ -19,28 +19,28 @@ export class StatisticsItemComponent {
 
   public liked:boolean = false;
 
-  public disliked:boolean = false;
-
   public comments:boolean = false;
 
   private setStatistics(): void {
     switch (this.itemType) {
       case 'viewed':
         this.viewed = true;
+        this.liked = false;
+        this.comments = false;
         break;
       case 'liked':
+        this.viewed = false;
         this.liked = true;
-        break;
-      case 'disliked':
-        this.disliked = true;
+        this.comments = false;
         break;
       case 'comments':
+        this.viewed = false;
+        this.liked = false;
         this.comments = true;
         break;
       default:
         this.viewed = false;
         this.liked = false;
-        this.disliked = false;
         this.comments = false;
     }
   }

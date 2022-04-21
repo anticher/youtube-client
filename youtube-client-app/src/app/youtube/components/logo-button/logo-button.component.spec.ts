@@ -1,3 +1,4 @@
+import { DebugElement } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { LogoButtonComponent } from './logo-button.component';
@@ -21,5 +22,12 @@ describe('LogoButtonComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should has <button> with "logo-button" class', () => {
+    const buttonDe: DebugElement = fixture.debugElement;
+    const buttonEl: HTMLElement = buttonDe.nativeElement;
+    const button = buttonEl.querySelector('button.logo-button')!;
+    expect(button).toBeTruthy();
   });
 });

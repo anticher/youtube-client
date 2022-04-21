@@ -13,6 +13,7 @@ import { CoreModule } from './core/core.module';
 import { YoutubeModule } from './youtube/youtube.module';
 import { AuthModule } from './auth/auth.module';
 import { CardsState } from './redux/states/youtube-items.state';
+import { AdminModule } from './admin/admin.module';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { CardsState } from './redux/states/youtube-items.state';
     YoutubeModule,
     AppRoutingModule,
     AuthModule,
+    AdminModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

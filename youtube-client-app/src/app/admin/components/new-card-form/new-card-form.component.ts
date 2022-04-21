@@ -1,6 +1,4 @@
-import {
-  Component, OnDestroy, OnInit,
-} from '@angular/core';
+import { Component } from '@angular/core';
 import {
   FormControl, FormGroup, Validators,
 } from '@angular/forms';
@@ -21,7 +19,7 @@ const maxDescriptionLength: number = 255;
   templateUrl: './new-card-form.component.html',
   styleUrls: ['./new-card-form.component.scss'],
 })
-export class NewCardFormComponent implements OnInit, OnDestroy {
+export class NewCardFormComponent {
   public form: FormGroup = new FormGroup({
     title: new FormControl('', [
       Validators.required,
@@ -51,16 +49,8 @@ export class NewCardFormComponent implements OnInit, OnDestroy {
 
   }
 
-  public ngOnInit(): void {
-    this.storeSubscription = this.store.select((state) => state.items.customItems).subscribe((val) => console.log({ 'custom cards': val }));
-  }
-
   public cardSubmit(): void {
     this.store.dispatch(new AddCustomItem(this.form.value));
     this.form.reset();
-  }
-
-  public ngOnDestroy(): void {
-    this.storeSubscription.unsubscribe();
   }
 }
