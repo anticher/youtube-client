@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import { DetailsResponse } from '../../models/details-response.model';
 import { Statistics } from '../../models/statistics.model';
 import { SearchDataService } from '../../services/search-data.service';
 
@@ -36,7 +38,7 @@ export class DetailsPageComponent implements OnInit {
 
   private setItemInfo(): void {
     const { id } = this.activateRoute.snapshot.params;
-    this.searchDataService.getDataById(id).subscribe((res: any) => {
+    const httpSubscription = this.searchDataService.getDataById(id).subscribe((res: DetailsResponse) => {
       const item = res.items[0];
       if (!item) {
         this.router.navigate(['not-found']);
@@ -47,6 +49,7 @@ export class DetailsPageComponent implements OnInit {
         this.text = item.snippet.localized.description;
         this.statistics = item.statistics;
       }
+      httpSubscription.unsubscribe()
     });
   }
 }

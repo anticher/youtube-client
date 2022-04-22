@@ -28,8 +28,6 @@ export class ResultItemComponent {
 
   public channelTitle: string = '';
 
-  public categoryId: string = '';
-
   public mediumImageUrl: string = '';
 
   public publishedDaysAgo: string = '';
@@ -38,7 +36,6 @@ export class ResultItemComponent {
     this.itemId = this.detailsItem.id;
     this.statistics = this.detailsItem.statistics;
     this.channelTitle = this.detailsItem.snippet.channelTitle;
-    this.categoryId = this.detailsItem.snippet.categoryId;
     this.mediumImageUrl = this.detailsItem.snippet.thumbnails.medium.url;
     this.publishedDaysAgo = this.detailsItem.snippet.publishedAt;
   }

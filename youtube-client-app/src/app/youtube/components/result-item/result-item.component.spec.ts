@@ -74,4 +74,12 @@ describe('ResultItemComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should set item info', () => {
+    const titleElement: HTMLElement = fixture.debugElement.nativeElement
+    .querySelector('.result-item__title')
+    expect(component.channelTitle).toBeTruthy
+    fixture.detectChanges();
+    expect(component.channelTitle).toBe(titleElement.textContent!)
+  });
 });
