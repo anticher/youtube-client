@@ -1,6 +1,7 @@
 import {
   Component, EventEmitter, OnDestroy, OnInit, Output,
 } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { debounceTime, Subscription } from 'rxjs';
 import { AuthService } from 'src/app/auth/services/auth.service';
 import { SearchDataService } from 'src/app/youtube/services/search-data.service';
@@ -15,37 +16,39 @@ export class SearchItemComponent implements OnInit, OnDestroy {
 
   public searchInputValue: string = '';
 
-  public isSearchInputAndButtonDisabled: boolean = false;
+  public isSearchButtonDisabled: boolean = false;
 
-  private isUserAuthSubscription!: Subscription;
+  public isSearchInputDisabled: boolean = false;
 
-  private searchSubjectSubscription!: Subscription;
-
-  private SearchInputValueSubscription!: Subscription;
+  private subscriptions = new Subscription()
 
   constructor(
     private searchDataService: SearchDataService,
     private authService: AuthService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
-    this.searchSubjectSubscription = this.searchDataService.searchString$
+    this.subscriptions.add(this.searchDataService.searchString$
       .pipe(debounceTime(1000)).subscribe((value) => {
         this.searchDataService.searchData(value);
-      });
-    this.isUserAuthSubscription = this.authService.isUserAuth$.subscribe((value) => {
+      }));
+    this.subscriptions.add(this.authService.isUserAuth$.subscribe((value) => {
       if (!value) {
         this.searchInputValue = '';
-        this.isSearchInputAndButtonDisabled = true;
+        this.isSearchButtonDisabled = true;
+        this.isSearchInputDisabled = true;
       } else {
-        this.isSearchInputAndButtonDisabled = false;
+        this.isSearchButtonDisabled = false;
+        this.isSearchInputDisabled = false;
       }
-    });
-    this.SearchInputValueSubscription = this.searchDataService.searchString$.subscribe((value) => {
+    }));
+    this.subscriptions.add(this.searchDataService.searchString$.subscribe((value) => {
       if (!value) {
         this.searchInputValue = '';
       }
-    });
+    }));
   }
 
   public toggleSettings(): void {
@@ -53,13 +56,15 @@ export class SearchItemComponent implements OnInit, OnDestroy {
   }
 
   public inputChange(event: Event): void {
+    if (this.router.url !== '/') {
+      this.router.navigate([''])
+    }
     const seachString = (event.target as HTMLInputElement).value;
     this.searchDataService.searchString$.next(seachString);
+
   }
 
   public ngOnDestroy(): void {
-    this.isUserAuthSubscription.unsubscribe();
-    this.searchSubjectSubscription.unsubscribe();
-    this.SearchInputValueSubscription.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
 }

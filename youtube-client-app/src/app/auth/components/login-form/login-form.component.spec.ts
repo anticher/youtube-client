@@ -8,12 +8,10 @@ import { LoginFormComponent } from './login-form.component';
 describe('LoginFormComponent', () => {
     let component: LoginFormComponent;
     let fixture: ComponentFixture<LoginFormComponent>;
-    let mockLoginService: any;
+    let mockLoginService: AuthService;
 
     beforeEach(async () => {
-        mockLoginService = {
-            login: jasmine.createSpy('login').and.returnValue(undefined)
-        };
+        mockLoginService = jasmine.createSpyObj(['login'])
 
         await TestBed.configureTestingModule({
             declarations: [LoginFormComponent],

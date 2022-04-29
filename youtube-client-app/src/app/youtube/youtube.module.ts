@@ -8,7 +8,6 @@ import { YoutubeRoutingModule } from './youtube-router.module';
 
 import { LogoButtonComponent } from './components/logo-button/logo-button.component';
 import { MoreButtonComponent } from './components/more-button/more-button.component';
-import { ProfileSettingsComponent } from './components/profile-settings/profile-settings.component';
 import { ResultItemComponent } from './components/result-item/result-item.component';
 import { ResultComponent } from './components/result/result.component';
 import { SearchButtonComponent } from './components/search-button/search-button.component';
@@ -37,7 +36,6 @@ import { BaseInterceptor } from './interceptors/base.interceptor';
     SearchButtonComponent,
     SearchButtonComponent,
     MoreButtonComponent,
-    ProfileSettingsComponent,
     FilterSearchResultsPipe,
     ResultItemBorderColorDirective,
     SetColorByDatePipe,
@@ -56,7 +54,6 @@ import { BaseInterceptor } from './interceptors/base.interceptor';
     SearchButtonComponent,
     SearchButtonComponent,
     SearchSortingComponent,
-    ProfileSettingsComponent,
     ResultComponent,
     DetailsPageComponent,
   ],

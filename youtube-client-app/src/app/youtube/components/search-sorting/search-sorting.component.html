@@ -2,8 +2,8 @@
     <p class="search-sorting__header">Sorting by:</p>
 <div class="search-sorting__buttons">
     <button class="search-sorting__button" (click)="dateSort()">date</button>
-    <button class="search-sorting__button" (click)="viewsSort()">count of views</button>
-    <p class="search-sorting__subheader">by word or sentence</p>
+    <button class="search-sorting__button" (click)="viewsSort()">views</button>
+    <p class="search-sorting__subheader">tag</p>
 </div>
 <input class="search-sorting__input" type="text" [(ngModel)]="sortingByTagValue" (input)="tagsFilter($event)">
 </div>

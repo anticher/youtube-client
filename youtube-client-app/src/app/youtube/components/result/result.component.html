@@ -1,1 +1,3 @@
-<app-result-item *ngFor="let item of items | filterSearchResults:filterString" [item]="item" class="result__item"></app-result-item>
+<div class="result">
+    <app-result-item *ngFor="let item of items | filterSearchResults:filterString" [item]="item" class="result__item"></app-result-item>
+</div>

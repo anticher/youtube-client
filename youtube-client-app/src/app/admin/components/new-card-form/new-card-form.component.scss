@@ -1,5 +1,11 @@
 @import "../../../../styles/styles.scss";
 
+:host {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 .new-card-form {
     padding: 36px 24px 30px;
     width: 432px;
@@ -82,5 +88,32 @@
             background-color: $grey;
             filter: drop-shadow(2px 0px 4px $grey);
         }
+    }
+}
+
+@media (max-width: 480px) {
+    .new-card-form {
+        padding: 18px 16px 16px;
+        width: 400px;
+        min-height: 492px;
+        &__input,
+        &__textarea {
+            width: 100%;
+            min-width: 100%;
+            max-width: 100%;
+        }
+    }
+}
+
+@media (max-width: 440px) {
+    .new-card-form {
+        padding: 12px;
+        width: 380px;
+    }
+}
+@media (max-width: 400px) {
+    .new-card-form {
+        padding: 12px;
+        width: 96%;
     }
 }

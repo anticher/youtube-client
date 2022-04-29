@@ -43,3 +43,11 @@ input, button {
     border-width: 0;
     border-radius: 0;
 }
+
+button:hover {
+    opacity: 0.8;
+}
+
+button:disabled:hover {
+    opacity: 1;
+}

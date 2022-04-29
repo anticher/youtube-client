@@ -13,21 +13,18 @@ export class ResultComponent implements OnInit, OnDestroy {
 
   public filterString: string = '';
 
-  private searchDataSubscription!: Subscription;
-
-  private filteringStringSubscription!: Subscription;
+  private subscriptions = new Subscription()
 
   constructor(private searchDataService: SearchDataService) { }
 
   public ngOnInit(): void {
-    this.searchDataSubscription = this.searchDataService.searchData$
-      .subscribe((val) => { this.items = val; });
-    this.filteringStringSubscription = this.searchDataService.filterString$
-      .subscribe((val) => { this.filterString = val; });
+    this.subscriptions.add(this.searchDataService.searchData$
+      .subscribe((val) => { this.items = val; }));
+    this.subscriptions.add(this.searchDataService.filterString$
+      .subscribe((val) => { this.filterString = val; }));
   }
 
   public ngOnDestroy(): void {
-    this.searchDataSubscription.unsubscribe();
-    this.filteringStringSubscription.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
 }

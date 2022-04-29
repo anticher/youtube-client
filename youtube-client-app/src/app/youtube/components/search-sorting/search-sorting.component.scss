@@ -34,3 +34,27 @@
         }
     }
 }
+
+@media (max-width: 636px) {
+    .search-sorting {
+        &__input {
+            height: 26px;
+        }
+    }
+}
+
+@media (max-width: 370px) {
+    .search-sorting {
+        &__buttons {
+            gap: 8px;
+        }
+    }
+}
+
+@media (max-width: 340px) {
+    .search-sorting {
+        &__input {
+            width: 130px;
+        }
+    }
+}

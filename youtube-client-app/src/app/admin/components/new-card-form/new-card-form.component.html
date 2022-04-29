@@ -45,7 +45,7 @@
             invalid, it should start with <b>http:// or https:// or ftp://</b>
         </span>
     </div>
-    <label for="date" class="new-card-form__label">Link video</label>
+    <label for="date" class="new-card-form__label">Creation date</label>
     <input formControlName="date" type="date" name="date" class="new-card-form__input">
     <div class="new-card-form__validation" *ngIf="form.get('date')?.invalid && form.get('date')?.touched">
         <span *ngIf="form.get('date')?.errors!['required']">

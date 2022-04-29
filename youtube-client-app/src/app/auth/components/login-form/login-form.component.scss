@@ -12,7 +12,7 @@
         font-weight: 700;
         font-size: 18px;
         line-height: 21px;
-        color: #000000;
+        color: $black;
     }
 
     &__label {
@@ -73,5 +73,12 @@
 
     &__validation-error-list {
         list-style-type: none;
+    }
+}
+
+@media (max-width: 400px) {
+    .login-form {
+        width: 300px;
+        min-height: 220px;
     }
 }

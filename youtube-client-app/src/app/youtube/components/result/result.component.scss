@@ -1,13 +1,37 @@
 :host {
-    padding: 30px 0;
-    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.result {
+    margin: 30px;
     width: 1138px;
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 30px;
+    &__item {
+        width: 262px;
+        height: 326px;
+    }
 }
 
-.result__item {
-    width: 262px;
-    height: 326px;
+@media (max-width: 1278px) {
+    .result {
+        width: 846px;
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 906px) {
+    .result {
+        width: 554px;
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 614px) {
+    .result {
+        width: 262px;
+        grid-template-columns: repeat(1, 1fr);
+    }
 }

@@ -10,67 +10,14 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { DetailsResponse } from '../../models/details-response.model';
 import { ResultItemBorderColorDirective } from '../../directives/result-item-border-color.directive';
 import { not } from '@angular/compiler/src/output/output_ast';
-
-const mockDetailsItem1: DetailsItem = {
-    kind: "youtube#video",
-    etag: "1",
-    id: "KnumAWWWgUE",
-    snippet: {
-        publishedAt: "2021-04-02T18:00:14Z",
-        channelId: "UC652oRUvX1onwrrZ8ADJRPw",
-        title: "Playboi Carti - Sky [Official Video]",
-        description: "Directed by Nick Walker",
-        thumbnails: {
-            default: {
-                url: "https://i.ytimg.com/vi/KnumAWWWgUE/default.jpg",
-                width: 120,
-                height: 90
-            },
-            medium: {
-                url: "https://i.ytimg.com/vi/KnumAWWWgUE/mqdefault.jpg",
-                width: 320,
-                height: 180
-            },
-            high: {
-                url: "https://i.ytimg.com/vi/KnumAWWWgUE/hqdefault.jpg",
-                width: 480,
-                height: 360
-            },
-        },
-        channelTitle: "Playboi Carti",
-        categoryId: "10",
-        tags: ["test"],
-        liveBroadcastContent: "none",
-        localized: {
-            title: "Playboi Carti - Sky [Official Video]",
-            description: "Directed by Nick Walker",
-        },
-        defaultAudioLanguage: "none",
-    },
-    statistics: {
-        viewCount: "39322063",
-        likeCount: "1009432",
-        favoriteCount: "0",
-        commentCount: "45859"
-    }
-}
-
-const mockDetailsResponse: DetailsResponse = {
-    kind: "youtube#videoListResponse",
-    etag: "test",
-    pageInfo: {
-        totalResults: 1,
-        resultsPerPage: 1
-    },
-    items: [mockDetailsItem1]
-}
+import { mockDetailsResponse } from 'src/app/mock/mock-details-response';
 
 describe('DetailsPageComponent', () => {
     let component: DetailsPageComponent;
     let fixture: ComponentFixture<DetailsPageComponent>;
-    let mockRouter: any;
-    let mockActivateRoute: any;
-    let mockSearchDataService: any;
+    let mockRouter: Router;
+    let mockActivateRoute: ActivatedRoute;
+    let mockSearchDataService: SearchDataService;
 
     beforeEach(async () => {
         mockRouter = jasmine.createSpyObj(['navigate'])
@@ -89,13 +36,15 @@ describe('DetailsPageComponent', () => {
             schemas: [CUSTOM_ELEMENTS_SCHEMA]
         })
             .compileComponents();
+
+        mockSearchDataService.getDataById = jasmine.createSpy('id').and.returnValue(of(mockDetailsResponse))
     });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(DetailsPageComponent);
         component = fixture.componentInstance;
-        mockSearchDataService.getDataById.and.returnValue(of(mockDetailsResponse))
-        mockActivateRoute.snapshot.params.id = 'test'
+        mockSearchDataService.getDataById('test')
+        mockActivateRoute.snapshot.params['id'] = 'test'
         fixture.detectChanges();
     });
 

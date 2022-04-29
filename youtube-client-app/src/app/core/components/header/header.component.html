@@ -1,17 +1,22 @@
 <header class="header">
     <div class="header__main">
         <div class="header__search">
-            <app-logo-button (click)="routeToMain()"></app-logo-button>
-            <app-search-item (toggleDisplay)="toggleDisplay()"></app-search-item>
+            <app-logo-button class="header__logo" (click)="routeToMain()" [isDisabled]="isLogoDisabled"></app-logo-button>
+            <app-search-item *ngIf="!isMobileWidth" (toggleDisplay)="toggleDisplay()"></app-search-item>
         </div>
         <div class="header__profile">
-            <app-profile-settings></app-profile-settings>
-            <button class="header__button" routerLink="admin">admin</button>
-            <button *ngIf="!isLoginHidden" class="header__button" (click)="login()">login</button>
-            <button *ngIf="isLoginHidden" class="header__button" (click)="logout()">logout</button>
+            <ng-container *ngIf="isUserAuth && !isSearchBlockVisible">
+                <button *ngIf="isMobileWidth" class="header__button" (click)="toggleSearchBlock()" routerLink="">search</button>
+                <button class="header__button" routerLink="admin">admin</button>
+                <button class="header__button" (click)="logout()">logout</button>
+            </ng-container>
+            <ng-container *ngIf="isUserAuth && isSearchBlockVisible">
+                <app-search-item (toggleDisplay)="toggleDisplay()" ></app-search-item>
+                <button *ngIf="isMobileWidth" class="header__button" (click)="toggleSearchBlock()">hide</button>
+            </ng-container>
         </div>
     </div>
-    <div *ngIf="isSortingVisible" class="header__sort">
+    <div *ngIf="isSortingBlockVisible" class="header__sort">
         <app-search-sorting></app-search-sorting>
     </div>
 </header>

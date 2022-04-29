@@ -4,12 +4,12 @@
     class="search-item__input"
     [(ngModel)]="searchInputValue"
     type="text"
-    [disabled]="isSearchInputAndButtonDisabled"
+    [disabled]="isSearchInputDisabled"
     >
     <button
     (click)="toggleSettings()"
     class="search-item__settings-button"
     type="button"
-    [disabled]="isSearchInputAndButtonDisabled"
+    [disabled]="isSearchButtonDisabled"
     ></button>
 </div>

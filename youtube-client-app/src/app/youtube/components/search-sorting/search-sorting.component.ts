@@ -11,7 +11,7 @@ import { SearchDataService } from 'src/app/youtube/services/search-data.service'
 export class SearchSortingComponent implements OnInit, OnDestroy {
   public sortingByTagValue: string = '';
 
-  private SearchInputValueSubscription!: Subscription;
+  private subscriptions = new Subscription()
 
   constructor(
     private searchDataService: SearchDataService,
@@ -23,12 +23,12 @@ export class SearchSortingComponent implements OnInit, OnDestroy {
       this.sortingByTagValue = '';
       this.searchDataService.changeSearchTag('');
     }
-    this.SearchInputValueSubscription = this.searchDataService.searchData$.subscribe((value) => {
+    this.subscriptions.add(this.searchDataService.searchData$.subscribe((value) => {
       if (value.length === 0) {
         this.sortingByTagValue = '';
         this.searchDataService.changeSearchTag('');
       }
-    });
+    }));
   }
 
   public dateSort(): void {
@@ -45,6 +45,6 @@ export class SearchSortingComponent implements OnInit, OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this.SearchInputValueSubscription.unsubscribe();
+    this.subscriptions.unsubscribe();
   }
 }

@@ -1,35 +1,17 @@
 import { HttpClient } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
+import { mockDetailsResponse } from '../mock/mock-details-response';
+import { mockSearchResponse } from '../mock/mock-search-response';
 import { DetailsItem } from '../youtube/models/details-item.model';
 import { DetailsResponse } from '../youtube/models/details-response.model';
 import { SearchResponse } from '../youtube/models/search-response.model';
 
 import { HttpService } from './http.service';
 
-const mockDetailsResponse: DetailsResponse = {
-    kind: "youtube#searchListResponse",
-    etag: "Y5q7VyiIaO2jC798W8K7546ahEg",
-    pageInfo: {
-      totalResults: 1,
-      resultsPerPage: 1
-    },
-    items: []
-  }
-
-const mockSearchResponse: SearchResponse = {
-    kind: "youtube#searchListResponse",
-    etag: "Y5q7VyiIaO2jC798W8K7546ahEg",
-    pageInfo: {
-        totalResults: 1000000,
-        resultsPerPage: 5
-    },
-    items: []
-}
-
 describe('HttpService', () => {
   let service: HttpService;
-  let mockHttpClient: any;
+  let mockHttpClient: HttpClient;
 
   beforeEach(() => {
     mockHttpClient = jasmine.createSpyObj(['get'])
@@ -47,12 +29,14 @@ describe('HttpService', () => {
   });
 
   it('should return Ids', () => {
-    mockHttpClient.get.and.returnValue(of(mockSearchResponse))
-    service.getYoutubeIds('').subscribe(value => expect(value).toEqual(mockSearchResponse))
+    mockHttpClient.get = jasmine.createSpy().and.returnValue(of(mockSearchResponse))
+    mockHttpClient.get('test')
+    service.getYoutubeIds('').subscribe(value => expect(value).toEqual(mockSearchResponse)).unsubscribe()
   });
 
   it('should return Items', () => {
-    mockHttpClient.get.and.returnValue(of(mockDetailsResponse))
-    service.getYoutubeItems('').subscribe(value => expect(value).toEqual(mockDetailsResponse))
+    mockHttpClient.get = jasmine.createSpy().and.returnValue(of(mockDetailsResponse))
+    mockHttpClient.get('test')
+    service.getYoutubeItems('').subscribe(value => expect(value).toEqual(mockDetailsResponse)).unsubscribe()
   });
 });

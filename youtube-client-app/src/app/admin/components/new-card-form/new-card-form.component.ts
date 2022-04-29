@@ -3,7 +3,6 @@ import {
   FormControl, FormGroup, Validators,
 } from '@angular/forms';
 import { Store } from '@ngxs/store';
-import { Subscription } from 'rxjs';
 import { AddCustomItem } from 'src/app/redux/actions/add-custom-item.action';
 import { DateValidator } from '../../validators/date.validator';
 import { UrlValidator } from '../../validators/url.validator';
@@ -43,11 +42,7 @@ export class NewCardFormComponent {
     ]),
   });
 
-  private storeSubscription!: Subscription;
-
-  constructor(private store: Store) {
-
-  }
+  constructor(private store: Store) {}
 
   public cardSubmit(): void {
     this.store.dispatch(new AddCustomItem(this.form.value));

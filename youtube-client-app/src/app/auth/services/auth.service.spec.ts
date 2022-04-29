@@ -5,7 +5,7 @@ import { SearchDataService } from 'src/app/youtube/services/search-data.service'
 import { AuthService } from './auth.service';
 
 let mockSearchDataService: any;
-let mockRouter: any;
+let mockRouter: Router;
 
 describe('AuthService', () => {
   let service: AuthService;

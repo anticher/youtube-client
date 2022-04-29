@@ -3,7 +3,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
 }
 
 .not-found {
@@ -14,7 +13,7 @@
         width: 100px;
         object-fit: cover;
     }
-    
+
     &__text {
         margin-left: 28px;
         width: 230px;
@@ -22,5 +21,11 @@
         font-weight: 700;
         line-height: 28px;
         color: #828282;
+    }
+}
+
+@media (max-width: 430px) {
+    .not-found {
+        flex-direction: column;
     }
 }
