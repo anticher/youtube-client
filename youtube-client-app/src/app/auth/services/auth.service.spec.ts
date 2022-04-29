@@ -11,13 +11,13 @@ describe('AuthService', () => {
   let service: AuthService;
 
   beforeEach(() => {
-    mockSearchDataService = jasmine.createSpyObj(['clearSearchDataSubject'])
-    mockRouter = jasmine.createSpyObj(['navigate'])
+    mockSearchDataService = jasmine.createSpyObj(['clearSearchDataSubject']);
+    mockRouter = jasmine.createSpyObj(['navigate']);
     TestBed.configureTestingModule({
-        providers: [
-            { provide: SearchDataService, useValue: mockSearchDataService },
-            { provide: Router, useValue: mockRouter },
-        ],
+      providers: [
+        { provide: SearchDataService, useValue: mockSearchDataService },
+        { provide: Router, useValue: mockRouter },
+      ],
     });
     service = TestBed.inject(AuthService);
   });
@@ -28,29 +28,29 @@ describe('AuthService', () => {
 
   it('should check is user Auth', (done) => {
     localStorage.removeItem('login');
-    service.isUserAuth$.next(false)
-    service.checkIsAuth()
-    expect(mockRouter.navigate).toHaveBeenCalledTimes(1)
+    service.isUserAuth$.next(false);
+    service.checkIsAuth();
+    expect(mockRouter.navigate).toHaveBeenCalledTimes(1);
     localStorage.setItem('login', 'test');
-    service.checkIsAuth()
-    expect(service.isUserAuth$.value).toBe(true)
+    service.checkIsAuth();
+    expect(service.isUserAuth$.value).toBe(true);
     localStorage.removeItem('login');
     done();
   });
 
   it('should login', (done) => {
     service.login();
-    expect(service.isUserAuth$.value).toBe(true)
-    expect(localStorage.getItem('login')).toBeTruthy
-    expect(mockRouter.navigate).toHaveBeenCalledTimes(1)
+    expect(service.isUserAuth$.value).toBe(true);
+    expect(localStorage.getItem('login')).toBeTruthy;
+    expect(mockRouter.navigate).toHaveBeenCalledTimes(1);
     done();
   });
 
   it('should logout', (done) => {
     service.logout();
-    expect(service.isUserAuth$.value).toBeFalsy
-    expect(localStorage.getItem('login')).toBeFalsy
-    expect(mockRouter.navigate).toHaveBeenCalledTimes(1)
+    expect(service.isUserAuth$.value).toBeFalsy;
+    expect(localStorage.getItem('login')).toBeFalsy;
+    expect(mockRouter.navigate).toHaveBeenCalledTimes(1);
     done();
   });
 });

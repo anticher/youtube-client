@@ -29,6 +29,6 @@ describe('SearchButtonComponent', () => {
     const buttonEl: HTMLElement = buttonDe.nativeElement;
     const button = buttonEl.querySelector('button.search-button')!;
     expect(button).toBeTruthy();
-    expect(button.textContent).toBe('search')
+    expect(button.textContent).toBe('search');
   });
 });

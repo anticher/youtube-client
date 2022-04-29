@@ -18,7 +18,7 @@ describe('LogoButtonComponent', () => {
     fixture = TestBed.createComponent(LogoButtonComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    component.isDisabled = false
+    component.isDisabled = false;
   });
 
   it('should create', () => {
@@ -37,7 +37,7 @@ describe('LogoButtonComponent', () => {
   });
 
   it('should be disabled', () => {
-    component.isDisabled = true
+    component.isDisabled = true;
     expect(component.isButtonDisabled).toBe(true);
   });
 });

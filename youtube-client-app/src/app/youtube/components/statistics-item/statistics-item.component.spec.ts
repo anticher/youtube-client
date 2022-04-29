@@ -1,4 +1,6 @@
-import { ComponentFixture, TestBed, tick, waitForAsync } from '@angular/core/testing';
+import {
+  ComponentFixture, TestBed,
+} from '@angular/core/testing';
 
 import { StatisticsItemComponent } from './statistics-item.component';
 
@@ -17,7 +19,7 @@ describe('StatisticsItemComponent', () => {
     fixture = TestBed.createComponent(StatisticsItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    component.type = 'viewed'
+    component.type = 'viewed';
   });
 
   it('should create', () => {
@@ -31,48 +33,48 @@ describe('StatisticsItemComponent', () => {
 
   it('should be viewed statistics item', () => {
     fixture.detectChanges();
-    const div = fixture.debugElement.nativeElement.querySelector('div.statistics-item__img')
-    expect(div.classList).toContain('statistics-item__img_viewed')
-    expect(div.classList).not.toContain('statistics-item__img_liked')
-    expect(div.classList).not.toContain('statistics-item__img_comments')
-    expect(component.viewed).toBe(true)
-    expect(component.liked).toBe(false)
-    expect(component.comments).toBe(false)
+    const div = fixture.debugElement.nativeElement.querySelector('div.statistics-item__img');
+    expect(div.classList).toContain('statistics-item__img_viewed');
+    expect(div.classList).not.toContain('statistics-item__img_liked');
+    expect(div.classList).not.toContain('statistics-item__img_comments');
+    expect(component.viewed).toBe(true);
+    expect(component.liked).toBe(false);
+    expect(component.comments).toBe(false);
   });
 
   it('should be liked statistics item', () => {
-    component.type = 'liked'
+    component.type = 'liked';
     fixture.detectChanges();
-    const div = fixture.debugElement.nativeElement.querySelector('div.statistics-item__img')
-    expect(div.classList).toContain('statistics-item__img_liked')
-    expect(div.classList).not.toContain('statistics-item__img_viewed')
-    expect(div.classList).not.toContain('statistics-item__img_comments')
-    expect(component.viewed).toBe(false)
-    expect(component.liked).toBe(true)
-    expect(component.comments).toBe(false)
+    const div = fixture.debugElement.nativeElement.querySelector('div.statistics-item__img');
+    expect(div.classList).toContain('statistics-item__img_liked');
+    expect(div.classList).not.toContain('statistics-item__img_viewed');
+    expect(div.classList).not.toContain('statistics-item__img_comments');
+    expect(component.viewed).toBe(false);
+    expect(component.liked).toBe(true);
+    expect(component.comments).toBe(false);
   });
 
   it('should be comments statistics item', () => {
-    component.type = 'comments'
+    component.type = 'comments';
     fixture.detectChanges();
-    const div = fixture.debugElement.nativeElement.querySelector('div.statistics-item__img')
-    expect(div.classList).toContain('statistics-item__img_comments')
-    expect(div.classList).not.toContain('statistics-item__img_viewed')
-    expect(div.classList).not.toContain('statistics-item__img_liked')
-    expect(component.viewed).toBe(false)
-    expect(component.liked).toBe(false)
-    expect(component.comments).toBe(true)
+    const div = fixture.debugElement.nativeElement.querySelector('div.statistics-item__img');
+    expect(div.classList).toContain('statistics-item__img_comments');
+    expect(div.classList).not.toContain('statistics-item__img_viewed');
+    expect(div.classList).not.toContain('statistics-item__img_liked');
+    expect(component.viewed).toBe(false);
+    expect(component.liked).toBe(false);
+    expect(component.comments).toBe(true);
   });
 
   it('should be default statistics item', () => {
-    component.type = ''
+    component.type = '';
     fixture.detectChanges();
-    const div = fixture.debugElement.nativeElement.querySelector('div.statistics-item__img')
-    expect(div.classList).not.toContain('statistics-item__img_comments')
-    expect(div.classList).not.toContain('statistics-item__img_viewed')
-    expect(div.classList).not.toContain('statistics-item__img_liked')
-    expect(component.viewed).toBe(false)
-    expect(component.liked).toBe(false)
-    expect(component.comments).toBe(false)
+    const div = fixture.debugElement.nativeElement.querySelector('div.statistics-item__img');
+    expect(div.classList).not.toContain('statistics-item__img_comments');
+    expect(div.classList).not.toContain('statistics-item__img_viewed');
+    expect(div.classList).not.toContain('statistics-item__img_liked');
+    expect(component.viewed).toBe(false);
+    expect(component.liked).toBe(false);
+    expect(component.comments).toBe(false);
   });
 });

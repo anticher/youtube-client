@@ -20,7 +20,7 @@ export class SearchItemComponent implements OnInit, OnDestroy {
 
   public isSearchInputDisabled: boolean = false;
 
-  private subscriptions = new Subscription()
+  private subscriptions = new Subscription();
 
   constructor(
     private searchDataService: SearchDataService,
@@ -57,11 +57,10 @@ export class SearchItemComponent implements OnInit, OnDestroy {
 
   public inputChange(event: Event): void {
     if (this.router.url !== '/') {
-      this.router.navigate([''])
+      this.router.navigate(['']);
     }
     const seachString = (event.target as HTMLInputElement).value;
     this.searchDataService.searchString$.next(seachString);
-
   }
 
   public ngOnDestroy(): void {

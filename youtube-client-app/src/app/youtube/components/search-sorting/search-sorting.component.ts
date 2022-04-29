@@ -11,7 +11,7 @@ import { SearchDataService } from 'src/app/youtube/services/search-data.service'
 export class SearchSortingComponent implements OnInit, OnDestroy {
   public sortingByTagValue: string = '';
 
-  private subscriptions = new Subscription()
+  private subscriptions = new Subscription();
 
   constructor(
     private searchDataService: SearchDataService,

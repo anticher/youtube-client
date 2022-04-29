@@ -13,7 +13,7 @@ export class ResultComponent implements OnInit, OnDestroy {
 
   public filterString: string = '';
 
-  private subscriptions = new Subscription()
+  private subscriptions = new Subscription();
 
   constructor(private searchDataService: SearchDataService) { }
 

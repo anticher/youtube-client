@@ -2,7 +2,6 @@ import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { mockDetailsItem1 } from 'src/app/mock/mock-details-items';
 import { ResultItemBorderColorDirective } from '../../directives/result-item-border-color.directive';
-import { DetailsItem } from '../../models/details-item.model';
 import { SetColorByDatePipe } from '../../pipes/set-color-by-date.pipe';
 
 import { ResultItemComponent } from './result-item.component';
@@ -15,7 +14,7 @@ describe('ResultItemComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [ResultItemComponent, SetColorByDatePipe, ResultItemBorderColorDirective],
       schemas: [
-        CUSTOM_ELEMENTS_SCHEMA
+        CUSTOM_ELEMENTS_SCHEMA,
       ],
     })
       .compileComponents();
@@ -25,7 +24,7 @@ describe('ResultItemComponent', () => {
     fixture = TestBed.createComponent(ResultItemComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    component.item = mockDetailsItem1
+    component.item = mockDetailsItem1;
   });
 
   it('should create', () => {
@@ -34,9 +33,9 @@ describe('ResultItemComponent', () => {
 
   it('should set item info', () => {
     const titleElement: HTMLElement = fixture.debugElement.nativeElement
-    .querySelector('.result-item__title')
-    expect(component.channelTitle).toBeTruthy
+      .querySelector('.result-item__title');
+    expect(component.channelTitle).toBeTruthy;
     fixture.detectChanges();
-    expect(component.channelTitle).toBe(titleElement.textContent!)
+    expect(component.channelTitle).toBe(titleElement.textContent!);
   });
 });

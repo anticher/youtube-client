@@ -16,7 +16,7 @@ const headerMobileWidth = 636;
 export class HeaderComponent implements OnInit, OnDestroy {
   @HostListener('window:resize')
   onResize() {
-    this.controlWindowWidth()
+    this.controlWindowWidth();
   }
 
   public isSearchButtonDisabled: boolean = false;
@@ -40,7 +40,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
   ) { }
 
   public ngOnInit(): void {
-    this.controlWindowWidth()
+    this.controlWindowWidth();
     this.subscriptions = this.authService.isUserAuth$.subscribe((value) => {
       this.isUserAuth = value;
       this.isLogoDisabled = !value;
@@ -52,9 +52,9 @@ export class HeaderComponent implements OnInit, OnDestroy {
 
   public controlWindowWidth(): void {
     if (window.innerWidth <= headerMobileWidth) {
-      this.isMobileWidth = true
+      this.isMobileWidth = true;
     } else {
-      this.isMobileWidth = false
+      this.isMobileWidth = false;
       this.isSearchBlockVisible = false;
     }
   }

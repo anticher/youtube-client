@@ -22,7 +22,6 @@
       ],
       "rules": {
         "import/prefer-default-export": "off",
-        // "no-console": "off",
         "@angular-eslint/directive-selector": [
           "error",
           {
@@ -49,6 +48,16 @@
         "plugin:@angular-eslint/template/recommended"
       ],
       "rules": {}
+    },
+    {
+      "files": [
+        "*.test.ts",
+        "*.spec.ts"
+      ],
+      "rules": {
+        "no-unused-expressions": 0,
+        "@typescript-eslint/no-unused-expressions": 0
+      }
     }
   ]
 }

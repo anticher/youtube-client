@@ -37,7 +37,7 @@ describe('NotFoundComponent', () => {
     const img: HTMLImageElement = imgEl.querySelector('img.not-found__logo')!;
     expect(img).toBeTruthy();
     expect(img.src).toContain('assets/icons/notFoundLogo.svg');
-    expect(img.alt).toBe('not-found-logo')
+    expect(img.alt).toBe('not-found-logo');
   });
 
   it('should has <p> with "not-found__text" class and "Your Name" value', () => {
@@ -45,6 +45,6 @@ describe('NotFoundComponent', () => {
     const textEl: HTMLElement = textDe.nativeElement;
     const p = textEl.querySelector('p.not-found__text')!;
     expect(p).toBeTruthy();
-    expect(p.textContent).toBe('Sorry, smth went wrong((')
+    expect(p.textContent).toBe('Sorry, smth went wrong((');
   });
 });
